@@ -1,0 +1,71 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #f4f8f5, #e8f5ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 40px rgba(10,61,32,0.12);
+  border: 1px solid rgba(10,61,32,0.06);
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.logoIcon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #0a3d20, #1a7a45);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.logoWrap h1 {
+  font-size: 1.25rem;
+  color: #1e2a25;
+  margin-bottom: 0.1rem;
+}
+
+.logoWrap p {
+  font-size: 0.8rem;
+  color: #4a5e54;
+  margin: 0;
+}
+
+.form { display: flex; flex-direction: column; gap: 0; }
+
+.erro {
+  background: #fdf2f2;
+  border: 1px solid #f5c6c6;
+  color: #c0392b;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.hint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #8fa898;
+  margin-top: 1rem;
+}

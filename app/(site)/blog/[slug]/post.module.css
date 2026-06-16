@@ -1,0 +1,24 @@
+.grid { display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: start; }
+.main { max-width: 100%; overflow: hidden; }
+.meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.data { font-size: 0.82rem; color: var(--cinza-texto); }
+.titulo { font-size: clamp(1.5rem, 3.5vw, 2.2rem); color: var(--grafite); margin-bottom: 1rem; line-height: 1.25; }
+.resumo { font-size: 1.05rem; color: var(--cinza-texto); line-height: 1.7; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--borda); }
+.conteudo { display: flex; flex-direction: column; gap: 0.6rem; }
+.conteudo p { font-size: 0.95rem; color: var(--cinza-texto); line-height: 1.8; }
+.ul { list-style: none; padding: 0; margin: 0.5rem 0; }
+.conteudo h2, .h2 { font-size: 1.4rem; color: var(--grafite); margin-top: 1.5rem; margin-bottom: 0.5rem; padding-top: 0.5rem; }
+.conteudo li, .li { font-size: 0.92rem; color: var(--cinza-texto); padding: 0.25rem 0 0.25rem 1.5rem; position: relative; line-height: 1.6; }
+.conteudo li::before, .li::before { content: '•'; position: absolute; left: 0.5rem; color: var(--dourado); font-weight: 700; }
+.blockquote { background: var(--cinza-claro); border-left: 3px solid var(--dourado); padding: 1rem 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.9rem; color: var(--cinza-escuro); font-style: italic; margin: 1rem 0; }
+.hr { border: none; border-top: 1px solid var(--borda); margin: 1.5rem 0; }
+.italic { font-style: italic; font-size: 0.85rem; color: var(--cinza-texto); }
+.sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: 90px; }
+.sideCard { background: white; border: 1px solid var(--borda); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--sombra-sm); }
+.sideCard h3 { font-size: 1.05rem; color: var(--grafite); margin-bottom: 0.4rem; }
+.sideCard h4 { font-size: 0.95rem; color: var(--grafite); margin-bottom: 1rem; }
+.sideCard p { font-size: 0.85rem; color: var(--cinza-texto); margin-bottom: 1rem; }
+.outroLink { display: block; padding: 0.6rem 0; font-size: 0.85rem; color: var(--cinza-texto); border-bottom: 1px solid var(--cinza-claro); text-decoration: none; transition: color 0.2s ease; line-height: 1.4; }
+.outroLink:hover { color: var(--dourado); }
+.outroLink:last-child { border-bottom: none; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .sidebar { position: static; } }

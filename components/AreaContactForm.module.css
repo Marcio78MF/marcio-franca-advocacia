@@ -1,0 +1,83 @@
+.card {
+  background: var(--branco);
+  border: 1.5px solid var(--borda);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--sombra-md);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--azul-marinho);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.88rem;
+  color: var(--cinza-texto);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--grafite);
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--grafite);
+  background: var(--branco-off);
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px var(--dourado-sutil);
+  background: white;
+}
+
+.sucesso {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.sucessoIcon {
+  color: #25d366;
+  margin: 0 auto 0.75rem;
+}
+
+.sucesso h4 {
+  font-size: 1.15rem;
+  color: var(--grafite);
+  margin-bottom: 0.5rem;
+}
+
+.sucesso p {
+  font-size: 0.88rem;
+  color: var(--cinza-texto);
+  margin: 0;
+}

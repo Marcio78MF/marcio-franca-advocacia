@@ -1,0 +1,112 @@
+.wrapper {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 1000;
+  max-width: 450px;
+  background: rgba(10, 61, 32, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(184, 134, 11, 0.25);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.texto p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.link {
+  color: #d4a843;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.link:hover {
+  color: white;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.btnAceitar, .btnRecusar {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnAceitar {
+  background: #b8860b;
+  border: 1px solid #b8860b;
+  color: white;
+}
+
+.btnAceitar:hover {
+  background: #d4a843;
+  border-color: #d4a843;
+  transform: translateY(-1px);
+}
+
+.btnRecusar {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btnRecusar:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: white;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
+  }
+  
+  .inner {
+    flex-direction: column;
+  }
+  
+  .botoes {
+    width: 100%;
+  }
+  
+  .btnAceitar, .btnRecusar {
+    flex: 1;
+    text-align: center;
+  }
+}

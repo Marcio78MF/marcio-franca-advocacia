@@ -1,0 +1,11 @@
+.faq { margin: 2rem 0; }
+.titulo { font-size: 1.3rem; color: var(--grafite); margin-bottom: 1.25rem; }
+.lista { display: flex; flex-direction: column; gap: 0; }
+.item { border: 1px solid var(--borda); border-radius: var(--radius-md); overflow: hidden; transition: all 0.2s ease; margin-bottom: 0.5rem; }
+.item:hover { border-color: rgba(201,168,76,0.3); }
+.itemAberto { border-color: var(--dourado); box-shadow: 0 2px 12px rgba(201,168,76,0.08); }
+.pergunta { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.25rem; background: none; border: none; cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--grafite); text-align: left; font-family: 'Inter', sans-serif; gap: 1rem; transition: color 0.2s ease; }
+.pergunta:hover { color: var(--dourado); }
+.icon { font-size: 1.2rem; color: var(--dourado); flex-shrink: 0; font-weight: 300; }
+.resposta { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.resposta p { padding: 0 1.25rem 1rem; font-size: 0.88rem; color: var(--cinza-texto); line-height: 1.7; margin: 0; }

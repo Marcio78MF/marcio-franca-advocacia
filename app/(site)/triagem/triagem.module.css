@@ -1,0 +1,44 @@
+.page { min-height: 100vh; position: relative; background: var(--cinza-claro); padding-top: 6rem; padding-bottom: 4rem; }
+.heroBg { position: absolute; top: 0; left: 0; right: 0; height: 280px; background: linear-gradient(135deg, #0a1220, #0f1b2d); z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 720px; }
+.header { text-align: center; margin-bottom: 2rem; }
+.header h1 { color: white; font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
+.header p { color: rgba(255,255,255,0.6); font-size: 1rem; }
+.progressWrap { margin-bottom: 2rem; }
+.progressBar { height: 4px; background: rgba(255,255,255,0.15); border-radius: 99px; overflow: hidden; margin-bottom: 0.75rem; }
+.progressFill { height: 100%; background: linear-gradient(90deg, var(--dourado), var(--dourado-claro)); border-radius: 99px; transition: width 0.4s var(--ease-out); }
+.progressLabels { display: flex; justify-content: space-between; }
+.progressLabel { font-size: 0.72rem; color: rgba(255,255,255,0.35); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.progressDone { color: var(--dourado); }
+.progressActive { color: white; font-weight: 600; }
+.card { background: white; border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--sombra-lg); border: 1px solid var(--borda); }
+.etapa { display: flex; flex-direction: column; gap: 0.75rem; }
+.etapa h2 { font-size: 1.3rem; color: var(--grafite); }
+.etapa > p { font-size: 0.9rem; color: var(--cinza-texto); margin-bottom: 0.5rem; }
+.areasGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 0.5rem; }
+.areaBtn { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 1.25rem 1rem; border: 1.5px solid var(--borda); border-radius: var(--radius-md); background: white; cursor: pointer; transition: all 0.2s ease; font-family: var(--font-body); }
+.areaBtn:hover { border-color: var(--dourado); background: var(--dourado-sutil); transform: translateY(-1px); }
+.areaBtnIcone { font-size: 1.5rem; }
+.areaBtnTitulo { font-size: 0.85rem; font-weight: 600; color: var(--grafite); }
+.perguntaHeader { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.perguntaIcone { font-size: 2rem; }
+.perguntaHeader h2 { margin-bottom: 0; }
+.perguntaHeader p { font-size: 0.82rem; color: var(--cinza-texto); margin: 0; }
+.perguntaWrap { margin-top: 0.5rem; }
+.perguntaTexto { font-size: 1.05rem; font-weight: 600; color: var(--grafite); margin-bottom: 1rem; }
+.opcoes { display: flex; flex-direction: column; gap: 0.5rem; }
+.opcaoBtn { display: block; width: 100%; padding: 0.85rem 1.25rem; border: 1.5px solid var(--borda); border-radius: var(--radius-md); background: white; cursor: pointer; font-size: 0.9rem; color: var(--grafite); text-align: left; transition: all 0.2s ease; font-family: var(--font-body); font-weight: 500; }
+.opcaoBtn:hover { border-color: var(--dourado); background: var(--dourado-sutil); }
+.opcaoSelecionada { border-color: var(--dourado) !important; background: var(--dourado-sutil) !important; color: var(--azul-marinho); font-weight: 600; }
+.voltarBtn { background: none; border: none; color: var(--cinza-texto); font-size: 0.85rem; cursor: pointer; padding: 0.5rem 0; margin-top: 0.5rem; font-family: var(--font-body); transition: color 0.2s ease; align-self: flex-start; }
+.voltarBtn:hover { color: var(--grafite); }
+.form { display: flex; flex-direction: column; gap: 0; margin-top: 0.5rem; }
+.privacidade { font-size: 0.78rem; color: var(--cinza-texto); text-align: center; margin-top: 0.25rem; margin-bottom: 1rem; }
+.enviarBtn { width: 100%; justify-content: center; }
+.enviarBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.resultado { align-items: center; text-align: center; padding: 2rem 0; }
+.resultadoIcone { font-size: 3rem; margin-bottom: 0.5rem; }
+.resultado h2 { color: var(--azul-marinho); }
+.resultado p { max-width: 480px; line-height: 1.7; }
+.resultadoBtns { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
+@media (max-width: 600px) { .card { padding: 1.5rem; } .areasGrid { grid-template-columns: 1fr; } }

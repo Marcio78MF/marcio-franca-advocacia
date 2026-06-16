@@ -1,0 +1,173 @@
+.section {
+  padding: 6rem 0;
+  background: var(--branco);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.scoreBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scoreBlock h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--azul-marinho);
+  font-weight: 700;
+}
+
+.starsSummary {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.25rem 0;
+}
+
+.starsSummaryIcon {
+  color: #ffc107;
+  fill: #ffc107;
+}
+
+.scoreSub {
+  font-size: 0.9rem;
+  color: var(--cinza-texto);
+  font-weight: 500;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--branco-off);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: var(--sombra-sm);
+  transition: all 0.3s var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--dourado);
+  box-shadow: var(--sombra-lg);
+  transform: translateY(-3px);
+  background: white;
+}
+
+.quoteIcon {
+  color: rgba(201, 168, 76, 0.2);
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.starIcon {
+  color: #ffc107;
+  fill: #ffc107;
+}
+
+.comentario {
+  font-size: 0.925rem;
+  color: var(--grafite);
+  line-height: 1.6;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.autor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--azul-medio);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.autorInfo strong {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--azul-marinho);
+  font-weight: 600;
+}
+
+.autorInfo span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--cinza-texto);
+}
+
+.aviso {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.78rem;
+  color: var(--cinza-texto);
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .scoreBlock {
+    align-items: center;
+  }
+
+  .btnGroup {
+    justify-content: center;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

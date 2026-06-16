@@ -1,0 +1,220 @@
+.section {
+  padding: 6rem 0;
+  background: var(--branco);
+}
+
+.tituloSecao {
+  color: var(--azul-marinho);
+  font-weight: 700;
+}
+
+.destaqueGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.destaqueCardWrap {
+  display: flex;
+}
+
+.destaqueCard {
+  background: var(--branco-off);
+  border: 1.5px solid var(--borda);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  transition: all 0.3s var(--ease-out);
+  box-shadow: var(--sombra-md);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover sofisticado do card prioritário: levantar 8px, borda dourada, sombra dinâmica */
+.destaqueCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--dourado);
+  box-shadow: var(--sombra-xl);
+  background: white;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconBox {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--dourado-sutil);
+  color: var(--dourado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.destaqueBadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dourado);
+  background: rgba(201, 168, 76, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+  border: 1px solid var(--borda-dourada);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
+}
+
+.cardBody h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--azul-marinho);
+}
+
+.cardBody p {
+  font-size: 0.95rem;
+  color: var(--cinza-texto);
+  line-height: 1.6;
+}
+
+.cardFooter {
+  margin-top: auto;
+}
+
+/* Seção secundária: Outras áreas */
+.outrasHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.outrasHeader h3 {
+  font-size: 1.35rem;
+  color: var(--azul-marinho);
+  font-weight: 600;
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background: var(--dourado);
+  border-radius: 99px;
+}
+
+.outrasGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.areaCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem 1.25rem;
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all 0.3s var(--ease-out);
+  box-shadow: var(--sombra-sm);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.areaCard::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.areaCard:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: var(--sombra-md);
+  transform: translateY(-4px);
+}
+
+.areaCard:hover::before {
+  transform: scaleX(1);
+}
+
+.areaIcone {
+  color: var(--dourado);
+  margin-bottom: 0.25rem;
+  display: inline-flex;
+}
+
+.areaTitulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--grafite);
+  font-family: var(--font-heading);
+}
+
+.areaSub {
+  font-size: 0.8rem;
+  color: var(--cinza-texto);
+  line-height: 1.45;
+  flex: 1;
+}
+
+.areaLink {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--dourado);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.areaArrow {
+  transition: transform 0.2s ease;
+}
+
+.areaCard:hover .areaArrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px) {
+  .destaqueGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .destaqueCard {
+    padding: 1.75rem;
+    gap: 1.25rem;
+  }
+  .outrasGrid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}

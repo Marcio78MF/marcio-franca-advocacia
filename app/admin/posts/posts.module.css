@@ -1,0 +1,126 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.busca { display: flex; gap: 0.5rem; }
+
+.lista { display: flex; flex-direction: column; gap: 0; background: white; border-radius: 14px; border: 1px solid #e0e8e3; overflow: hidden; }
+
+.postItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f4f8f5;
+  transition: background 0.2s ease;
+}
+
+.postItem:last-child { border-bottom: none; }
+.postItem:hover { background: #f4f8f5; }
+
+.postInfo { flex: 1; display: flex; flex-direction: column; gap: 0.35rem; }
+.postInfo h3 { font-size: 0.95rem; color: #1e2a25; font-weight: 600; }
+.postInfo p { font-size: 0.8rem; color: #4a5e54; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.postData { font-size: 0.75rem; color: #8fa898; }
+
+.postAcoes { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+
+.statusBtn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.statusPublicado { background: #e8f5ee; color: #0a3d20; }
+.statusRascunho { background: #fdf3dc; color: #b8860b; }
+
+.excluirBtn {
+  background: #fdf2f2;
+  color: #c0392b;
+  border: 1px solid #f5c6c6;
+}
+
+.excluirBtn:hover { background: #c0392b; color: white; border-color: #c0392b; }
+
+.vazio {
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vazio p { color: #4a5e54; }
+
+/* Editor */
+.editor { display: flex; flex-direction: column; height: 100%; }
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.voltarBtn {
+  background: none;
+  border: 1px solid #d1ddd6;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  color: #4a5e54;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.voltarBtn:hover { background: #f4f8f5; }
+
+.editorHeader h2 { flex: 1; font-size: 1.2rem; color: #1e2a25; }
+
+.editorAcoes { display: flex; align-items: center; gap: 0.75rem; }
+
+.publishToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #4a5e54;
+  font-family: 'Inter', sans-serif;
+}
+
+.editorBody {
+  background: white;
+  border-radius: 14px;
+  padding: 2rem;
+  border: 1px solid #e0e8e3;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.textareaGrande {
+  resize: vertical;
+  min-height: 400px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}

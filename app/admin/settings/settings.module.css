@@ -1,0 +1,46 @@
+.sucesso {
+  background: #e8f5ee;
+  border: 1px solid #0a3d20;
+  color: #0a3d20;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.secao {
+  background: white;
+  border-radius: 14px;
+  padding: 1.75rem;
+  border: 1px solid #e0e8e3;
+  display: flex;
+  flex-direction: column;
+}
+
+.secao h2 {
+  font-size: 1rem;
+  color: #1e2a25;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #b8860b;
+  display: inline-block;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5rem 0;
+  border-top: 1px solid #e0e8e3;
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+}

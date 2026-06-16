@@ -1,0 +1,128 @@
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #e0e8e3;
+  box-shadow: 0 2px 8px rgba(10,61,32,0.04);
+  border-top: 3px solid var(--stat-cor, #0a3d20);
+  transition: transform 0.2s ease;
+}
+
+.statCard:hover { transform: translateY(-2px); }
+
+.statIcone { font-size: 1.75rem; }
+
+.statValor {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--stat-cor, #0a3d20);
+  line-height: 1;
+  font-family: 'Playfair Display', serif;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #4a5e54;
+  margin-top: 0.2rem;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+}
+
+.panel {
+  background: white;
+  border-radius: 14px;
+  padding: 1.75rem;
+  border: 1px solid #e0e8e3;
+}
+
+.panel h2 {
+  font-size: 1rem;
+  color: #1e2a25;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e0e8e3;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8fa898;
+  border-bottom: 1px solid #e0e8e3;
+}
+
+.table td {
+  padding: 0.75rem;
+  color: #2e3d35;
+  border-bottom: 1px solid #f4f8f5;
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.acao {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: #f4f8f5;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.acao:hover {
+  background: #e8f5ee;
+  border-color: #d1ddd6;
+}
+
+.acao span { font-size: 1.25rem; flex-shrink: 0; }
+
+.acao strong {
+  display: block;
+  font-size: 0.875rem;
+  color: #1e2a25;
+  margin-bottom: 0.1rem;
+}
+
+.acao p { font-size: 0.775rem; color: #4a5e54; margin: 0; }
+
+@media (max-width: 1024px) {
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .grid2 { grid-template-columns: 1fr; }
+}
