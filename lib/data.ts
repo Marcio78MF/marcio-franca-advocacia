@@ -45,6 +45,8 @@ export type AreaAtuacao = {
     label: string;
     perguntas: { id: string; texto: string; opcoes: string[] }[];
   };
+  videoId?: string;
+  videoTitulo?: string;
   palavrasChave: string[];
 };
 
@@ -90,6 +92,8 @@ export const AREAS_ATUACAO: AreaAtuacao[] = [
         { id: 'pedido', texto: 'Já fez pedido no INSS?', opcoes: ['Sim, foi negado', 'Sim, está em análise', 'Ainda não fiz'] },
       ],
     },
+    videoId: 'dQw4w9WgXcQ',
+    videoTitulo: 'Entenda o BPC/LOAS',
     palavrasChave: ['BPC LOAS Rio Branco', 'advogado BPC Acre', 'benefício assistencial Rio Branco'],
   },
   {

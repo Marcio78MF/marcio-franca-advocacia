@@ -10,6 +10,7 @@ import BlocoUrgencia from '@/components/BlocoUrgencia';
 import ComoFunciona from '@/components/ComoFunciona';
 import PorQueEscolher from '@/components/PorQueEscolher';
 import Avaliacoes from '@/components/Avaliacoes';
+import NewsletterCapture from '@/components/NewsletterCapture';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -138,6 +139,9 @@ export default function HomePage() {
 
       {/* ===== AVALIAÇÕES ===== */}
       <Avaliacoes />
+
+      {/* ===== NEWSLETTER ===== */}
+      <NewsletterCapture />
 
       {/* ===== SOBRE: DR. MÁRCIO FRANÇA ===== */}
       <section className="section-alt" id="sobre" aria-labelledby="sobre-titulo">

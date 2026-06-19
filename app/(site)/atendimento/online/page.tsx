@@ -1,6 +1,7 @@
 import { gerarMetadata } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
+import NewsletterCapture from '@/components/NewsletterCapture';
 
 export const metadata = gerarMetadata({
   titulo: 'Atendimento Jurídico Online — Todo o Brasil',
@@ -72,6 +73,8 @@ export default function OnlinePage() {
           </div>
         </div>
       </section>
+
+      <NewsletterCapture />
     </>
   );
 }

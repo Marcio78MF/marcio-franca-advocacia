@@ -1,6 +1,7 @@
 import { gerarMetadata } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
+import NewsletterCapture from '@/components/NewsletterCapture';
 
 export const metadata = gerarMetadata({
   titulo: 'Advogado em Rio Branco/AC — Atendimento Presencial',
@@ -113,6 +114,8 @@ export default function RioBrancoPage() {
           </div>
         </div>
       </section>
+
+      <NewsletterCapture />
     </>
   );
 }

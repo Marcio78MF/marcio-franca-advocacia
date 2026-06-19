@@ -6,6 +6,7 @@ import FAQ from '@/components/FAQ';
 import ScrollReveal from '@/components/ScrollReveal';
 import Icon from '@/components/Icon';
 import AreaContactForm from '@/components/AreaContactForm';
+import VideoEmbed from '@/components/VideoEmbed';
 import styles from './page.module.css';
 
 type Props = { params: Promise<{ area: string }> };
@@ -134,6 +135,12 @@ export default async function AreaPage({ params }: Props) {
               {isPrioritaria && (
                 <ScrollReveal delay={3}>
                   <AreaContactForm areaTitulo={area.titulo} areaSlug={area.id} />
+                </ScrollReveal>
+              )}
+
+              {area.videoId && (
+                <ScrollReveal delay={3}>
+                  <VideoEmbed videoId={area.videoId} title={area.videoTitulo || area.titulo} />
                 </ScrollReveal>
               )}
 
