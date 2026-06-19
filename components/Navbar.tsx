@@ -20,7 +20,7 @@ export default function Navbar() {
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de informações sobre atendimento jurídico.')}`;
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} role="banner">
+    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} role="banner" style={{ viewTransitionName: 'site-header' }}>
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
         <Link href="/" className={styles.logo} onClick={() => setAberto(false)} aria-label="Márcio França Advocacia - Página Inicial">
