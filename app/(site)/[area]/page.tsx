@@ -133,7 +133,7 @@ export default async function AreaPage({ params }: Props) {
 
               {isPrioritaria && (
                 <ScrollReveal delay={3}>
-                  <AreaContactForm areaTitulo={area.titulo} />
+                  <AreaContactForm areaTitulo={area.titulo} areaSlug={area.id} />
                 </ScrollReveal>
               )}
 

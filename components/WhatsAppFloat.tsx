@@ -11,7 +11,7 @@ export default function WhatsAppFloat() {
     return () => clearTimeout(timer);
   }, []);
 
-  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de informações sobre atendimento jurídico.')}`;
+  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de informações sobre atendimento jurídico. [source=site&area=geral]')}`;
 
   return (
     <div className={`${styles.wrapper} ${visivel ? styles.visivel : ''}`}>

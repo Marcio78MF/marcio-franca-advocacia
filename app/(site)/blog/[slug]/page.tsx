@@ -1,4 +1,5 @@
-import { POSTS_MOCK, SITE_CONFIG } from '@/lib/data';
+import { getPosts, getPostBySlug } from '@/lib/blog';
+import { SITE_CONFIG } from '@/lib/data';
 import { gerarMetadata, gerarSchemaArtigo } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -7,24 +8,24 @@ import styles from './post.module.css';
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return POSTS_MOCK.filter(p => p.publicado).map(p => ({ slug: p.slug }));
+  return getPosts().map(p => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const post = POSTS_MOCK.find(p => p.slug === slug && p.publicado);
+  const post = getPostBySlug(slug);
   if (!post) return {};
   return gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article' });
 }
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
-  const post = POSTS_MOCK.find(p => p.slug === slug && p.publicado);
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
   const schema = gerarSchemaArtigo(post);
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(`Olá, li o artigo "${post.titulo}" e gostaria de mais informações.`)}`;
-  const outrosPosts = POSTS_MOCK.filter(p => p.id !== post.id && p.publicado).slice(0, 3);
+  const outrosPosts = getPosts().filter(p => p.id !== post.id).slice(0, 3);
 
   // Simple markdown-like rendering
   const renderConteudo = (texto: string) => {

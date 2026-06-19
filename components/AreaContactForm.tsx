@@ -6,9 +6,10 @@ import styles from './AreaContactForm.module.css';
 
 type Props = {
   areaTitulo: string;
+  areaSlug?: string;
 };
 
-export default function AreaContactForm({ areaTitulo }: Props) {
+export default function AreaContactForm({ areaTitulo, areaSlug = 'geral' }: Props) {
   const [nome, setNome] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [mensagem, setMensagem] = useState('');
@@ -21,7 +22,9 @@ export default function AreaContactForm({ areaTitulo }: Props) {
       ``,
       `*Nome:* ${nome}`,
       `*WhatsApp:* ${whatsapp}`,
-      `*Mensagem:* ${mensagem || 'Gostaria de agendar uma consulta.'}`
+      `*Mensagem:* ${mensagem || 'Gostaria de agendar uma consulta.'}`,
+      ``,
+      `[source=site&area=${areaSlug}]`
     ].join('\n');
     setEnviado(true);
     window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');

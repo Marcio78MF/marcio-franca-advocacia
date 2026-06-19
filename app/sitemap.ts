@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
-import { AREAS_ATUACAO, POSTS_MOCK } from '@/lib/data';
+import { AREAS_ATUACAO } from '@/lib/data';
+import { getPosts } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://marciofrancaadvocacia.com.br';
@@ -20,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  const postsUrls: MetadataRoute.Sitemap = POSTS_MOCK.filter((p) => p.publicado).map((post) => ({
+  const postsUrls: MetadataRoute.Sitemap = getPosts().map((post) => ({
     url: `${base}/blog/${post.slug}`,
     lastModified: new Date(post.criadoEm),
     changeFrequency: 'yearly' as const,

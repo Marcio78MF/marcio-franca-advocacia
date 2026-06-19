@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { POSTS_MOCK } from '@/lib/data';
+import { getPosts } from '@/lib/blog';
 import { gerarMetadata } from '@/lib/seo';
 import styles from './blog.module.css';
 
@@ -10,7 +10,7 @@ export const metadata = gerarMetadata({
 });
 
 export default function BlogPage() {
-  const postsPublicados = POSTS_MOCK.filter(p => p.publicado);
+  const postsPublicados = getPosts();
   const categorias = [...new Set(postsPublicados.map(p => p.categoria))];
 
   return (

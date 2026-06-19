@@ -1,0 +1,71 @@
+.wrapper {
+  background: var(--azul-marinho);
+  padding: 3.5rem 1.5rem;
+}
+
+.inner {
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.titulo {
+  font-family: var(--font-heading);
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtexto {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.92rem;
+  margin-bottom: 1.75rem;
+}
+
+.form {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  font-family: var(--font-body);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.input:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.25);
+}
+
+.botao {
+  flex-shrink: 0;
+}
+
+.sucessoMsg {
+  color: var(--dourado);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .botao {
+    width: 100%;
+    justify-content: center;
+  }
+}

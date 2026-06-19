@@ -1,14 +1,23 @@
 'use client';
 import { useState } from 'react';
-import { POSTS_MOCK } from '@/lib/data';
 import styles from './posts.module.css';
 
-type Post = typeof POSTS_MOCK[0];
+type Post = {
+  id: string;
+  titulo: string;
+  slug: string;
+  resumo: string;
+  categoria: string;
+  publicado: boolean;
+  criadoEm: string;
+  conteudo: string;
+};
 
 type ModoView = 'lista' | 'editor';
 
 export default function PostsPage() {
-  const [posts, setPosts] = useState<Post[]>([...POSTS_MOCK]);
+  // TODO: Carregar posts via API quando o backend estiver implementado
+  const [posts, setPosts] = useState<Post[]>([]);
   const [modo, setModo] = useState<ModoView>('lista');
   const [postEditando, setPostEditando] = useState<Post | null>(null);
   const [titulo, setTitulo] = useState('');
