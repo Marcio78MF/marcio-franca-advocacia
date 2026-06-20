@@ -90,6 +90,9 @@ export default function HomePage() {
 
           {/* Right: Photo */}
           <FadeUp className={styles.heroFotoWrap} delay={0.15}>
+            <div className={styles.heroBadgeFloat}>
+              Atendimento técnico e humanizado
+            </div>
             <div className={styles.heroFotoContainer}>
               <Image
                 src="/images/dr-marcio-hero.jpg"
@@ -114,9 +117,6 @@ export default function HomePage() {
                 <strong>Dr. Márcio França</strong>
                 <span>Advogado · {SITE_CONFIG.oab} · Rio Branco/AC</span>
               </div>
-            </div>
-            <div className={styles.heroBadgeFloat}>
-              Atendimento técnico e humanizado
             </div>
           </FadeUp>
         </div>

@@ -153,9 +153,8 @@
 }
 
 .heroFotoCard {
-  position: absolute;
-  bottom: -1.5rem;
-  left: -1.5rem;
+  position: relative;
+  margin-top: 1rem;
   background: rgba(10, 15, 30, 0.94);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(201, 168, 76, 0.2);
@@ -187,9 +186,9 @@
 }
 
 .heroBadgeFloat {
-  position: absolute;
-  top: 1.5rem;
-  right: -1rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+  align-self: center;
   background: rgba(201, 168, 76, 0.12);
   border: 1px solid rgba(201, 168, 76, 0.3);
   border-radius: 999px;
@@ -550,8 +549,8 @@
 
   .heroFotoWrap { order: -1; }
   .heroFotoContainer { width: 300px; height: 380px; margin: 0 auto; }
-  .heroFotoCard { left: 0; bottom: -1rem; }
-  .heroBadgeFloat { right: 0; top: 1rem; }
+  .heroFotoCard { margin-top: 0.75rem; }
+  .heroBadgeFloat { margin-bottom: 0.5rem; }
 
   .sobreGrid { grid-template-columns: 1fr; gap: 2.5rem; }
   .sobreFotoContainer { height: 380px; }
