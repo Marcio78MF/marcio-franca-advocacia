@@ -22,7 +22,7 @@ export const SITE_CONFIG = {
   linkedin: 'https://linkedin.com/in/marciofrancaadvocacia',
   googleBusiness: 'https://www.google.com/search?q=Advocacia+Dr.+M%C3%A1rcio+Fran%C3%A7a',
   gaId: '', // Substituir pelo ID real do Google Analytics
-  gscVerification: '', // Substituir pela chave de verificação do Search Console
+  gscVerification: 'gFccvmts52SJ0ud3ZhMmeu32sYr8ARmTFdwHsYkIpEA',
   avisoLegal: 'Este site possui finalidade exclusivamente informativa. O envio de informações pelo formulário ou WhatsApp não constitui contratação automática nem garante resultado. Cada caso depende de análise individualizada.',
   avisoConteudo: 'Este conteúdo é informativo e não substitui consulta jurídica individualizada.',
 };

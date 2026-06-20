@@ -4,7 +4,7 @@ import { SITE_CONFIG } from '@/lib/data';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://marciofrancaadvocacia.com.br'),
+  metadataBase: new URL('https://marciofranca.adv.br'),
   title: {
     default: `${SITE_CONFIG.nome} | ${SITE_CONFIG.oab} | Rio Branco/AC`,
     template: `%s | ${SITE_CONFIG.nome}`,
