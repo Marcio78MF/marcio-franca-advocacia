@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './posts.module.css';
 
 type Post = {
@@ -16,7 +16,6 @@ type Post = {
 type ModoView = 'lista' | 'editor';
 
 export default function PostsPage() {
-  // TODO: Carregar posts via API quando o backend estiver implementado
   const [posts, setPosts] = useState<Post[]>([]);
   const [modo, setModo] = useState<ModoView>('lista');
   const [postEditando, setPostEditando] = useState<Post | null>(null);
@@ -26,8 +25,29 @@ export default function PostsPage() {
   const [categoria, setCategoria] = useState('Previdenciário');
   const [publicado, setPublicado] = useState(false);
   const [busca, setBusca] = useState('');
+  const [carregando, setCarregando] = useState(true);
 
   const categorias = ['Previdenciário', 'BPC/LOAS', 'Consumidor', 'Fundiário', 'Ambiental', 'Servidor Público'];
+
+  useEffect(() => {
+    carregarPosts();
+  }, []);
+
+  function carregarPosts() {
+    setCarregando(true);
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(data => {
+        if (data.posts) {
+          setPosts(data.posts);
+        }
+        setCarregando(false);
+      })
+      .catch(err => {
+        console.error('Erro ao carregar posts:', err);
+        setCarregando(false);
+      });
+  }
 
   function novoPost() {
     setPostEditando(null);
@@ -51,24 +71,77 @@ export default function PostsPage() {
 
   function salvarPost() {
     const slug = titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
-    if (postEditando) {
-      setPosts(posts.map(p => p.id === postEditando.id ? { ...p, titulo, resumo, conteudo, categoria, publicado, slug } : p));
-    } else {
-      const novoId = String(Date.now());
-      setPosts([...posts, { id: novoId, titulo, slug, resumo, categoria, publicado, criadoEm: new Date().toISOString().split('T')[0], conteudo }]);
-    }
-    setModo('lista');
-    setPostEditando(null);
+    const postData = {
+      titulo,
+      slug,
+      oldSlug: postEditando ? postEditando.slug : undefined,
+      resumo,
+      categoria,
+      publicado,
+      conteudo,
+      criadoEm: postEditando ? postEditando.criadoEm : new Date().toISOString().split('T')[0]
+    };
+
+    fetch('/api/posts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          carregarPosts();
+          setModo('lista');
+          setPostEditando(null);
+        } else {
+          alert('Erro ao salvar artigo: ' + (data.error || 'Erro desconhecido'));
+        }
+      })
+      .catch(err => {
+        console.error('Erro ao salvar post:', err);
+        alert('Erro ao conectar com o servidor para salvar artigo.');
+      });
   }
 
-  function excluirPost(id: string) {
-    if (confirm('Tem certeza que deseja excluir este artigo?')) {
-      setPosts(posts.filter(p => p.id !== id));
+  function excluirPost(post: Post) {
+    if (confirm(`Tem certeza que deseja excluir o artigo "${post.titulo}"?`)) {
+      fetch(`/api/posts?slug=${post.slug}`, {
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            carregarPosts();
+          } else {
+            alert('Erro ao excluir artigo: ' + (data.error || 'Erro desconhecido'));
+          }
+        })
+        .catch(err => {
+          console.error('Erro ao excluir post:', err);
+          alert('Erro ao conectar com o servidor para excluir artigo.');
+        });
     }
   }
 
-  function togglePublicado(id: string) {
-    setPosts(posts.map(p => p.id === id ? { ...p, publicado: !p.publicado } : p));
+  function togglePublicado(post: Post) {
+    const postData = {
+      ...post,
+      oldSlug: post.slug,
+      publicado: !post.publicado
+    };
+
+    fetch('/api/posts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          carregarPosts();
+        }
+      })
+      .catch(err => console.error('Erro ao alternar publicação:', err));
   }
 
   const postsFiltrados = posts.filter(p =>
@@ -127,7 +200,9 @@ export default function PostsPage() {
       </div>
 
       <div className={styles.lista}>
-        {postsFiltrados.length === 0 ? (
+        {carregando ? (
+          <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--cinza-texto)' }}>Carregando artigos...</div>
+        ) : postsFiltrados.length === 0 ? (
           <div className={styles.vazio}>
             <p>📝 Nenhum artigo encontrado.</p>
             <button className="btn btn-primary" onClick={novoPost}>Criar primeiro artigo</button>
@@ -136,20 +211,20 @@ export default function PostsPage() {
           postsFiltrados.map(post => (
             <div key={post.id} className={styles.postItem}>
               <div className={styles.postInfo}>
-                <span className={`badge badge-verde`}>{post.categoria}</span>
+                <span className={`badge badge-verde`} style={{ background: 'rgba(201,168,76,0.1)', color: 'var(--dourado)', border: '1px solid var(--borda-dourada)' }}>{post.categoria}</span>
                 <h3>{post.titulo}</h3>
                 <p>{post.resumo}</p>
-                <span className={styles.postData}>{new Date(post.criadoEm).toLocaleDateString('pt-BR')}</span>
+                <span className={styles.postData}>{post.criadoEm ? new Date(post.criadoEm).toLocaleDateString('pt-BR') : ''}</span>
               </div>
               <div className={styles.postAcoes}>
                 <button
                   className={`${styles.statusBtn} ${post.publicado ? styles.statusPublicado : styles.statusRascunho}`}
-                  onClick={() => togglePublicado(post.id)}
+                  onClick={() => togglePublicado(post)}
                 >
                   {post.publicado ? '✅ Publicado' : '⏸ Rascunho'}
                 </button>
                 <button className="btn btn-outline btn-sm" onClick={() => editarPost(post)}>Editar</button>
-                <button className={`btn btn-sm ${styles.excluirBtn}`} onClick={() => excluirPost(post.id)}>Excluir</button>
+                <button className={`btn btn-sm ${styles.excluirBtn}`} onClick={() => excluirPost(post)}>Excluir</button>
               </div>
             </div>
           ))

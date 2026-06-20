@@ -53,8 +53,9 @@ export default function Footer() {
             <li><Link href="/sobre" className={styles.footerLink}>Sobre o Escritório</Link></li>
             <li><Link href="/blog" className={styles.footerLink}>Blog Jurídico</Link></li>
             <li><Link href="/triagem" className={styles.footerLink}>Diagnóstico Rápido</Link></li>
+            <li><Link href="/avaliacoes" className={styles.footerLink}>Depoimentos</Link></li>
+            <li><Link href="/politica-de-privacidade" className={styles.footerLink}>Política de Privacidade</Link></li>
             <li><Link href="/contato" className={styles.footerLink}>Contato</Link></li>
-            <li><a href={SITE_CONFIG.googleBusiness} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Avaliações no Google</a></li>
             <li><Link href="/admin" className={styles.footerLink}>Área Administrativa</Link></li>
           </ul>
         </nav>

@@ -22,10 +22,14 @@ export function gerarMetadata({
   palavrasChave = [],
   noIndex = false,
   tipo = 'website',
+  imagem,
 }: MetadataParams): Metadata {
   const tituloCompleto = `${titulo} | ${SITE_CONFIG.nome}`;
   const descricaoFinal = descricao || SITE_CONFIG.descricao;
   const url = `https://marciofrancaadvocacia.com.br/${slug}`;
+  const imageObj = imagem
+    ? [{ url: imagem.startsWith('http') ? imagem : `https://marciofrancaadvocacia.com.br${imagem}` }]
+    : [];
 
   return {
     metadataBase: new URL('https://marciofrancaadvocacia.com.br'),
@@ -46,11 +50,13 @@ export function gerarMetadata({
       siteName: SITE_CONFIG.nome,
       locale: 'pt_BR',
       type: tipo,
+      ...(imagem && { images: imageObj }),
     },
     twitter: {
       card: 'summary_large_image',
       title: tituloCompleto,
       description: descricaoFinal,
+      ...(imagem && { images: [imagem.startsWith('http') ? imagem : `https://marciofrancaadvocacia.com.br${imagem}`] }),
     },
     alternates: {
       canonical: url,
@@ -70,9 +76,11 @@ export function gerarSchemaEscritorio() {
     email: SITE_CONFIG.email,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: SITE_CONFIG.endereco,
       addressLocality: SITE_CONFIG.cidade,
       addressRegion: SITE_CONFIG.estado,
       addressCountry: SITE_CONFIG.pais,
+      postalCode: '69905-076',
     },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -94,6 +102,8 @@ export function gerarSchemaEscritorio() {
     },
     sameAs: [
       SITE_CONFIG.instagram,
+      SITE_CONFIG.facebook,
+      SITE_CONFIG.linkedin,
       SITE_CONFIG.googleBusiness,
     ],
     knowsAbout: AREAS_ATUACAO.map((a) => a.titulo),

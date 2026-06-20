@@ -67,6 +67,7 @@ export default function Navbar() {
 
           <Link href="/blog" className={styles.navLink}>Blog Jurídico</Link>
           <Link href="/sobre" className={styles.navLink}>Sobre</Link>
+          <Link href="/avaliacoes" className={styles.navLink}>Depoimentos</Link>
           <Link href="/contato" className={styles.navLink}>Contato</Link>
         </nav>
 
@@ -117,6 +118,7 @@ export default function Navbar() {
           ))}
           <Link href="/blog" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Blog Jurídico</Link>
           <Link href="/sobre" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Sobre</Link>
+          <Link href="/avaliacoes" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Depoimentos</Link>
           <Link href="/contato" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Contato</Link>
 
           <div className={styles.mobileCtas}>

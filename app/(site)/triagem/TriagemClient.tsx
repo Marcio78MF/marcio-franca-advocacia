@@ -62,6 +62,26 @@ export default function TriagemClient() {
       `*Resumo:* ${descricao || 'Não informado'}`,
     ].join('\n');
 
+    // Enviar dados para a API de leads do admin
+    const formatRespostas: Record<string, string> = {};
+    areaSelecionada.triagem.perguntas.forEach((p) => {
+      formatRespostas[p.texto] = respostas[p.id] || 'Não informado';
+    });
+    if (cidade) formatRespostas['Cidade'] = cidade;
+    if (descricao) formatRespostas['Resumo do Caso'] = descricao;
+    if (temDocumentos) formatRespostas['Possui Documentos?'] = temDocumentos;
+
+    fetch('/api/triage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: nome.trim(),
+        telefone: whatsapp.trim(),
+        area: areaSelecionada.titulo,
+        respostas: formatRespostas,
+      }),
+    }).catch((err) => console.error('Erro ao enviar triagem:', err));
+
     setEtapa('resultado');
 
     setTimeout(() => {

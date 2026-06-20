@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './leads.module.css';
 
 const LEADS_MOCK = [
@@ -24,6 +24,32 @@ export default function LeadsPage() {
   const [leadSelecionado, setLeadSelecionado] = useState<Lead | null>(null);
   const [filtroStatus, setFiltroStatus] = useState('Todos');
   const [busca, setBusca] = useState('');
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/triage')
+      .then(res => res.json())
+      .then(data => {
+        if (data.leads && data.leads.length > 0) {
+          const apiLeads = data.leads.map((l: any) => ({
+            id: l.id,
+            nome: l.nome,
+            telefone: l.telefone,
+            area: l.area,
+            respostas: l.respostas,
+            status: l.status || 'Novo',
+            criadoEm: l.criadoEm ? l.criadoEm.split('T')[0] : new Date().toISOString().split('T')[0]
+          }));
+          // Mescla leads novos da API com o mock
+          setLeads([...apiLeads, ...LEADS_MOCK]);
+        }
+        setCarregando(false);
+      })
+      .catch(err => {
+        console.error('Erro ao buscar leads:', err);
+        setCarregando(false);
+      });
+  }, []);
 
   const leadsFiltrados = leads.filter(l => {
     const matchStatus = filtroStatus === 'Todos' || l.status === filtroStatus;
@@ -64,19 +90,25 @@ export default function LeadsPage() {
 
       <div className={styles.grid}>
         <div className={styles.lista}>
-          {leadsFiltrados.map(lead => (
-            <div key={lead.id} className={`${styles.leadItem} ${leadSelecionado?.id === lead.id ? styles.leadItemAtivo : ''}`} onClick={() => setLeadSelecionado(lead)}>
-              <div className={styles.leadAvatar}>{lead.nome.charAt(0)}</div>
-              <div className={styles.leadInfo}>
-                <strong>{lead.nome}</strong>
-                <span>{lead.area}</span>
+          {carregando ? (
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--cinza-texto)' }}>Carregando leads...</div>
+          ) : leadsFiltrados.length === 0 ? (
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--cinza-texto)' }}>Nenhum lead encontrado.</div>
+          ) : (
+            leadsFiltrados.map(lead => (
+              <div key={lead.id} className={`${styles.leadItem} ${leadSelecionado?.id === lead.id ? styles.leadItemAtivo : ''}`} onClick={() => setLeadSelecionado(lead)}>
+                <div className={styles.leadAvatar}>{lead.nome.charAt(0)}</div>
+                <div className={styles.leadInfo}>
+                  <strong>{lead.nome}</strong>
+                  <span>{lead.area}</span>
+                </div>
+                <div>
+                  <span className={styles.leadStatus} style={{ background: statusCor[lead.status] + '18', color: statusCor[lead.status] }}>{lead.status}</span>
+                  <div className={styles.leadData}>{lead.criadoEm}</div>
+                </div>
               </div>
-              <div>
-                <span className={styles.leadStatus} style={{ background: statusCor[lead.status] + '18', color: statusCor[lead.status] }}>{lead.status}</span>
-                <div className={styles.leadData}>{lead.criadoEm}</div>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {leadSelecionado && (

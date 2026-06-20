@@ -17,6 +17,7 @@ export default function AdminLoginPage() {
     // Mock auth - substituir por Supabase Auth
     setTimeout(() => {
       if (email === 'admin@marciofranca.com' && senha === 'admin123') {
+        localStorage.setItem('admin_session', 'true');
         router.push('/admin/dashboard');
       } else {
         setErro('E-mail ou senha incorretos.');

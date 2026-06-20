@@ -44,7 +44,7 @@ export default function CookieConsent() {
         <div className={styles.texto}>
           <p>
             Utilizamos cookies para oferecer uma melhor experiência, analisar o tráfego do site e personalizar conteúdo, de acordo com a nossa{' '}
-            <Link href="/contato" className={styles.link}>Política de Privacidade</Link>.
+            <Link href="/politica-de-privacidade" className={styles.link}>Política de Privacidade</Link>.
           </p>
         </div>
         <div className={styles.botoes}>
