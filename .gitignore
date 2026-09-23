@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+!.env.example
+
+# jev decision layer (logs de chamadas: metadados, mas não versionar)
+/jev/logs/
+__pycache__/

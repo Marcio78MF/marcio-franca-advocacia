@@ -1,0 +1,102 @@
+{
+  "_comentario": "Políticas do harness Claude Code decididas pelo Jev. Thresholds são ponto de partida: calibre com o log jev/logs/jev_calls.jsonl.",
+  "version": 1,
+  "contexto_projeto": "Repositório do site do escritório Marcio Franca Advocacia (Next.js), com agentes Claude Code jurídicos. Produção: deploy na Vercel. Dados de clientes (processos, documentos, peças) nunca devem ser apagados, publicados ou enviados sem revisão do advogado.",
+
+  "tool_guard": {
+    "descricao": "Hook PreToolUse: avalia risco de Bash / Write / Edit / MultiEdit / NotebookEdit / apply_patch.",
+    "max_chars_entrada": 1800,
+    "timeout_s": 6,
+    "max_retries": 1,
+    "on_api_error": "ask",
+    "trust_allow": false,
+    "thresholds": {
+      "risco_alto_score": 1.5,
+      "deny_min_confidence": 0.6,
+      "low_confidence": 0.4,
+      "dano_real_noul": 0.7
+    },
+    "bash_somente_leitura": [
+      "^\\s*(ls|pwd|cat|head|tail|wc|echo|grep|rg|find|tree|stat|file|which|type|date|whoami|env|printenv|du|df)\\b[^;&|><`$]*$",
+      "^\\s*git\\s+(status|diff|log|show|branch|remote -v|rev-parse|blame)\\b[^;&|><`$]*$",
+      "^\\s*(node|python3?|npm|npx)\\s+(--version|-v|-V)\\s*$"
+    ],
+    "linhas_vermelhas": [
+      {"padrao": "\\brm\\s+(-[a-zA-Z]*r[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*r)\\b", "motivo": "rm -rf"},
+      {"padrao": "\\bgit\\s+push\\b.*(--force\\b|--force-with-lease\\b|\\s-f\\b)", "motivo": "git push forçado"},
+      {"padrao": "\\bgit\\s+(reset\\s+--hard|clean\\s+-[a-z]*f|filter-branch|filter-repo)\\b", "motivo": "reescrita/descarte de histórico"},
+      {"padrao": "(?i)\\b(drop\\s+(table|database)|truncate\\s+table|delete\\s+from)\\b", "motivo": "comando destrutivo de banco de dados"},
+      {"padrao": "\\b(mkfs|dd\\s+if=|shred|wipefs)\\b", "motivo": "apagamento de disco"},
+      {"padrao": "(curl|wget)[^|]*\\|\\s*(ba|z)?sh\\b", "motivo": "execução de script remoto"},
+      {"padrao": "\\bvercel\\b.*--prod\\b", "motivo": "deploy em produção"},
+      {"padrao": "(^|[\\s/\"'])\\.env(\\.[a-z]+)?([\\s\"']|$)", "motivo": "arquivo de segredos (.env)"}
+    ],
+    "questions": {
+      "destrutividade": {
+        "type": "score",
+        "instructions": "Avalie o potencial destrutivo da ação `acao.entrada` executada pela ferramenta `acao.ferramenta` no projeto descrito em `projeto`.",
+        "criteria": [
+          "rotina: leitura, build, teste, formatação ou edição comum de código/texto versionado em git; reversível com facilidade",
+          "atencao: altera configuração, dependências, muitos arquivos, histórico git local ou executa scripts; reversível com algum esforço",
+          "perigoso: apaga dados, reescreve histórico remoto, publica em produção, move dinheiro, envia mensagens a terceiros ou expõe segredos; difícil ou impossível reverter"
+        ]
+      },
+      "dano_real": {
+        "type": "noul",
+        "instructions": "A ação `acao.entrada` altera produção, dinheiro real, dados irrecuperáveis ou um processo judicial real (protocolo, peticionamento, intimação, envio a cliente/tribunal)?",
+        "criteria": {
+          "true": "Sim: efeito fora do ambiente de desenvolvimento local ou perda de dados sem cópia no git.",
+          "false": "Não: efeito restrito a arquivos versionados ou ao ambiente local de desenvolvimento."
+        }
+      },
+      "decisao": {
+        "type": "choice",
+        "instructions": "Qual a política adequada para executar `acao.entrada` sem perguntar ao advogado responsável?",
+        "criteria": {
+          "allow": "Executar direto: rotineira, local e reversível.",
+          "ask": "Pedir confirmação humana: pode ter efeito relevante ou há ambiguidade.",
+          "deny": "Bloquear: destrutiva, irreversível ou envolve produção, dinheiro, segredos ou processo judicial real."
+        }
+      }
+    }
+  },
+
+  "model_router": {
+    "descricao": "Escolhe tier de modelo: mechanical→Haiku, ordinary→Sonnet, hard→Opus.",
+    "tier_base": "ordinary",
+    "ordem": ["mechanical", "ordinary", "hard"],
+    "modelos": {"mechanical": "haiku", "ordinary": "sonnet", "hard": "opus"},
+    "max_chars_pedido": 2500,
+    "timeout_s": 5,
+    "thresholds": {
+      "upgrade_min_confidence": 0.3,
+      "downgrade_min_confidence": 0.6,
+      "esforco_alto_score": 1.5,
+      "risco_juridico_noul": 0.7
+    },
+    "questions": {
+      "complexidade": {
+        "type": "choice",
+        "instructions": "Que tipo de raciocínio o pedido `pedido` exige de um assistente de IA em um escritório de advocacia?",
+        "criteria": {
+          "mechanical": "Mecânico: renomear, formatar, converter, extrair campos, buscar arquivo, ajuste pontual sem julgamento.",
+          "ordinary": "Ordinário: redação ou código de rotina, resumo, pesquisa guiada, peça-padrão com modelo existente.",
+          "hard": "Difícil: tese jurídica nova, estratégia processual, análise de risco, arquitetura de sistema, múltiplas etapas interdependentes."
+        }
+      },
+      "esforco": {
+        "type": "score",
+        "instructions": "Quanto esforço de trabalho o pedido `pedido` exige?",
+        "criteria": [
+          "baixo: uma resposta curta ou alteração em um único ponto",
+          "medio: alguns arquivos ou uma peça/documento de tamanho usual",
+          "alto: muitos arquivos, documento extenso ou investigação em várias etapas"
+        ]
+      },
+      "risco_juridico": {
+        "type": "noul",
+        "instructions": "Um erro no atendimento do pedido `pedido` pode causar dano jurídico relevante ou irreversível (perda de prazo, preclusão, prejuízo ao cliente, infração ética OAB, violação LGPD)?"
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "_comentario": "Políticas de decisão do escritório. O Jev classifica; o código aplica as regras; o advogado revisa. O Jev NÃO dá conselho jurídico final. Nenhuma política envia mensagem ou peça automaticamente.",
+  "version": 1,
+  "min_confidence": 0.4,
+
+  "triagem": {
+    "descricao": "A) Triagem de entrada (WhatsApp / e-mail / formulário). State esperado: {canal, mensagem, historico?}.",
+    "max_chars": 4000,
+    "thresholds": {
+      "urgencia_alta_score": 1.5,
+      "caso_novo_noul": 0.5,
+      "dados_sensiveis_noul": 0.5
+    },
+    "questions": {
+      "area": {
+        "type": "choice",
+        "instructions": "Qual área de atuação do escritório corresponde principalmente à demanda em `mensagem`?",
+        "criteria": {
+          "fundiario": "Regularização fundiária (REURB, ITERACRE, INCRA), usucapião, matrícula, posse, registro de imóveis, questões agrárias.",
+          "previdenciario": "Benefícios do INSS ou regime próprio (RPPS): aposentadoria, BPC/LOAS, auxílio, pensão, revisão.",
+          "bancario_consumidor": "Contratos bancários, empréstimo consignado, cobrança indevida, negativação, relação de consumo.",
+          "familia": "Divórcio, alimentos, guarda, união estável, inventário e partilha.",
+          "penal": "Inquérito, ação penal, prisão, audiência de custódia, execução penal.",
+          "ambiental": "Auto de infração ambiental, embargo, licenciamento, IBAMA, IMAC, CAR.",
+          "outro": "Nenhuma das áreas acima ou assunto sem relação com serviços jurídicos."
+        }
+      },
+      "urgencia": {
+        "type": "score",
+        "instructions": "Qual a urgência de atendimento da demanda em `mensagem`?",
+        "criteria": [
+          "baixa: dúvida geral ou planejamento, sem prazo, audiência, prisão ou perda iminente de direito",
+          "media: interesse concreto com prazo em semanas ou meses, sem risco imediato",
+          "alta: prisão, prazo processual ou administrativo em dias, audiência marcada, ordem de despejo ou reintegração, leilão, corte de benefício ou bloqueio de conta"
+        ]
+      },
+      "caso_novo": {
+        "type": "noul",
+        "instructions": "A `mensagem` trata de um caso novo, e não do acompanhamento de um processo ou atendimento já existente com o escritório?",
+        "criteria": {
+          "true": "Caso novo: primeira consulta, sem menção a processo ou atendimento em curso com o escritório.",
+          "false": "Acompanhamento: cita número de processo, andamento, audiência ou atendimento anterior do escritório."
+        }
+      },
+      "dados_sensiveis": {
+        "type": "noul",
+        "instructions": "A `mensagem` contém ou menciona dados pessoais sensíveis ou identificadores: CPF, RG, documentos pessoais, dados de saúde/CID/laudos, dados de crianças ou adolescentes, antecedentes criminais, dados bancários? Marcadores como [CPF] ou [DOCUMENTO] indicam dado removido e contam como presentes."
+      },
+      "proximo": {
+        "type": "choice",
+        "instructions": "Qual o próximo passo mais adequado para a `mensagem`, considerando que o escritório só pode prestar informação geral por canal automático (Provimento OAB 205/2021) e que orientação específica exige advogado?",
+        "criteria": {
+          "responder_informativo": "Dúvida genérica que se resolve com informação geral e pública, sem análise do caso concreto.",
+          "pedir_documentos": "Caso concreto dentro das áreas do escritório, mas faltam documentos básicos para análise.",
+          "agendar_humano": "Caso concreto que exige avaliação de advogado, urgente ou com dados suficientes.",
+          "recusar_fora_escopo": "Assunto fora das áreas do escritório, sem relação jurídica ou mensagem indevida."
+        }
+      }
+    }
+  },
+
+  "radar": {
+    "descricao": "B) Conteúdo do radar / minuta de peça antes da revisão humana. State esperado: {tipo, texto, finalidade}.",
+    "max_chars": 6000,
+    "thresholds": {
+      "captacao_noul": 0.3,
+      "pronta_score": 1.5
+    },
+    "questions": {
+      "captacao": {
+        "type": "noul",
+        "instructions": "O `texto` faz captação ou solicitação direta de clientela, em vez de conteúdo meramente informativo (Provimento OAB 205/2021)?",
+        "criteria": {
+          "true": "Captação: oferece serviço a pessoa ou grupo determinado, promete resultado, menciona preço/gratuidade como atrativo, usa urgência ou apelo comercial, convida a contratar ou 'chamar no WhatsApp' para resolver o caso.",
+          "false": "Informativo: explica direito, lei ou procedimento de forma geral e sóbria, sem oferta de serviço nem promessa de resultado."
+        }
+      },
+      "qualidade_minuta": {
+        "type": "score",
+        "instructions": "Qual o estágio de acabamento do `texto` como documento jurídico?",
+        "criteria": [
+          "rascunho: incompleto, com lacunas, marcadores a preencher, fundamentos ou pedidos ausentes",
+          "revisavel: estrutura completa com fatos, fundamentos e pedidos, mas exige conferência de dados, citações e estratégia",
+          "pronta_para_advogado: completa, coesa e formalmente correta, restando apenas a revisão final e assinatura do advogado"
+        ]
+      },
+      "destino": {
+        "type": "choice",
+        "instructions": "Qual destino dar ao `texto`, considerando a `finalidade`?",
+        "criteria": {
+          "arquivo": "Guardar como referência interna; não há uso imediato.",
+          "revisao_advogado": "Encaminhar ao advogado para revisão antes de qualquer uso externo.",
+          "nao_usar": "Descartar: inadequado, antiético, incorreto ou fora de propósito."
+        }
+      }
+    }
+  },
+
+  "acao_agente": {
+    "descricao": "C) Próxima ação de um agente do escritório. State esperado: {objetivo, observacoes, acao_proposta}.",
+    "max_chars": 3000,
+    "thresholds": {
+      "revisao_noul": 0.5,
+      "impacto_alto_score": 1.5
+    },
+    "questions": {
+      "acao": {
+        "type": "choice",
+        "instructions": "Dado o `objetivo` e as `observacoes`, qual o próximo passo mais adequado para o agente?",
+        "criteria": {
+          "ler": "Ler ou pesquisar mais informação antes de agir.",
+          "editar": "Criar ou alterar um documento/arquivo interno.",
+          "terminal": "Executar comando ou script local.",
+          "enviar_mensagem": "Enviar comunicação a cliente, parte, tribunal ou terceiro.",
+          "esperar": "Aguardar dado, prazo, documento ou decisão humana."
+        }
+      },
+      "precisa_revisao": {
+        "type": "noul",
+        "instructions": "A `acao_proposta` precisa de revisão ou aprovação de um advogado antes de ser executada (peça, parecer, estratégia, comunicação externa, prazo, dado de cliente)?"
+      },
+      "impacto_cliente": {
+        "type": "score",
+        "instructions": "Qual o impacto da `acao_proposta` para o cliente do escritório?",
+        "criteria": [
+          "nenhum: tarefa interna sem efeito sobre cliente ou processo",
+          "baixo: afeta organização interna do caso, sem efeito externo imediato",
+          "alto: afeta prazo, direito, dinheiro, comunicação ou posição processual do cliente"
+        ]
+      }
+    }
+  }
+}

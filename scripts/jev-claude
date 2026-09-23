@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Roteador de modelo: o Jev escolhe haiku/sonnet/opus e abre o Claude Code nele.
+#   scripts/jev-claude "renomeie os arquivos da pasta X"          # interativo
+#   scripts/jev-claude -p "resuma o README"                        # modo não interativo
+# Se o Jev falhar ou não houver chave, usa o modelo padrão (JEV_ROUTER_FALLBACK, default sonnet).
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+args=("$@")
+pedido="${args[${#args[@]}-1]:-}"
+fallback="${JEV_ROUTER_FALLBACK:-sonnet}"
+
+if [[ -z "$pedido" ]]; then
+  exec claude --model "$fallback"
+fi
+
+if saida=$(python3 -m jev.cli --json route "$pedido" 2>/dev/null); then
+  modelo=$(printf '%s' "$saida" | python3 -c 'import sys,json; print(json.load(sys.stdin)["modelo"])')
+  motivo=$(printf '%s' "$saida" | python3 -c 'import sys,json; print("; ".join(json.load(sys.stdin)["motivos"]))')
+  echo "[jev-claude] modelo=$modelo ($motivo)" >&2
+else
+  modelo="$fallback"
+  echo "[jev-claude] Jev indisponível: usando $modelo (nenhuma decisão simulada)" >&2
+fi
+
+exec claude --model "$modelo" "${args[@]}"

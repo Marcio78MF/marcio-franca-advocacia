@@ -86,3 +86,9 @@ Os agentes em `.claude/agents/` cobrem o fluxo completo do escritorio:
 - `pesquisador-juridico.md` — Pesquisa de jurisprudencia e doutrina
 - `revisor-juridico.md` — Revisao tecnica e adequacao de pecas
 - `gestor-prazos.md` — Controle de prazos processuais e intimacoes
+
+## Jev Decision Layer (decisões tipadas)
+
+- Para DECIDIR (classificar, escolher, pontuar, estimar probabilidade) use a skill `jev-decide` ou `/jev`; o Jev (TypeSafe) decide, o Claude escreve.
+- Nunca simule a resposta do Jev: se a chamada falhar, declare que não houve decisão e escale ao advogado. Confiança < 0,4 → escalar.
+- Hook `PreToolUse` avalia risco de Bash/Write/Edit. Políticas em `jev/legal_policies.json` e `jev/harness_policies.json`. Detalhes em `jev/README.md`.
