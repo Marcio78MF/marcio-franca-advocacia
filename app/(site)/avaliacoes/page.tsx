@@ -4,7 +4,7 @@ import AvaliacoesClient from './AvaliacoesClient';
 
 export const metadata = gerarMetadata({
   titulo: 'Depoimentos de Clientes',
-  descricao: 'Veja o que dizem os clientes do escritório Márcio França Advocacia. Avaliações reais de quem confiou no nosso trabalho em Rio Branco/AC.',
+  descricao: 'Veja o que dizem os clientes do escritório Márcio Jr. França Advocacia. Avaliações reais de quem confiou no nosso trabalho em Rio Branco/AC.',
   slug: 'avaliacoes',
 });
 
