@@ -42,7 +42,7 @@ export function gerarMetadata({
       SITE_CONFIG.oab,
     ],
     authors: [{ name: SITE_CONFIG.nomeAdvogado }],
-    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    robots: noIndex ? { index: false, follow: true } : { index: true, follow: true },
     openGraph: {
       title: tituloCompleto,
       description: descricaoFinal,
