@@ -26,13 +26,13 @@ export function gerarMetadata({
 }: MetadataParams): Metadata {
   const tituloCompleto = `${titulo} | ${SITE_CONFIG.nome}`;
   const descricaoFinal = descricao || SITE_CONFIG.descricao;
-  const url = `https://marciofrancaadvocacia.com.br/${slug}`;
+  const url = `https://bpc.marciofranca.adv.br/${slug}`;
   const imageObj = imagem
-    ? [{ url: imagem.startsWith('http') ? imagem : `https://marciofrancaadvocacia.com.br${imagem}` }]
+    ? [{ url: imagem.startsWith('http') ? imagem : `https://bpc.marciofranca.adv.br${imagem}` }]
     : [];
 
   return {
-    metadataBase: new URL('https://marciofrancaadvocacia.com.br'),
+    metadataBase: new URL('https://bpc.marciofranca.adv.br'),
     title: tituloCompleto,
     description: descricaoFinal,
     keywords: [
@@ -56,7 +56,7 @@ export function gerarMetadata({
       card: 'summary_large_image',
       title: tituloCompleto,
       description: descricaoFinal,
-      ...(imagem && { images: [imagem.startsWith('http') ? imagem : `https://marciofrancaadvocacia.com.br${imagem}`] }),
+      ...(imagem && { images: [imagem.startsWith('http') ? imagem : `https://bpc.marciofranca.adv.br${imagem}`] }),
     },
     alternates: {
       canonical: url,
@@ -71,7 +71,7 @@ export function gerarSchemaEscritorio() {
     '@type': ['LegalService', 'Attorney', 'LocalBusiness'],
     name: SITE_CONFIG.nome,
     description: SITE_CONFIG.descricao,
-    url: 'https://marciofrancaadvocacia.com.br',
+    url: 'https://bpc.marciofranca.adv.br',
     telephone: SITE_CONFIG.telefone,
     email: SITE_CONFIG.email,
     address: {
@@ -132,10 +132,10 @@ export function gerarSchemaArtigo(artigo: {
       name: SITE_CONFIG.nome,
     },
     datePublished: artigo.criadoEm,
-    url: `https://marciofrancaadvocacia.com.br/blog/${artigo.slug}`,
+    url: `https://bpc.marciofranca.adv.br/blog/${artigo.slug}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://marciofrancaadvocacia.com.br/blog/${artigo.slug}`,
+      '@id': `https://bpc.marciofranca.adv.br/blog/${artigo.slug}`,
     },
   };
 }
