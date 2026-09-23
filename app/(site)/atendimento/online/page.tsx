@@ -3,12 +3,15 @@ import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
 import NewsletterCapture from '@/components/NewsletterCapture';
 
-export const metadata = gerarMetadata({
-  titulo: 'Atendimento Jurídico Online — Todo o Brasil',
-  descricao: 'Consulta jurídica online com Dr. Márcio Jr. França. Atendimento por videochamada e WhatsApp para todo o Brasil. Direito Previdenciário, Consumidor e mais.',
-  slug: 'atendimento/online',
-  palavrasChave: ['advogado online', 'consulta jurídica online', 'advogado por videochamada', 'atendimento jurídico digital'],
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Atendimento Jurídico Online — Todo o Brasil',
+    descricao: 'Consulta jurídica online com Dr. Márcio Jr. França. Atendimento por videochamada e WhatsApp para todo o Brasil. Direito Previdenciário, Consumidor e mais.',
+    slug: 'atendimento/online',
+    palavrasChave: ['advogado online', 'consulta jurídica online', 'advogado por videochamada', 'atendimento jurídico digital'],
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function OnlinePage() {
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento online. [source=site&area=online]')}`;
