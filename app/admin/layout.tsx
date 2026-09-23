@@ -110,7 +110,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </h1>
           <div className={styles.topBarUser}>
             <div className={styles.avatar}>MF</div>
-            <span>Dr. Márcio França</span>
+            <span>Dr. Márcio Jr. França</span>
           </div>
         </header>
         <div className={styles.content}>{children}</div>

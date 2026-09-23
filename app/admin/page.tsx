@@ -33,7 +33,7 @@ export default function AdminLoginPage() {
           <div className={styles.logoIcon}>MF</div>
           <div>
             <h1>Painel Administrativo</h1>
-            <p>Márcio França Advocacia</p>
+            <p>Márcio Jr. França Advocacia</p>
           </div>
         </div>
         <form onSubmit={handleLogin} className={styles.form}>
