@@ -2,11 +2,14 @@ import Link from 'next/link';
 import { gerarMetadata } from '@/lib/seo';
 import AvaliacoesClient from './AvaliacoesClient';
 
-export const metadata = gerarMetadata({
-  titulo: 'Depoimentos de Clientes',
-  descricao: 'Veja o que dizem os clientes do escritório Márcio Jr. França Advocacia. Avaliações reais de quem confiou no nosso trabalho em Rio Branco/AC.',
-  slug: 'avaliacoes',
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Depoimentos de Clientes',
+    descricao: 'Veja o que dizem os clientes do escritório Márcio Jr. França Advocacia. Avaliações reais de quem confiou no nosso trabalho em Rio Branco/AC.',
+    slug: 'avaliacoes',
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function AvaliacoesPage() {
   return (
