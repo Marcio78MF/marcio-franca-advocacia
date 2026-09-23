@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const metadata = gerarMetadata({
   titulo: 'Atendimento Jurídico',
-  descricao: 'Atendimento presencial em Rio Branco/AC e online para todo o Brasil. Consulta jurídica com Dr. Márcio França.',
+  descricao: 'Atendimento presencial em Rio Branco/AC e online para todo o Brasil. Consulta jurídica com Dr. Márcio Jr. França.',
   slug: 'atendimento',
   palavrasChave: ['atendimento jurídico', 'consulta advogado', 'advogado online', 'advogado Rio Branco'],
 });
