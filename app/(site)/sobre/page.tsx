@@ -7,7 +7,7 @@ import styles from './sobre.module.css';
 
 export const metadata = gerarMetadata({
   titulo: 'Sobre o Escritório',
-  descricao: 'Conheça o Dr. Márcio França, advogado em Rio Branco/AC com OAB/AC 2882. Atuação técnica, estratégica e humanizada em Direito Previdenciário, Bancário, Família e Criminal.',
+  descricao: 'Conheça o Dr. Márcio Jr. França, advogado em Rio Branco/AC com OAB/AC 2882. Atuação técnica, estratégica e humanizada em Direito Previdenciário, Bancário, Família e Criminal.',
   slug: 'sobre',
 });
 
@@ -33,7 +33,7 @@ export default function SobrePage() {
               Conheça o Advogado
             </div>
             <h1 className={styles.heroTitulo}>
-              Dr. Márcio França<br />
+              Dr. Márcio Jr. França<br />
               <span className={styles.heroSub}>OAB/AC 2882 · Rio Branco/AC</span>
             </h1>
             <p className={styles.heroDesc}>
@@ -45,7 +45,7 @@ export default function SobrePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-whatsapp btn-lg"
-                aria-label="Falar no WhatsApp com o Dr. Márcio França"
+                aria-label="Falar no WhatsApp com o Dr. Márcio Jr. França"
               >
                 Falar no WhatsApp
               </a>
@@ -59,7 +59,7 @@ export default function SobrePage() {
             <div className={styles.heroFotoContainer}>
               <Image
                 src="/images/dr-marcio-hero.jpg"
-                alt="Dr. Márcio França, advogado em Rio Branco Acre"
+                alt="Dr. Márcio Jr. França, advogado em Rio Branco Acre"
                 fill
                 className={styles.heroFoto}
                 priority
@@ -76,9 +76,9 @@ export default function SobrePage() {
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.content}>
-              <h2>Márcio França Advocacia</h2>
+              <h2>Márcio Jr. França Advocacia</h2>
               <p>
-                Dr. Márcio Junior dos Santos França é advogado inscrito na <strong>{SITE_CONFIG.oab}</strong>,
+                Dr. Márcio Jr. França é advogado inscrito na <strong>{SITE_CONFIG.oab}</strong>,
                 com atuação em <strong>Rio Branco/AC</strong> em demandas previdenciárias, cíveis,
                 bancárias, consumidor, família e criminal.
               </p>
@@ -128,7 +128,7 @@ export default function SobrePage() {
               <div className={styles.fotoSecundaria}>
                 <Image
                   src="/images/dr-marcio-sobre.jpg"
-                  alt="Dr. Márcio França Advocacia OAB AC 2882"
+                  alt="Dr. Márcio Jr. França Advocacia OAB AC 2882"
                   fill
                   className={styles.fotoSecundariaImg}
                   sizes="(max-width: 900px) 100vw, 340px"
@@ -139,7 +139,7 @@ export default function SobrePage() {
                 <div className={styles.logoWrap}>
                   <Image
                     src="/images/logo-mf.jpg"
-                    alt="Logo Márcio França Advocacia"
+                    alt="Logo Márcio Jr. França Advocacia"
                     width={40}
                     height={40}
                     className={styles.logoImg}
