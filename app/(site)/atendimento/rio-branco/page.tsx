@@ -5,7 +5,7 @@ import NewsletterCapture from '@/components/NewsletterCapture';
 
 export const metadata = gerarMetadata({
   titulo: 'Advogado em Rio Branco/AC — Atendimento Presencial',
-  descricao: 'Escritório de advocacia em Rio Branco, Acre. Atendimento presencial com Dr. Márcio França. Direito Previdenciário, Consumidor, Família e Criminal.',
+  descricao: 'Escritório de advocacia em Rio Branco, Acre. Atendimento presencial com Dr. Márcio Jr. França. Direito Previdenciário, Consumidor, Família e Criminal.',
   slug: 'atendimento/rio-branco',
   palavrasChave: ['advogado Rio Branco', 'escritório advocacia Rio Branco', 'advogado Acre', 'consulta presencial advogado'],
 });
@@ -17,7 +17,7 @@ export default function RioBrancoPage() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': 'https://marciofrancaadvocacia.com.br/#escritorio',
-    name: 'Advocacia Dr. Márcio França',
+    name: 'Advocacia Dr. Márcio Jr. França',
     description: 'Escritório de advocacia em Rio Branco/AC com atuação em Direito Previdenciário, Consumidor Bancário, Família e Criminal.',
     telephone: SITE_CONFIG.telefone,
     email: SITE_CONFIG.email,
