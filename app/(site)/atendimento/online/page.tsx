@@ -5,7 +5,7 @@ import NewsletterCapture from '@/components/NewsletterCapture';
 
 export const metadata = gerarMetadata({
   titulo: 'Atendimento Jurídico Online — Todo o Brasil',
-  descricao: 'Consulta jurídica online com Dr. Márcio França. Atendimento por videochamada e WhatsApp para todo o Brasil. Direito Previdenciário, Consumidor e mais.',
+  descricao: 'Consulta jurídica online com Dr. Márcio Jr. França. Atendimento por videochamada e WhatsApp para todo o Brasil. Direito Previdenciário, Consumidor e mais.',
   slug: 'atendimento/online',
   palavrasChave: ['advogado online', 'consulta jurídica online', 'advogado por videochamada', 'atendimento jurídico digital'],
 });
