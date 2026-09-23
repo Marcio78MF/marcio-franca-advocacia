@@ -7,13 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://bpc.marciofranca.adv.br';
   const agora = new Date();
 
+  // /sobre, /contato, /avaliacoes e /atendimento/* estão noindex (evitar
+  // conteúdo duplicado com marciofranca.adv.br), por isso não entram no sitemap.
   const estaticas: MetadataRoute.Sitemap = [
     { url: base, lastModified: agora, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${base}/blog`, lastModified: agora, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/triagem`, lastModified: agora, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/sobre`, lastModified: agora, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/contato`, lastModified: agora, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/avaliacoes`, lastModified: agora, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/politica-de-privacidade`, lastModified: agora, changeFrequency: 'yearly', priority: 0.3 },
   ];
 
