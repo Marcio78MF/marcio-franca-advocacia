@@ -5,11 +5,14 @@ import { gerarMetadata } from '@/lib/seo';
 import Icon from '@/components/Icon';
 import styles from './sobre.module.css';
 
-export const metadata = gerarMetadata({
-  titulo: 'Sobre o Escritório',
-  descricao: 'Conheça o Dr. Márcio Jr. França, advogado em Rio Branco/AC com OAB/AC 2882. Atuação técnica, estratégica e humanizada em Direito Previdenciário, Bancário, Família e Criminal.',
-  slug: 'sobre',
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Sobre o Escritório',
+    descricao: 'Conheça o Dr. Márcio Jr. França, advogado em Rio Branco/AC com OAB/AC 2882. Atuação técnica, estratégica e humanizada em Direito Previdenciário, Bancário, Família e Criminal.',
+    slug: 'sobre',
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function SobrePage() {
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de informações sobre atendimento jurídico.')}`;
