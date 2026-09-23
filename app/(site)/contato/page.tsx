@@ -15,7 +15,7 @@ export default function ContatoPage() {
   function enviar(e: React.FormEvent) {
     e.preventDefault();
     const msg = [
-      `Olá, entrei em contato pelo site Márcio França Advocacia.`,
+      `Olá, entrei em contato pelo site Márcio Jr. França Advocacia.`,
       ``,
       `*Nome:* ${nome}`,
       `*WhatsApp:* ${whatsapp}`,
