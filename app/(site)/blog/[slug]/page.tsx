@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  return gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article' });
+  return gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article', noIndex: true });
 }
 
 export default async function PostPage({ params }: Props) {

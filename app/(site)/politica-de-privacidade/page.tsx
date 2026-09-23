@@ -6,6 +6,7 @@ export const metadata = gerarMetadata({
   titulo: 'Política de Privacidade',
   descricao: 'Política de privacidade do escritório Márcio Jr. França Advocacia. Entenda como lidamos com a proteção de dados em conformidade com a LGPD.',
   slug: 'politica-de-privacidade',
+  noIndex: true,
 });
 
 export default function PoliticaPrivacidadePage() {

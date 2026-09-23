@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://bpc.marciofranca.adv.br'),
   title: {
     default: 'Márcio Jr. França - Advogado BPC LOAS Rio Branco Acre | OAB/AC 2.882',
-    template: `%s | ${SITE_CONFIG.nome}`,
+    template: '%s | Márcio Jr. França Advocacia',
   },
   description:
     'BPC/LOAS negado? Márcio Jr. França, OAB/AC 2.882, atua na revisão de indeferimentos do INSS no Acre. A inclusão do Bolsa Família no cálculo da renda é questionável. Atuação no TJAC e no TRF1.',

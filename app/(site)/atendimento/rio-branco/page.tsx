@@ -19,12 +19,12 @@ export default function RioBrancoPage() {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://bpc.marciofranca.adv.br/#escritorio',
+    '@id': `${SITE_CONFIG.url}/#escritorio`,
     name: 'Advocacia Dr. Márcio Jr. França',
     description: 'Escritório de advocacia em Rio Branco/AC com atuação em Direito Previdenciário, Consumidor Bancário, Família e Criminal.',
     telephone: SITE_CONFIG.telefone,
     email: SITE_CONFIG.email,
-    url: 'https://bpc.marciofranca.adv.br/atendimento/rio-branco',
+    url: `${SITE_CONFIG.url}/atendimento/rio-branco`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Av. Epaminondas Jacome, nº 2172, bairro Cerâmica',

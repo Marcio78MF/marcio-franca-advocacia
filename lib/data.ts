@@ -7,6 +7,7 @@ export const SITE_CONFIG = {
   nome: 'Márcio Jr. França Advocacia',
   nomeAdvogado: 'Dr. Márcio Jr. França',
   oab: 'OAB/AC 2.882',
+  url: 'https://bpc.marciofranca.adv.br',
   slogan: 'Advocacia técnica e estratégica em Rio Branco/AC',
   descricao: 'Escritório de advocacia em Rio Branco/AC com atuação em Direito Previdenciário, Consumidor Bancário, Energisa, Família e Criminal. Atendimento presencial e online.',
   telefone: '(68) 99951-1555',

@@ -26,13 +26,13 @@ export function gerarMetadata({
 }: MetadataParams): Metadata {
   const tituloCompleto = `${titulo} | ${SITE_CONFIG.nome}`;
   const descricaoFinal = descricao || SITE_CONFIG.descricao;
-  const url = `https://bpc.marciofranca.adv.br/${slug}`;
+  const url = `${SITE_CONFIG.url}/${slug}`;
   const imageObj = imagem
-    ? [{ url: imagem.startsWith('http') ? imagem : `https://bpc.marciofranca.adv.br${imagem}` }]
+    ? [{ url: imagem.startsWith('http') ? imagem : `${SITE_CONFIG.url}${imagem}` }]
     : [];
 
   return {
-    metadataBase: new URL('https://bpc.marciofranca.adv.br'),
+    metadataBase: new URL(SITE_CONFIG.url),
     title: titulo,
     description: descricaoFinal,
     keywords: [
@@ -42,7 +42,8 @@ export function gerarMetadata({
       SITE_CONFIG.oab,
     ],
     authors: [{ name: SITE_CONFIG.nomeAdvogado }],
-    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    // noindex mantém follow: os links internos continuam sendo seguidos até a home.
+    robots: noIndex ? { index: false, follow: true } : { index: true, follow: true },
     openGraph: {
       title: tituloCompleto,
       description: descricaoFinal,
@@ -56,7 +57,7 @@ export function gerarMetadata({
       card: 'summary_large_image',
       title: tituloCompleto,
       description: descricaoFinal,
-      ...(imagem && { images: [imagem.startsWith('http') ? imagem : `https://bpc.marciofranca.adv.br${imagem}`] }),
+      ...(imagem && { images: [imagem.startsWith('http') ? imagem : `${SITE_CONFIG.url}${imagem}`] }),
     },
     alternates: {
       canonical: url,
@@ -71,7 +72,7 @@ export function gerarSchemaEscritorio() {
     '@type': ['LegalService', 'Attorney', 'LocalBusiness'],
     name: SITE_CONFIG.nome,
     description: SITE_CONFIG.descricao,
-    url: 'https://bpc.marciofranca.adv.br',
+    url: SITE_CONFIG.url,
     telephone: SITE_CONFIG.telefone,
     email: SITE_CONFIG.email,
     address: {
@@ -132,10 +133,10 @@ export function gerarSchemaArtigo(artigo: {
       name: SITE_CONFIG.nome,
     },
     datePublished: artigo.criadoEm,
-    url: `https://bpc.marciofranca.adv.br/blog/${artigo.slug}`,
+    url: `${SITE_CONFIG.url}/blog/${artigo.slug}`,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://bpc.marciofranca.adv.br/blog/${artigo.slug}`,
+      '@id': `${SITE_CONFIG.url}/blog/${artigo.slug}`,
     },
   };
 }

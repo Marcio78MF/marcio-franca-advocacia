@@ -8,6 +8,7 @@ export const metadata = gerarMetadata({
   titulo: 'Blog Jurídico',
   descricao: 'Artigos informativos sobre direito previdenciário, consumidor, família e criminal. Conteúdo jurídico acessível para cidadãos em Rio Branco/AC.',
   slug: 'blog',
+  noIndex: true,
 });
 
 export default function BlogPage() {

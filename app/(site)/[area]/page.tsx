@@ -58,6 +58,7 @@ export async function generateMetadata({ params }: Props) {
     descricao: area.descricao,
     slug: areaSlug,
     palavrasChave: area.palavrasChave,
+    noIndex: true,
   });
 }
 
