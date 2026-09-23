@@ -4,7 +4,7 @@ import { getPosts } from '@/lib/blog';
 
 // Sitemap — Márcio Jr. França Advocacia (OAB/AC 2.882)
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://marciofrancaadvocacia.com.br';
+  const base = 'https://bpc.marciofranca.adv.br';
   const agora = new Date();
 
   const estaticas: MetadataRoute.Sitemap = [

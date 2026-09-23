@@ -4,7 +4,7 @@ import { SITE_CONFIG } from '@/lib/data';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://marciofrancaadvocacia.com.br'),
+  metadataBase: new URL('https://bpc.marciofranca.adv.br'),
   title: {
     default: 'Márcio Jr. França - Advogado BPC LOAS Rio Branco Acre | OAB/AC 2.882',
     template: `%s | ${SITE_CONFIG.nome}`,

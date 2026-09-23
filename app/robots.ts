@@ -4,6 +4,6 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: '*', allow: '/', disallow: ['/admin/', '/api/'] }],
-    sitemap: 'https://marciofrancaadvocacia.com.br/sitemap.xml',
+    sitemap: 'https://bpc.marciofranca.adv.br/sitemap.xml',
   };
 }
