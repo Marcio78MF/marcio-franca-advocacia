@@ -1,0 +1,69 @@
+.card {
+  max-width: 560px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.75rem;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--sombra-md);
+}
+
+.grupo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.grupo label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cinza-escuro);
+}
+
+.grupo input,
+.grupo select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--grafite);
+  background: var(--branco-off);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
+}
+
+.grupo input:focus-visible,
+.grupo select:focus-visible {
+  outline: none;
+  border-color: #2a6496;
+  box-shadow: 0 0 0 3px rgba(42, 100, 150, 0.18);
+}
+
+.sucessoTitulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--azul-marinho);
+}
+
+.lgpd {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--cinza-texto);
+}
+
+.lgpd a {
+  color: #2a6496;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.25rem;
+  }
+}
