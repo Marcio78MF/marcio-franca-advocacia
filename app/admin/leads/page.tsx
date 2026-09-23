@@ -72,7 +72,7 @@ export default function LeadsPage() {
     a.href = url; a.download = 'leads.csv'; a.click();
   }
 
-  const whatsappLead = (lead: Lead) => `https://wa.me/${lead.telefone.replace(/\D/g, '')}?text=Olá ${lead.nome.split(' ')[0]}! Sou o Dr. Márcio França. Vi seu contato sobre ${lead.area} e gostaria de conversar.`;
+  const whatsappLead = (lead: Lead) => `https://wa.me/${lead.telefone.replace(/\D/g, '')}?text=Olá ${lead.nome.split(' ')[0]}! Sou o Dr. Márcio Jr. França. Vi seu contato sobre ${lead.area} e gostaria de conversar.`;
 
   return (
     <div className={styles.container}>
