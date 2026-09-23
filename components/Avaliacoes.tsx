@@ -15,7 +15,7 @@ const AVALIACOES = [
   {
     nome: 'Cliente P.',
     iniciais: 'CP',
-    comentario: 'O atendimento do doutor Márcio França é nota 10. Eu super recomendo.',
+    comentario: 'O atendimento do doutor Márcio Jr. França é nota 10. Eu super recomendo.',
     nota: 5,
     data: 'Cliente do Google'
   },
