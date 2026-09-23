@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { AREAS_ATUACAO } from '@/lib/data';
 import { getPosts } from '@/lib/blog';
 
+// Sitemap — Márcio Jr. França Advocacia (OAB/AC 2.882)
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://marciofrancaadvocacia.com.br';
   const agora = new Date();
@@ -12,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/triagem`, lastModified: agora, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${base}/sobre`, lastModified: agora, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/contato`, lastModified: agora, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/avaliacoes`, lastModified: agora, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${base}/politica-de-privacidade`, lastModified: agora, changeFrequency: 'yearly', priority: 0.3 },
   ];
 
   const areasUrls: MetadataRoute.Sitemap = AREAS_ATUACAO.map((area) => ({
