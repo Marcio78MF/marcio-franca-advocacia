@@ -2,11 +2,14 @@ import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/data';
 import { gerarMetadata } from '@/lib/seo';
 
-export const metadata = gerarMetadata({
-  titulo: 'Política de Privacidade',
-  descricao: 'Política de privacidade do escritório Márcio Jr. França Advocacia. Entenda como lidamos com a proteção de dados em conformidade com a LGPD.',
-  slug: 'politica-de-privacidade',
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Política de Privacidade',
+    descricao: 'Política de privacidade do escritório Márcio Jr. França Advocacia. Entenda como lidamos com a proteção de dados em conformidade com a LGPD.',
+    slug: 'politica-de-privacidade',
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function PoliticaPrivacidadePage() {
   return (
