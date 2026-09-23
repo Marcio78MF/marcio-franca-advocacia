@@ -3,12 +3,15 @@ import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
 import NewsletterCapture from '@/components/NewsletterCapture';
 
-export const metadata = gerarMetadata({
-  titulo: 'Advogado em Rio Branco/AC — Atendimento Presencial',
-  descricao: 'Escritório de advocacia em Rio Branco, Acre. Atendimento presencial com Dr. Márcio Jr. França. Direito Previdenciário, Consumidor, Família e Criminal.',
-  slug: 'atendimento/rio-branco',
-  palavrasChave: ['advogado Rio Branco', 'escritório advocacia Rio Branco', 'advogado Acre', 'consulta presencial advogado'],
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Advogado em Rio Branco/AC — Atendimento Presencial',
+    descricao: 'Escritório de advocacia em Rio Branco, Acre. Atendimento presencial com Dr. Márcio Jr. França. Direito Previdenciário, Consumidor, Família e Criminal.',
+    slug: 'atendimento/rio-branco',
+    palavrasChave: ['advogado Rio Branco', 'escritório advocacia Rio Branco', 'advogado Acre', 'consulta presencial advogado'],
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function RioBrancoPage() {
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento presencial em Rio Branco. [source=site&area=rio-branco]')}`;
