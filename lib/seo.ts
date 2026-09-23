@@ -33,7 +33,7 @@ export function gerarMetadata({
 
   return {
     metadataBase: new URL('https://bpc.marciofranca.adv.br'),
-    title: tituloCompleto,
+    title: titulo,
     description: descricaoFinal,
     keywords: [
       ...palavrasChave,

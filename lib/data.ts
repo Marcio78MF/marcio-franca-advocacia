@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   descricao: 'Escritório de advocacia em Rio Branco/AC com atuação em Direito Previdenciário, Consumidor Bancário, Energisa, Família e Criminal. Atendimento presencial e online.',
   telefone: '(68) 99951-1555',
   whatsapp: '5568999511555',
-  email: 'contato@marciofrancaadvocacia.com.br',
+  email: 'marciosantosfranca@gmail.com',
   endereco: 'Av. Epaminondas Jacome, nº 2172, bairro Cerâmica, Rio Branco/AC - CEP 69905-076',
   cidade: 'Rio Branco',
   estado: 'AC',
