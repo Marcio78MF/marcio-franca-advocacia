@@ -2,12 +2,15 @@ import { gerarMetadata } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
 
-export const metadata = gerarMetadata({
-  titulo: 'Atendimento Jurídico',
-  descricao: 'Atendimento presencial em Rio Branco/AC e online para todo o Brasil. Consulta jurídica com Dr. Márcio Jr. França.',
-  slug: 'atendimento',
-  palavrasChave: ['atendimento jurídico', 'consulta advogado', 'advogado online', 'advogado Rio Branco'],
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Atendimento Jurídico',
+    descricao: 'Atendimento presencial em Rio Branco/AC e online para todo o Brasil. Consulta jurídica com Dr. Márcio Jr. França.',
+    slug: 'atendimento',
+    palavrasChave: ['atendimento jurídico', 'consulta advogado', 'advogado online', 'advogado Rio Branco'],
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function AtendimentoPage() {
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento. [source=site&area=atendimento]')}`;
