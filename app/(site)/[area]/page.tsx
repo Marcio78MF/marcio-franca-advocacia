@@ -2,7 +2,6 @@ import { AREAS_ATUACAO, SITE_CONFIG } from '@/lib/data';
 import { gerarMetadata, gerarSchemaFAQ } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import FAQ from '@/components/FAQ';
 import ScrollReveal from '@/components/ScrollReveal';
 import Icon from '@/components/Icon';
@@ -99,16 +98,6 @@ export default async function AreaPage({ params }: Props) {
               <Link href="/triagem" className="btn btn-dourado btn-lg">Fazer diagnóstico rápido</Link>
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline-white btn-lg">Falar no WhatsApp</a>
             </div>
-          </div>
-          <div className={styles.heroPortrait} aria-hidden="true">
-            <Image
-              src="/images/dr-marcio-jr-franca-hero-banner.jpg"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 44vw"
-              className={styles.heroPortraitImg}
-            />
           </div>
         </div>
       </section>
