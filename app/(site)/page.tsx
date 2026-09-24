@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import FAQ from '@/components/FAQ';
 import LeadForm from '@/components/LeadForm';
 import { SITE_CONFIG } from '@/lib/data';
@@ -178,17 +177,6 @@ export default function Home() {
               <li>INSS</li>
               <li>OAB/AC 2.882</li>
             </ul>
-          </div>
-
-          <div className={styles.heroPortrait} aria-hidden="true">
-            <Image
-              src="/images/dr-marcio-jr-franca-hero-banner.jpg"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 46vw"
-              className={styles.heroPortraitImg}
-            />
           </div>
         </div>
       </section>
