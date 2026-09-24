@@ -139,19 +139,7 @@ export default function Home() {
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
-        <div className={`container ${styles.heroStack}`}>
-          <div className={styles.heroBannerWrap}>
-            <Image
-              src="/images/dr-marcio-jr-franca-hero-banner.jpg"
-              alt="Márcio Jr. França Advocacia — Dr. Márcio Jr. França, advogado OAB/AC 2.882, em Rio Branco/AC"
-              width={1800}
-              height={1014}
-              priority
-              sizes="(max-width: 900px) 100vw, 1100px"
-              className={styles.heroBannerImg}
-            />
-          </div>
-
+        <div className={`container ${styles.heroGrid}`}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitulo}>
               BPC/LOAS em <span className={styles.heroDestaque}>Rio Branco e no Acre</span>
@@ -190,6 +178,17 @@ export default function Home() {
               <li>INSS</li>
               <li>OAB/AC 2.882</li>
             </ul>
+          </div>
+
+          <div className={styles.heroPortrait} aria-hidden="true">
+            <Image
+              src="/images/dr-marcio-jr-franca-hero-banner.jpg"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 46vw"
+              className={styles.heroPortraitImg}
+            />
           </div>
         </div>
       </section>
