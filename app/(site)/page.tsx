@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import MFLogo from '@/components/MFLogo';
 import FAQ from '@/components/FAQ';
 import LeadForm from '@/components/LeadForm';
 import { SITE_CONFIG } from '@/lib/data';
@@ -140,10 +139,20 @@ export default function Home() {
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroContent}>
-            <MFLogo size={62} comNome claro />
+        <div className={`container ${styles.heroStack}`}>
+          <div className={styles.heroBannerWrap}>
+            <Image
+              src="/images/dr-marcio-jr-franca-hero-banner.jpg"
+              alt="Márcio Jr. França Advocacia — Dr. Márcio Jr. França, advogado OAB/AC 2.882, em Rio Branco/AC"
+              width={1800}
+              height={1014}
+              priority
+              sizes="(max-width: 900px) 100vw, 1100px"
+              className={styles.heroBannerImg}
+            />
+          </div>
 
+          <div className={styles.heroContent}>
             <h1 className={styles.heroTitulo}>
               BPC/LOAS em <span className={styles.heroDestaque}>Rio Branco e no Acre</span>
             </h1>
@@ -181,17 +190,6 @@ export default function Home() {
               <li>INSS</li>
               <li>OAB/AC 2.882</li>
             </ul>
-          </div>
-
-          <div className={styles.heroFoto}>
-            <Image
-              src="/images/dr-marcio-hero.jpg"
-              alt="Dr. Márcio Jr. França, advogado inscrito na OAB/AC sob o nº 2.882, em Rio Branco/AC"
-              width={520}
-              height={640}
-              priority
-              className={styles.heroFotoImg}
-            />
           </div>
         </div>
       </section>
