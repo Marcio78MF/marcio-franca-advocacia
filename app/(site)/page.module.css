@@ -79,6 +79,17 @@
   margin-top: 0.25rem;
 }
 
+.heroWhatsLink {
+  margin: -0.4rem 0 0;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.heroWhatsLink a {
+  color: #c0c0c0;
+  text-decoration: underline;
+}
+
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -150,6 +161,10 @@
   color: var(--cinza-texto);
 }
 
+.card p + p {
+  margin-top: 0.85rem;
+}
+
 /* === PASSOS === */
 .passos {
   display: grid;
@@ -201,54 +216,63 @@
 .secPassos,
 .secDireito,
 .secFaq,
-.secForm {
+.secForm,
+.secNaoAposentadoria,
+.secDeficiencia,
+.secBolsaFamilia {
   scroll-margin-top: 90px;
 }
 
-/* === RODAPÉ DA LP === */
-.rodapeLp {
-  padding: clamp(2.5rem, 6vw, 4rem) 0;
-  background: #0a0a0a;
-  color: rgba(255, 255, 255, 0.82);
+/* === NOTA / CAIXA DE DESTAQUE === */
+.notaBox {
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+  padding: 1.6rem;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-top: 3px solid #2a6496;
+  border-radius: var(--radius-md);
+  box-shadow: var(--sombra-sm);
 }
 
-.rodapeInner {
-  display: grid;
-  gap: 1.25rem;
-  justify-items: start;
-}
-
-.rodapeDados {
-  display: grid;
-  gap: 0.35rem;
-  font-size: 0.92rem;
-  line-height: 1.6;
-}
-
-.rodapeDados p {
-  margin: 0;
-}
-
-.rodapeDados a {
-  color: #c0c0c0;
-  text-decoration: underline;
-}
-
-.rodapeLema {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+.notaBox h3 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-heading);
   font-size: 1.05rem;
-  letter-spacing: 0.06em;
-  color: #c0c0c0;
+  color: #0f2a44;
 }
 
-.rodapeDisclaimer {
-  max-width: 78ch;
-  margin: 0.5rem 0 0;
-  padding-top: 1.1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: 0.78rem;
+.listaChecagem {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.listaChecagem li {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--cinza-texto);
+}
+
+.notaCentral {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.notaCentral h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: #0f2a44;
+}
+
+.notaCentral p {
+  margin: 0;
+  font-size: 0.98rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--cinza-texto);
 }
 
 /* === RESPONSIVO === */

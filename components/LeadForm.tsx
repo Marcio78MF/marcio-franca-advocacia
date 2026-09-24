@@ -4,28 +4,30 @@ import React, { useState } from 'react';
 import { SITE_CONFIG } from '@/lib/data';
 import styles from './LeadForm.module.css';
 
-const MOTIVOS = [
-  'Renda familiar acima do limite (com Bolsa Família no cálculo)',
-  'Perícia médica ou avaliação social',
-  'Cadastro Único desatualizado',
-  'Ainda não sei o motivo da negativa',
+const SITUACOES = [
+  'Quero saber sobre BPC para pessoa idosa',
+  'Quero saber sobre BPC para pessoa com deficiência',
+  'Meu pedido foi negado por renda',
+  'Meu pedido foi negado após avaliação/perícia',
+  'Meu BPC foi suspenso ou bloqueado',
+  'Tenho dúvida sobre CadÚnico ou renda familiar',
   'Outro motivo',
 ];
 
 export default function LeadForm() {
   const [nome, setNome] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
-  const [motivo, setMotivo] = useState('');
+  const [situacao, setSituacao] = useState('');
   const [enviado, setEnviado] = useState(false);
 
   function enviar(e: React.FormEvent) {
     e.preventDefault();
     const msg = [
-      'Olá Dr. Márcio Jr., meu BPC foi negado e quero análise.',
+      'Olá Dr. Márcio Jr., gostaria de falar sobre o BPC/LOAS.',
       '',
       `*Nome:* ${nome}`,
       `*WhatsApp:* ${whatsapp}`,
-      `*Motivo da negativa:* ${motivo || 'não informado'}`,
+      `*Situação:* ${situacao || 'não informado'}`,
       '',
       '[source=site&area=bpc-loas]',
     ].join('\n');
@@ -90,18 +92,18 @@ export default function LeadForm() {
       </div>
 
       <div className={styles.grupo}>
-        <label htmlFor="lead-motivo">Motivo da negativa</label>
+        <label htmlFor="lead-situacao">Qual é a sua situação?</label>
         <select
-          id="lead-motivo"
-          name="motivo"
+          id="lead-situacao"
+          name="situacao"
           required
-          value={motivo}
-          onChange={(e) => setMotivo(e.target.value)}
+          value={situacao}
+          onChange={(e) => setSituacao(e.target.value)}
         >
           <option value="">Selecione</option>
-          {MOTIVOS.map((m) => (
-            <option key={m} value={m}>
-              {m}
+          {SITUACOES.map((s) => (
+            <option key={s} value={s}>
+              {s}
             </option>
           ))}
         </select>

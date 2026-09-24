@@ -97,7 +97,10 @@ export default function Footer() {
           <div className={styles.bottomInner}>
             <p>© {anoAtual} {SITE_CONFIG.nome} – {SITE_CONFIG.oab}. Todos os direitos reservados.</p>
             <p className={styles.bottomAviso}>
-              Este site possui finalidade exclusivamente informativa. O envio de informações pelo formulário ou WhatsApp não constitui contratação automática nem garantia de resultado.
+              Conteúdo de caráter meramente informativo, em conformidade com o Código de Ética e
+              Disciplina da OAB e com o Provimento nº 205/2021 do Conselho Federal da OAB. O envio
+              de informações pelo formulário ou WhatsApp não constitui contratação automática nem
+              promessa de resultado. Cada situação exige análise individualizada.
             </p>
           </div>
         </div>
