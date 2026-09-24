@@ -2,6 +2,7 @@ import { AREAS_ATUACAO, SITE_CONFIG } from '@/lib/data';
 import { gerarMetadata, gerarSchemaFAQ } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import FAQ from '@/components/FAQ';
 import ScrollReveal from '@/components/ScrollReveal';
 import Icon from '@/components/Icon';
@@ -88,14 +89,26 @@ export default async function AreaPage({ params }: Props) {
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroIcone}><Icon name={area.icone} size={48} /></div>
-          <div className="section-badge" style={{ background: 'rgba(201,168,76,0.12)', color: '#ddc170', borderColor: 'rgba(201,168,76,0.25)' }}>Área de Atuação</div>
-          <h1 className={styles.heroTitulo}>{area.tituloLp}</h1>
-          <p className={styles.heroDesc}>{area.descricao}</p>
-          <div className={styles.heroCtas}>
-            <Link href="/triagem" className="btn btn-dourado btn-lg">Fazer diagnóstico rápido</Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline-white btn-lg">Falar no WhatsApp</a>
+        <div className={`container ${styles.heroGrid}`}>
+          <div className={styles.heroInner}>
+            <div className={styles.heroIcone}><Icon name={area.icone} size={42} /></div>
+            <div className="section-badge" style={{ background: 'rgba(201,168,76,0.12)', color: '#ddc170', borderColor: 'rgba(201,168,76,0.25)' }}>Área de Atuação</div>
+            <h1 className={styles.heroTitulo}>{area.tituloLp}</h1>
+            <p className={styles.heroDesc}>{area.descricao}</p>
+            <div className={styles.heroCtas}>
+              <Link href="/triagem" className="btn btn-dourado btn-lg">Fazer diagnóstico rápido</Link>
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline-white btn-lg">Falar no WhatsApp</a>
+            </div>
+          </div>
+          <div className={styles.heroPortrait} aria-hidden="true">
+            <Image
+              src="/images/dr-marcio-jr-franca-hero-banner.jpg"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 44vw"
+              className={styles.heroPortraitImg}
+            />
           </div>
         </div>
       </section>
