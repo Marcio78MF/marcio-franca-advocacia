@@ -65,7 +65,7 @@ export default function CasosProcurados() {
                 </div>
 
                 <div className={styles.cardFooter}>
-                  <Link href={area.slug} className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
+                  <Link href={area.id === 'bpc-loas' ? '/' : area.slug} className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
                     Entenda seu caso
                   </Link>
                 </div>
@@ -83,7 +83,7 @@ export default function CasosProcurados() {
         <StaggerContainer className={styles.outrasGrid}>
           {outrasAreas.map((area) => (
             <StaggerItem key={area.id}>
-              <Link href={area.slug} className={styles.areaCard}>
+              <Link href={area.id === 'bpc-loas' ? '/' : area.slug} className={styles.areaCard}>
                 <span className={styles.areaIcone} aria-hidden="true">
                   <Icon name={area.icone} size={22} />
                 </span>
