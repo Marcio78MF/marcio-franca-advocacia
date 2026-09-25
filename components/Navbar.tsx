@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG, AREAS_ATUACAO } from '@/lib/data';
@@ -10,6 +11,8 @@ export default function Navbar() {
   const [aberto, setAberto] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [areasAberto, setAreasAberto] = useState(false);
+  const pathname = usePathname();
+  const isBpcLanding = pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -42,6 +45,16 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className={styles.nav} aria-label="Menu principal">
+          {isBpcLanding ? (
+            <>
+              <a href="#quero-direito" className={styles.navLink}>Quem pode ter direito</a>
+              <a href="#bpc-negado" className={styles.navLink}>BPC negado</a>
+              <a href="#como-funciona" className={styles.navLink}>Como funciona</a>
+              <a href="#duvidas" className={styles.navLink}>Dúvidas</a>
+              <a href="#formulario" className={styles.navLink}>Contato</a>
+            </>
+          ) : (
+            <>
           <Link href="/" className={styles.navLink}>Início</Link>
 
           {/* Dropdown Áreas */}
@@ -69,6 +82,8 @@ export default function Navbar() {
           <Link href="/sobre" className={styles.navLink}>Sobre</Link>
           <Link href="/avaliacoes" className={styles.navLink}>Depoimentos</Link>
           <Link href="/contato" className={styles.navLink}>Contato</Link>
+            </>
+          )}
         </nav>
 
         {/* CTA Desktop */}
@@ -85,9 +100,11 @@ export default function Navbar() {
             </svg>
             WhatsApp
           </a>
-          <Link href="/triagem" className={`btn btn-dourado btn-sm`} aria-label="Fazer diagnóstico jurídico rápido">
-            Diagnóstico Rápido
-          </Link>
+          {!isBpcLanding && (
+            <Link href="/triagem" className={`btn btn-dourado btn-sm`} aria-label="Fazer diagnóstico jurídico rápido">
+              Diagnóstico Rápido
+            </Link>
+          )}
         </div>
 
         {/* Hamburger */}
@@ -109,6 +126,16 @@ export default function Navbar() {
         aria-hidden={!aberto}
       >
         <nav className={styles.mobileNav} aria-label="Menu mobile">
+          {isBpcLanding ? (
+            <>
+              <a href="#quero-direito" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Quem pode ter direito</a>
+              <a href="#bpc-negado" className={styles.mobileNavLink} onClick={() => setAberto(false)}>BPC negado</a>
+              <a href="#como-funciona" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Como funciona</a>
+              <a href="#duvidas" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Dúvidas</a>
+              <a href="#formulario" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Contato</a>
+            </>
+          ) : (
+            <>
           <Link href="/" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Início</Link>
           <div className={styles.mobileSection}>Áreas de Atuação</div>
           {AREAS_ATUACAO.map((area) => (
@@ -120,6 +147,8 @@ export default function Navbar() {
           <Link href="/sobre" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Sobre</Link>
           <Link href="/avaliacoes" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Depoimentos</Link>
           <Link href="/contato" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Contato</Link>
+            </>
+          )}
 
           <div className={styles.mobileCtas}>
             <a
@@ -132,9 +161,11 @@ export default function Navbar() {
             >
               WhatsApp
             </a>
-            <Link href="/triagem" className="btn btn-dourado" onClick={() => setAberto(false)}>
-              Diagnóstico Rápido
-            </Link>
+            {!isBpcLanding && (
+              <Link href="/triagem" className="btn btn-dourado" onClick={() => setAberto(false)}>
+                Diagnóstico Rápido
+              </Link>
+            )}
           </div>
         </nav>
       </div>
