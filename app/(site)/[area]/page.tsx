@@ -1,6 +1,6 @@
 import { AREAS_ATUACAO, SITE_CONFIG } from '@/lib/data';
 import { gerarMetadata, gerarSchemaFAQ } from '@/lib/seo';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import FAQ from '@/components/FAQ';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -65,6 +65,10 @@ export default async function AreaPage({ params }: Props) {
   const { area: areaSlug } = await params;
   const area = obterAreaPorSlug(areaSlug);
   if (!area) notFound();
+
+  // A landing principal de BPC vive na raiz do subdomínio.
+  // Consolidar as variantes antigas evita competição entre URLs equivalentes.
+  if (area.id === 'bpc-loas') permanentRedirect('/');
 
   const whatsappMsg = encodeURIComponent(`Olá, gostaria de informações sobre ${area.titulo}.`);
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${whatsappMsg}`;
