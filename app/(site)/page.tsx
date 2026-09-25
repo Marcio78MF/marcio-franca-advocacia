@@ -306,7 +306,7 @@ export default function Home() {
       </section>
 
       {/* COMO FUNCIONA */}
-      <section className={`section section-alt ${styles.secPassos}`}>
+      <section className={`section section-alt ${styles.secPassos}`} id="como-funciona">
         <div className="container">
           <div className="section-header">
             <h2>Como funciona o atendimento</h2>
@@ -331,7 +331,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className={`section ${styles.secFaq}`}>
+      <section className={`section ${styles.secFaq}`} id="duvidas">
         <div className="container">
           <div className="section-header">
             <h2>Perguntas frequentes</h2>
