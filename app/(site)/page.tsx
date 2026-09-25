@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FAQ from '@/components/FAQ';
+import TrackedLink from '@/components/TrackedLink';
 import LeadForm from '@/components/LeadForm';
 import { SITE_CONFIG } from '@/lib/data';
 import { gerarSchemaFAQ } from '@/lib/seo';
@@ -19,11 +20,11 @@ export const metadata: Metadata = {
 };
 
 const WHATSAPP_GERAL = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(
-  'Olá Dr. Márcio Jr., gostaria de informações sobre o BPC/LOAS'
+  'Olá Dr. Márcio Jr., gostaria de informações sobre o BPC/LOAS. [source=bpc-landing&area=bpc-loas&cta=hero-whatsapp]'
 )}`;
 
 const WHATSAPP_NEGADO = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(
-  'Olá Dr. Márcio Jr., meu BPC foi negado/suspenso e quero análise'
+  'Olá Dr. Márcio Jr., meu BPC foi negado/suspenso e quero análise. [source=bpc-landing&area=bpc-loas&cta=bpc-negado-whatsapp]'
 )}`;
 
 const REQUISITOS = [
@@ -163,19 +164,35 @@ export default function Home() {
             </p>
 
             <div className={styles.heroCtas}>
-              <a href="#quero-direito" className="btn btn-dourado btn-lg">
+              <TrackedLink
+                href="#quero-direito"
+                className="btn btn-dourado btn-lg"
+                eventName="cta_bpc_direito"
+                eventParams={{ area: 'bpc-loas', source: 'bpc-landing', cta: 'hero-direito' }}
+              >
                 Quero entender se posso ter direito
-              </a>
-              <a href="#bpc-negado" className="btn btn-outline-white btn-lg">
+              </TrackedLink>
+              <TrackedLink
+                href="#bpc-negado"
+                className="btn btn-outline-white btn-lg"
+                eventName="cta_bpc_negado"
+                eventParams={{ area: 'bpc-loas', source: 'bpc-landing', cta: 'hero-negado' }}
+              >
                 Meu BPC foi negado
-              </a>
+              </TrackedLink>
             </div>
 
             <p className={styles.heroWhatsLink}>
               Preferir falar direto?{' '}
-              <a href={WHATSAPP_GERAL} target="_blank" rel="noopener noreferrer">
+              <TrackedLink
+                href={WHATSAPP_GERAL}
+                target="_blank"
+                rel="noopener noreferrer"
+                eventName="whatsapp_click"
+                eventParams={{ area: 'bpc-loas', source: 'bpc-landing', cta: 'hero-whatsapp' }}
+              >
                 Fale agora no WhatsApp
-              </a>
+              </TrackedLink>
             </p>
 
             <ul className={styles.badges}>
@@ -275,9 +292,16 @@ export default function Home() {
             individualizada. Não há garantia de resultado em nenhuma via.
           </p>
           <div className={styles.heroCtas} style={{ marginTop: '1.25rem' }}>
-            <a href={WHATSAPP_NEGADO} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+            <TrackedLink
+              href={WHATSAPP_NEGADO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-whatsapp"
+              eventName="whatsapp_click"
+              eventParams={{ area: 'bpc-loas', source: 'bpc-landing', cta: 'bpc-negado-whatsapp' }}
+            >
               Falar sobre meu caso no WhatsApp
-            </a>
+            </TrackedLink>
             <a href="#formulario" className="btn btn-outline">
               Enviar meu caso para análise
             </a>
