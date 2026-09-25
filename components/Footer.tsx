@@ -74,7 +74,7 @@ export default function Footer() {
             </li>
             <li className={styles.contatoItem}>
               <span className={styles.contatoIcone} aria-hidden="true"><Icon name="Clock" size={16} /></span>
-              <span>{SITE_CONFIG.horario}</span>
+              <span><strong>Atendimento presencial:</strong> {SITE_CONFIG.horario}<br /><strong>Canais digitais:</strong> disponíveis 24h para envio de mensagens</span>
             </li>
           </ul>
           <a
