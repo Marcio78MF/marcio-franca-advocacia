@@ -39,7 +39,7 @@ export default function Footer() {
           <ul className={styles.linkList}>
             {AREAS_ATUACAO.map((area) => (
               <li key={area.id}>
-                <Link href={area.slug} className={styles.footerLink}>{area.titulo}</Link>
+                <Link href={area.id === 'bpc-loas' ? '/' : area.slug} className={styles.footerLink}>{area.titulo}</Link>
               </li>
             ))}
           </ul>
