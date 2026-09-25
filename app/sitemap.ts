@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/triagem`, lastModified: agora, changeFrequency: 'monthly', priority: 0.9 },
   ];
 
-  const areasUrls: MetadataRoute.Sitemap = AREAS_ATUACAO.map((area) => ({
+  const areasUrls: MetadataRoute.Sitemap = AREAS_ATUACAO.filter((area) => area.id !== 'bpc-loas').map((area) => ({
     url: `${base}${area.slug}`,
     lastModified: agora,
     changeFrequency: 'monthly' as const,
