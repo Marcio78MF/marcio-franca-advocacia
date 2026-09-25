@@ -4,6 +4,12 @@ import React, { useState } from 'react';
 import { SITE_CONFIG } from '@/lib/data';
 import styles from './LeadForm.module.css';
 
+function trackEvent(eventName: string, params: Record<string, string> = {}) {
+  if (typeof window === 'undefined') return;
+  const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag;
+  gtag?.('event', eventName, params);
+}
+
 const SITUACOES = [
   'Quero saber sobre BPC para pessoa idosa',
   'Quero saber sobre BPC para pessoa com deficiência',
@@ -29,8 +35,19 @@ export default function LeadForm() {
       `*WhatsApp:* ${whatsapp}`,
       `*Situação:* ${situacao || 'não informado'}`,
       '',
-      '[source=site&area=bpc-loas]',
+      '[source=bpc-landing&area=bpc-loas&cta=lead_form]',
     ].join('\n');
+
+    trackEvent('lead_form_submit', {
+      area: 'bpc-loas',
+      source: 'bpc-landing',
+      situacao,
+    });
+    trackEvent('whatsapp_click', {
+      area: 'bpc-loas',
+      source: 'bpc-landing',
+      cta: 'lead_form',
+    });
 
     setEnviado(true);
     window.open(
@@ -43,10 +60,10 @@ export default function LeadForm() {
   if (enviado) {
     return (
       <div className={styles.card}>
-        <h3 className={styles.sucessoTitulo}>Dados registrados</h3>
+        <h3 className={styles.sucessoTitulo}>Continuar pelo WhatsApp</h3>
         <p>
-          O WhatsApp foi aberto em outra janela. Se não abriu, use o botão abaixo para continuar o
-          contato.
+          As informações preenchidas foram preparadas para envio pelo WhatsApp. Se ele não abriu,
+          use o botão abaixo para continuar o contato.
         </p>
         <a
           href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
