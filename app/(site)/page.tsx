@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import FAQ from '@/components/FAQ';
 import LeadForm from '@/components/LeadForm';
 import { SITE_CONFIG } from '@/lib/data';
+import { gerarSchemaFAQ } from '@/lib/seo';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -133,8 +134,14 @@ const FAQ_ITENS = [
 ];
 
 export default function Home() {
+  const schemaFAQ = gerarSchemaFAQ(FAQ_ITENS);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
+      />
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
