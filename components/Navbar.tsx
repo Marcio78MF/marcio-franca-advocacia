@@ -81,7 +81,7 @@ export default function Navbar() {
             {areasAberto && (
               <div className={styles.dropdownMenu} role="menu">
                 {AREAS_ATUACAO.map((area) => (
-                  <Link key={area.id} href={area.slug} className={styles.dropdownItem} role="menuitem">
+                  <Link key={area.id} href={area.id === 'bpc-loas' ? '/' : area.slug} className={styles.dropdownItem} role="menuitem">
                     <span className={styles.dropdownIcone}><Icon name={area.icone} size={16} /></span>
                     <span>{area.titulo}</span>
                   </Link>
@@ -152,7 +152,7 @@ export default function Navbar() {
           <Link href="/" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Início</Link>
           <div className={styles.mobileSection}>Áreas de Atuação</div>
           {AREAS_ATUACAO.map((area) => (
-            <Link key={area.id} href={area.slug} className={styles.mobileNavLink} onClick={() => setAberto(false)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Link key={area.id} href={area.id === 'bpc-loas' ? '/' : area.slug} className={styles.mobileNavLink} onClick={() => setAberto(false)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Icon name={area.icone} size={16} /> {area.titulo}
             </Link>
           ))}
