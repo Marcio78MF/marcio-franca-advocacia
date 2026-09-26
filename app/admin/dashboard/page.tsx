@@ -17,17 +17,20 @@ type Post = {
   publicado: boolean;
 };
 
-const LEADS_MOCK = [
-  { nome: 'Maria Aparecida S.', area: 'Aposentadoria Rural', status: 'Novo', data: '09/06/2026' },
-  { nome: 'João Batista F.', area: 'BPC/LOAS', status: 'Em Atendimento', data: '08/06/2026' },
-  { nome: 'Ana Claudia M.', area: 'Energisa Acre', status: 'Concluído', data: '07/06/2026' },
-  { nome: 'Francisco A.', area: 'Regularização Fundiária', status: 'Novo', data: '07/06/2026' },
-];
-
 const statusCor: Record<string, string> = {
-  'Novo': '#0a3d20',
-  'Em Atendimento': '#b8860b',
-  'Concluído': '#8fa898',
+  novo: '#0a3d20',
+  em_contato: '#b8860b',
+  agendado: '#1a5276',
+  cliente: '#1a7a45',
+  encerrado: '#8fa898',
+};
+
+const statusLabel: Record<string, string> = {
+  novo: 'Novo',
+  em_contato: 'Em contato',
+  agendado: 'Agendado',
+  cliente: 'Cliente',
+  encerrado: 'Encerrado',
 };
 
 export default function DashboardPage() {
@@ -37,7 +40,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/api/triage').then(res => res.json()),
+      fetch('/api/admin/leads', { cache: 'no-store' }).then(res => { if (!res.ok) throw new Error('Falha ao carregar leads'); return res.json(); }),
       fetch('/api/posts').then(res => res.json())
     ])
       .then(([triageData, postsData]) => {
@@ -56,30 +59,27 @@ export default function DashboardPage() {
   }, []);
 
   const totalLeads = leads.length;
-  const leadsEmAtendimento = leads.filter(l => l.status === 'Em Atendimento').length;
-  const leadsConcluidos = leads.filter(l => l.status === 'Concluído').length;
+  const leadsEmAtendimento = leads.filter(l => ['em_contato', 'agendado'].includes(l.status)).length;
+  const leadsConcluidos = leads.filter(l => ['cliente', 'encerrado'].includes(l.status)).length;
   const taxaConversao = totalLeads > 0 
     ? Math.round((leadsConcluidos / totalLeads) * 100) + '%'
-    : '68%'; // Fallback amigável
+    : '0%';
 
   const totalPostsPublicados = posts.filter(p => p.publicado).length;
 
   const STATS = [
-    { label: 'Leads totais', valor: String(totalLeads || 5), icone: '📋', cor: '#0a3d20' },
+    { label: 'Leads totais', valor: String(totalLeads), icone: '📋', cor: '#0a3d20' },
     { label: 'Artigos publicados', valor: String(totalPostsPublicados || 10), icone: '📝', cor: '#b8860b' },
-    { label: 'Leads em atendimento', valor: String(leadsEmAtendimento || 2), icone: '⚖️', cor: '#1a5276' },
+    { label: 'Leads em atendimento', valor: String(leadsEmAtendimento), icone: '⚖️', cor: '#1a5276' },
     { label: 'Taxa de conversão', valor: taxaConversao, icone: '📈', cor: '#1a7a45' },
   ];
 
-  // Mostra leads recentes ou o mock se a API estiver vazia
-  const leadsRecentes = leads.length > 0
-    ? leads.slice(0, 4).map(l => ({
-        nome: l.nome,
-        area: l.area,
-        status: l.status || 'Novo',
-        data: l.criadoEm ? l.criadoEm.split('T')[0] : new Date().toISOString().split('T')[0]
-      }))
-    : LEADS_MOCK;
+  const leadsRecentes = leads.slice(0, 4).map(l => ({
+    nome: l.nome,
+    area: l.area,
+    status: l.status || 'novo',
+    data: l.criadoEm ? new Date(l.criadoEm).toLocaleDateString('pt-BR', { timeZone: 'America/Rio_Branco' }) : '—'
+  }));
 
   return (
     <div>
@@ -120,7 +120,7 @@ export default function DashboardPage() {
                       <td>{l.area}</td>
                       <td>
                         <span className={styles.badge} style={{ background: statusCor[l.status] + '18', color: statusCor[l.status] }}>
-                          {l.status}
+                          {statusLabel[l.status] ?? l.status}
                         </span>
                       </td>
                       <td>{l.data}</td>
