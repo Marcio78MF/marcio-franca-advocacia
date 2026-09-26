@@ -62,6 +62,30 @@
   text-decoration: underline;
 }
 
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.erro {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-sm);
+}
+
+.erro p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 480px) {
   .card {
     padding: 1.25rem;
