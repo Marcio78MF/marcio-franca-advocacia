@@ -1,150 +1,164 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import { useEffect, useMemo, useState } from 'react';
 import styles from './leads.module.css';
 
-const LEADS_MOCK = [
-  { id: '1', nome: 'Maria Aparecida S.', telefone: '(68) 99111-2222', area: 'Aposentadoria Rural', respostas: { idade: '60+ anos (homem)', trabalho: 'Sim, como agricultor/a familiar', documentos: 'Tenho apenas alguns', inss: 'Sim, foi negado' }, status: 'Novo', criadoEm: '2026-06-09' },
-  { id: '2', nome: 'João Batista F.', telefone: '(68) 99333-4444', area: 'BPC/LOAS', respostas: { idade: '65 anos ou mais', deficiencia: 'Não', renda: 'Sim', tentativa: 'Sim, foi negado' }, status: 'Em Atendimento', criadoEm: '2026-06-08' },
-  { id: '3', nome: 'Ana Claudia M.', telefone: '(68) 99555-6666', area: 'Energisa Acre', respostas: { problema: 'Conta muito alta / cobrança abusiva', valor: 'Entre R$500 e R$2.000', reclamacao: 'Sim, reclamei e não resolvi', dano: 'Sim' }, status: 'Concluído', criadoEm: '2026-06-07' },
-  { id: '4', nome: 'Francisco A.', telefone: '(68) 99777-8888', area: 'Regularização Fundiária', respostas: { tipo: 'Imóvel rural / fazenda no Acre', situacao: 'Não tem documento nenhum (posse informal)', tempo: 'Décadas (patrimônio da família)', conflito: 'Não, só quero regularizar' }, status: 'Novo', criadoEm: '2026-06-07' },
-  { id: '5', nome: 'Raimunda S.', telefone: '(68) 99999-0000', area: 'Consignado Indevido', respostas: { tipo: 'Aposentado/a', desconto: 'Sim, identificado no extrato', banco: 'Não sei o banco', prejuizo: 'Mais de 2 anos' }, status: 'Em Atendimento', criadoEm: '2026-06-06' },
-];
-
-type Lead = typeof LEADS_MOCK[0];
-
-const statusOpcoes = ['Novo', 'Em Atendimento', 'Concluído'];
-const statusCor: Record<string, string> = {
-  'Novo': '#0a3d20',
-  'Em Atendimento': '#b8860b',
-  'Concluído': '#8fa898',
+type Lead = {
+  id: string;
+  nome: string;
+  telefone: string;
+  area: string;
+  situacao: string;
+  source: string;
+  status: string;
+  criadoEm: string | null;
 };
 
+const statusOpcoes = [
+  ['novo', 'Novo'],
+  ['em_contato', 'Em contato'],
+  ['agendado', 'Agendado'],
+  ['cliente', 'Cliente'],
+  ['encerrado', 'Encerrado'],
+] as const;
+
+const statusLabel = Object.fromEntries(statusOpcoes) as Record<string, string>;
+
 export default function LeadsPage() {
-  const [leads, setLeads] = useState<Lead[]>(LEADS_MOCK);
-  const [leadSelecionado, setLeadSelecionado] = useState<Lead | null>(null);
-  const [filtroStatus, setFiltroStatus] = useState('Todos');
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [selecionado, setSelecionado] = useState<Lead | null>(null);
+  const [filtro, setFiltro] = useState('todos');
   const [busca, setBusca] = useState('');
   const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState('');
 
   useEffect(() => {
-    fetch('/api/triage')
-      .then(res => res.json())
-      .then(data => {
-        if (data.leads && data.leads.length > 0) {
-          const apiLeads = data.leads.map((l: any) => ({
-            id: l.id,
-            nome: l.nome,
-            telefone: l.telefone,
-            area: l.area,
-            respostas: l.respostas,
-            status: l.status || 'Novo',
-            criadoEm: l.criadoEm ? l.criadoEm.split('T')[0] : new Date().toISOString().split('T')[0]
-          }));
-          // Mescla leads novos da API com o mock
-          setLeads([...apiLeads, ...LEADS_MOCK]);
-        }
-        setCarregando(false);
+    fetch('/api/admin/leads', { cache: 'no-store' })
+      .then(async res => {
+        if (!res.ok) throw new Error('Falha ao carregar leads');
+        return res.json();
       })
-      .catch(err => {
-        console.error('Erro ao buscar leads:', err);
-        setCarregando(false);
-      });
+      .then(data => setLeads(data.leads ?? []))
+      .catch(() => setErro('Não foi possível carregar os leads.'))
+      .finally(() => setCarregando(false));
   }, []);
 
-  const leadsFiltrados = leads.filter(l => {
-    const matchStatus = filtroStatus === 'Todos' || l.status === filtroStatus;
-    const matchBusca = l.nome.toLowerCase().includes(busca.toLowerCase()) || l.area.toLowerCase().includes(busca.toLowerCase());
-    return matchStatus && matchBusca;
-  });
+  const filtrados = useMemo(() => {
+    const termo = busca.trim().toLowerCase();
+    return leads.filter(lead => {
+      const matchStatus = filtro === 'todos' || lead.status === filtro;
+      const matchBusca = !termo || [lead.nome, lead.telefone, lead.area, lead.situacao]
+        .some(valor => valor?.toLowerCase().includes(termo));
+      return matchStatus && matchBusca;
+    });
+  }, [leads, filtro, busca]);
 
-  function atualizarStatus(id: string, novoStatus: string) {
-    setLeads(leads.map(l => l.id === id ? { ...l, status: novoStatus } : l));
-    if (leadSelecionado?.id === id) setLeadSelecionado({ ...leadSelecionado, status: novoStatus });
+  async function atualizarStatus(id: string, status: string) {
+    const anterior = leads;
+    setLeads(leads.map(l => l.id === id ? { ...l, status } : l));
+    if (selecionado?.id === id) setSelecionado({ ...selecionado, status });
+
+    const res = await fetch('/api/admin/leads', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status }),
+    });
+
+    if (!res.ok) {
+      setLeads(anterior);
+      const original = anterior.find(l => l.id === id);
+      if (original && selecionado?.id === id) setSelecionado(original);
+      setErro('Não foi possível atualizar o status.');
+    }
+  }
+
+  function dataLead(valor: string | null) {
+    if (!valor) return '—';
+    return new Intl.DateTimeFormat('pt-BR', {
+      dateStyle: 'short',
+      timeStyle: 'short',
+      timeZone: 'America/Rio_Branco',
+    }).format(new Date(valor));
   }
 
   function exportarCSV() {
-    const headers = ['Nome', 'Telefone', 'Área', 'Status', 'Data'];
-    const rows = leads.map(l => [l.nome, l.telefone, l.area, l.status, l.criadoEm]);
-    const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const esc = (v: string) => `"${String(v ?? '').replaceAll('"', '""')}"`;
+    const rows = leads.map(l => [l.nome, l.telefone, l.area, l.situacao, statusLabel[l.status] ?? l.status, dataLead(l.criadoEm)]);
+    const csv = [['Nome', 'Telefone', 'Área', 'Situação', 'Status', 'Data'], ...rows]
+      .map(row => row.map(esc).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'leads.csv'; a.click();
+    a.href = url;
+    a.download = 'leads-bpc.csv';
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
-  const whatsappLead = (lead: Lead) => `https://wa.me/${lead.telefone.replace(/\D/g, '')}?text=Olá ${lead.nome.split(' ')[0]}! Sou o Dr. Márcio Jr. França. Vi seu contato sobre ${lead.area} e gostaria de conversar.`;
+  const whatsapp = (lead: Lead) => {
+    const telefone = lead.telefone.replace(/\D/g, '');
+    const numero = telefone.startsWith('55') ? telefone : `55${telefone}`;
+    return `https://wa.me/${numero}?text=${encodeURIComponent(`Olá ${lead.nome.split(' ')[0]}, sou o Dr. Márcio Jr. França. Recebi seu contato sobre BPC/LOAS e gostaria de conversar.`)}`;
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.filtros}>
-          {['Todos', ...statusOpcoes].map(s => (
-            <button key={s} className={`${styles.filtroBtn} ${filtroStatus === s ? styles.filtroBtnAtivo : ''}`} onClick={() => setFiltroStatus(s)}>{s}</button>
+          <button className={`${styles.filtroBtn} ${filtro === 'todos' ? styles.filtroBtnAtivo : ''}`} onClick={() => setFiltro('todos')}>Todos</button>
+          {statusOpcoes.map(([valor, label]) => (
+            <button key={valor} className={`${styles.filtroBtn} ${filtro === valor ? styles.filtroBtnAtivo : ''}`} onClick={() => setFiltro(valor)}>{label}</button>
           ))}
         </div>
         <div className={styles.headerAcoes}>
-          <input type="text" className="form-input" placeholder="Buscar leads..." value={busca} onChange={e => setBusca(e.target.value)} style={{ maxWidth: '220px' }} />
+          <input type="search" className="form-input" placeholder="Nome, telefone ou situação..." value={busca} onChange={e => setBusca(e.target.value)} style={{ maxWidth: 260 }} />
           <button className="btn btn-outline btn-sm" onClick={exportarCSV}>Exportar CSV</button>
         </div>
       </div>
 
+      {erro && <div style={{ padding: '1rem', marginBottom: '1rem', background: '#fff3f3' }}>{erro}</div>}
+
       <div className={styles.grid}>
         <div className={styles.lista}>
           {carregando ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--cinza-texto)' }}>Carregando leads...</div>
-          ) : leadsFiltrados.length === 0 ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--cinza-texto)' }}>Nenhum lead encontrado.</div>
-          ) : (
-            leadsFiltrados.map(lead => (
-              <div key={lead.id} className={`${styles.leadItem} ${leadSelecionado?.id === lead.id ? styles.leadItemAtivo : ''}`} onClick={() => setLeadSelecionado(lead)}>
-                <div className={styles.leadAvatar}>{lead.nome.charAt(0)}</div>
-                <div className={styles.leadInfo}>
-                  <strong>{lead.nome}</strong>
-                  <span>{lead.area}</span>
-                </div>
-                <div>
-                  <span className={styles.leadStatus} style={{ background: statusCor[lead.status] + '18', color: statusCor[lead.status] }}>{lead.status}</span>
-                  <div className={styles.leadData}>{lead.criadoEm}</div>
-                </div>
+            <div style={{ padding: '2rem', textAlign: 'center' }}>Carregando leads...</div>
+          ) : filtrados.length === 0 ? (
+            <div style={{ padding: '2rem', textAlign: 'center' }}>Nenhum lead encontrado.</div>
+          ) : filtrados.map(lead => (
+            <div key={lead.id} className={`${styles.leadItem} ${selecionado?.id === lead.id ? styles.leadItemAtivo : ''}`} onClick={() => setSelecionado(lead)}>
+              <div className={styles.leadAvatar}>{lead.nome.charAt(0).toUpperCase()}</div>
+              <div className={styles.leadInfo}>
+                <strong>{lead.nome}</strong>
+                <span>{lead.situacao || lead.area}</span>
               </div>
-            ))
-          )}
-        </div>
-
-        {leadSelecionado && (
-          <div className={styles.detalhe}>
-            <div className={styles.detalheHeader}>
-              <div className={styles.detalheAvatar}>{leadSelecionado.nome.charAt(0)}</div>
               <div>
-                <h3>{leadSelecionado.nome}</h3>
-                <span>{leadSelecionado.area}</span>
+                <span className={styles.leadStatus}>{statusLabel[lead.status] ?? lead.status}</span>
+                <div className={styles.leadData}>{dataLead(lead.criadoEm)}</div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {selecionado && (
+          <div className={styles.detalhe}>
+            <div className={styles.detalheHeader}>
+              <div className={styles.detalheAvatar}>{selecionado.nome.charAt(0).toUpperCase()}</div>
+              <div><h3>{selecionado.nome}</h3><span>{selecionado.area}</span></div>
+            </div>
             <div className={styles.detalheCampos}>
-              <div className={styles.campo}><label>Telefone</label><span>{leadSelecionado.telefone}</span></div>
-              <div className={styles.campo}><label>Data</label><span>{leadSelecionado.criadoEm}</span></div>
-              <div className={styles.campo}><label>Status</label>
-                <select className="form-input" value={leadSelecionado.status} onChange={e => atualizarStatus(leadSelecionado.id, e.target.value)} style={{ padding: '0.35rem 0.75rem', fontSize: '0.875rem' }}>
-                  {statusOpcoes.map(s => <option key={s}>{s}</option>)}
+              <div className={styles.campo}><label>Telefone</label><span>{selecionado.telefone}</span></div>
+              <div className={styles.campo}><label>Recebido</label><span>{dataLead(selecionado.criadoEm)}</span></div>
+              <div className={styles.campo}><label>Situação informada</label><span>{selecionado.situacao || '—'}</span></div>
+              <div className={styles.campo}>
+                <label>Status</label>
+                <select className="form-input" value={selecionado.status} onChange={e => atualizarStatus(selecionado.id, e.target.value)}>
+                  {statusOpcoes.map(([valor, label]) => <option key={valor} value={valor}>{label}</option>)}
                 </select>
               </div>
             </div>
-            <div className={styles.respostas}>
-              <h4>Respostas da Triagem</h4>
-              {Object.entries(leadSelecionado.respostas).map(([k, v]) => (
-                <div key={k} className={styles.resposta}>
-                  <span className={styles.respostaKey}>{k}</span>
-                  <span className={styles.respostaVal}>{v}</span>
-                </div>
-              ))}
-            </div>
             <div className={styles.detalheAcoes}>
-              <a href={whatsappLead(leadSelecionado)} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: '#25d366', flex: 1, justifyContent: 'center' }}>
-                💬 WhatsApp
-              </a>
-              <a href={`tel:${leadSelecionado.telefone}`} className="btn btn-outline" style={{ flex: 1, justifyContent: 'center' }}>
-                📞 Ligar
-              </a>
+              <a href={whatsapp(selecionado)} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center' }}>WhatsApp</a>
+              <a href={`tel:${selecionado.telefone}`} className="btn btn-outline" style={{ flex: 1, justifyContent: 'center' }}>Ligar</a>
             </div>
           </div>
         )}
