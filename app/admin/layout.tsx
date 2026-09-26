@@ -1,7 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import styles from './admin.module.css';
 
 const navItems = [
@@ -14,37 +14,8 @@ const navItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
   const [sidebarAberta, setSidebarAberta] = useState(true);
-  const [autenticado, setAutenticado] = useState(false);
-  const [verificando, setVerificando] = useState(true);
-
-  useEffect(() => {
-    if (pathname === '/admin') {
-      setVerificando(false);
-      return;
-    }
-
-    const session = localStorage.getItem('admin_session');
-    if (!session) {
-      router.push('/admin');
-    } else {
-      setAutenticado(true);
-    }
-    setVerificando(false);
-  }, [pathname, router]);
-
-  if (pathname === '/admin') return <>{children}</>;
-
-  if (verificando) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f1b2d', color: 'white', fontFamily: 'sans-serif' }}>
-        <p>Verificando credenciais...</p>
-      </div>
-    );
-  }
-
-  if (!autenticado) return null;
+  if (pathname === '/admin' || pathname === '/admin/login') return <>{children}</>;
 
   return (
     <div className={styles.layout}>
@@ -78,27 +49,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span>🌐</span>
             {sidebarAberta && <span>Ver site</span>}
           </Link>
-          <button
-            onClick={() => {
-              localStorage.removeItem('admin_session');
-              router.push('/admin');
-            }}
-            className={styles.verSite}
-            style={{
-              background: 'none',
-              border: 'none',
-              width: '100%',
-              textAlign: 'left',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              color: '#ff4d4d',
-            }}
-          >
+          <a href="/api/auth/signout" className={styles.verSite}>
             <span>🚪</span>
             {sidebarAberta && <span>Sair</span>}
-          </button>
+          </a>
         </div>
       </aside>
 
