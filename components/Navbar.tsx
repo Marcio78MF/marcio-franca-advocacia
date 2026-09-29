@@ -13,6 +13,7 @@ export default function Navbar() {
   const [areasAberto, setAreasAberto] = useState(false);
   const pathname = usePathname();
   const isBpcLanding = pathname === '/';
+  const isBpcSite = true;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -57,7 +58,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className={styles.nav} aria-label="Menu principal">
-          {isBpcLanding ? (
+          {isBpcSite ? (
             <>
               <a href="#quero-direito" className={styles.navLink}>Quem pode ter direito</a>
               <a href="#bpc-negado" className={styles.navLink}>BPC negado</a>
@@ -113,7 +114,7 @@ export default function Navbar() {
             </svg>
             WhatsApp
           </a>
-          {!isBpcLanding && (
+          {!isBpcSite && (
             <Link href="/triagem" className={`btn btn-dourado btn-sm`} aria-label="Fazer diagnóstico jurídico rápido">
               Diagnóstico Rápido
             </Link>
@@ -139,7 +140,7 @@ export default function Navbar() {
         aria-hidden={!aberto}
       >
         <nav className={styles.mobileNav} aria-label="Menu mobile">
-          {isBpcLanding ? (
+          {isBpcSite ? (
             <>
               <a href="#quero-direito" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Quem pode ter direito</a>
               <a href="#bpc-negado" className={styles.mobileNavLink} onClick={() => setAberto(false)}>BPC negado</a>
@@ -174,7 +175,7 @@ export default function Navbar() {
             >
               WhatsApp
             </a>
-            {!isBpcLanding && (
+            {!isBpcSite && (
               <Link href="/triagem" className="btn btn-dourado" onClick={() => setAberto(false)}>
                 Diagnóstico Rápido
               </Link>
