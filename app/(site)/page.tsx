@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import FAQ from '@/components/FAQ';
 import TrackedLink from '@/components/TrackedLink';
 import LeadForm from '@/components/LeadForm';
@@ -105,7 +106,7 @@ const FAQ_ITENS = [
   {
     pergunta: 'O Bolsa Família entra no cálculo da renda do BPC/LOAS?',
     resposta:
-      'O cálculo da renda familiar do BPC segue regras próprias, com rendimentos legalmente excluídos e outros considerados. Esse é justamente o ponto discutido em muitos indeferimentos, inclusive em decisões do TRF1. Cada caso depende da análise dos documentos e do fundamento adotado pelo INSS.',
+      'O cálculo da renda familiar do BPC segue regras próprias, com rendimentos legalmente excluídos e outros considerados. Esse ponto pode ser relevante em indeferimentos por renda. Cada caso depende da análise dos documentos e do fundamento adotado pelo INSS.',
   },
   {
     pergunta: 'Fui negado por renda. Ainda posso tentar?',
@@ -159,8 +160,8 @@ export default function Home() {
             </p>
 
             <p className={styles.heroNota}>
-              Márcio Jr. França Advocacia — atuação na via administrativa e judicial no Acre, com
-              acompanhamento no TRF1. OAB/AC 2.882.
+              Márcio Jr. França Advocacia — atuação administrativa e judicial em questões
+              relacionadas ao BPC/LOAS no Acre. OAB/AC 2.882.
             </p>
 
             <div className={styles.heroCtas}>
@@ -183,7 +184,7 @@ export default function Home() {
             </div>
 
             <p className={styles.heroWhatsLink}>
-              Preferir falar direto?{' '}
+              Prefere falar pelo WhatsApp?{' '}
               <TrackedLink
                 href={WHATSAPP_GERAL}
                 target="_blank"
@@ -191,14 +192,13 @@ export default function Home() {
                 eventName="whatsapp_click"
                 eventParams={{ area: 'bpc-loas', source: 'bpc-landing', cta: 'hero-whatsapp' }}
               >
-                Fale agora no WhatsApp
+                Falar pelo WhatsApp
               </TrackedLink>
             </p>
 
             <ul className={styles.badges}>
-              <li>TJAC</li>
-              <li>TRF1</li>
-              <li>INSS</li>
+              <li>Atendimento no Acre</li>
+              <li>BPC/LOAS</li>
               <li>OAB/AC 2.882</li>
             </ul>
           </div>
@@ -290,6 +290,11 @@ export default function Home() {
           <p className="aviso-legal">
             Indeferimentos, suspensões e bloqueios podem exigir análise administrativa ou judicial
             individualizada. Não há garantia de resultado em nenhuma via.
+          </p>
+          <p style={{ marginTop: '1rem' }}>
+            <Link href="/blog/bpc-loas-negado-o-que-fazer">
+              Leia também: BPC/LOAS negado — o que fazer
+            </Link>
           </p>
           <div className={styles.heroCtas} style={{ marginTop: '1.25rem' }}>
             <TrackedLink
