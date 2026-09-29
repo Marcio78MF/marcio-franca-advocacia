@@ -27,7 +27,9 @@ export default async function PostPage({ params }: Props) {
 
   const schema = gerarSchemaArtigo(post);
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(`Olá, li o artigo "${post.titulo}" e gostaria de mais informações.`)}`;
-  const outrosPosts = getPosts().filter(p => p.id !== post.id).slice(0, 3);
+  const outrosPosts = getPosts()
+    .filter(p => p.id !== post.id && p.categoria.toLowerCase().includes('bpc'))
+    .slice(0, 3);
 
   // Simple markdown-like rendering
   const renderConteudo = (texto: string) => {
@@ -106,7 +108,7 @@ export default async function PostPage({ params }: Props) {
               <div className={styles.sideCard}>
                 <h3>Precisa de orientação?</h3>
                 <p>Cada caso depende de análise individualizada.</p>
-                <Link href="/triagem" className="btn btn-dourado" style={{ width: '100%', justifyContent: 'center', marginBottom: '0.75rem' }}>Diagnóstico rápido</Link>
+                <Link href="/#formulario" className="btn btn-dourado" style={{ width: '100%', justifyContent: 'center', marginBottom: '0.75rem' }}>Enviar meu caso</Link>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp" style={{ width: '100%', justifyContent: 'center' }}>WhatsApp</a>
               </div>
               {outrosPosts.length > 0 && (
