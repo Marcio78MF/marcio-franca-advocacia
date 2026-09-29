@@ -50,9 +50,9 @@ const AVALIACAO_GERAL = [
 
 const MOTIVOS_NEGATIVA = [
   {
-    titulo: 'Renda calculada com o Bolsa Família',
+    titulo: 'Indeferimento por renda familiar',
     texto:
-      'Em alguns indeferimentos, o cálculo da renda familiar considerou valores de programa de transferência de renda. É um ponto que pode ser questionado administrativa ou judicialmente, a depender do fundamento usado pelo INSS.',
+      'Quando o pedido é negado por renda, é importante conferir a composição do grupo familiar, os rendimentos considerados pelo INSS e as exclusões previstas em lei. Atualmente, os valores do Bolsa Família integram o cálculo da renda para o requerimento do BPC.',
   },
   {
     titulo: 'Perícia ou avaliação social ausente ou incompleta',
