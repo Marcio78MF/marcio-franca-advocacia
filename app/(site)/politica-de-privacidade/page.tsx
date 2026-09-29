@@ -109,7 +109,7 @@ export default function PoliticaPrivacidadePage() {
             <div className="aviso-legal" style={{ marginTop: '2rem' }}>
               {SITE_CONFIG.avisoLegal}
             </div>
-          </div>/div>
+          </div>
         </div>
       </section>
     </>
