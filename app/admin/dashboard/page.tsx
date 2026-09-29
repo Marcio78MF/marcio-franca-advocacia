@@ -11,12 +11,6 @@ type Lead = {
   criadoEm: string;
 };
 
-type Post = {
-  id: string;
-  titulo: string;
-  publicado: boolean;
-};
-
 const statusCor: Record<string, string> = {
   novo: '#0a3d20',
   em_contato: '#b8860b',
@@ -35,21 +29,13 @@ const statusLabel: Record<string, string> = {
 
 export default function DashboardPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [posts, setPosts] = useState<Post[]>([]);
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      fetch('/api/admin/leads', { cache: 'no-store' }).then(res => { if (!res.ok) throw new Error('Falha ao carregar leads'); return res.json(); }),
-      fetch('/api/posts').then(res => res.json())
-    ])
-      .then(([triageData, postsData]) => {
-        if (triageData.leads) {
-          setLeads(triageData.leads);
-        }
-        if (postsData.posts) {
-          setPosts(postsData.posts);
-        }
+    fetch('/api/admin/leads', { cache: 'no-store' })
+      .then(res => { if (!res.ok) throw new Error('Falha ao carregar leads'); return res.json(); })
+      .then((triageData) => {
+        if (triageData.leads) setLeads(triageData.leads);
         setCarregando(false);
       })
       .catch(err => {
@@ -65,12 +51,10 @@ export default function DashboardPage() {
     ? Math.round((leadsConcluidos / totalLeads) * 100) + '%'
     : '0%';
 
-  const totalPostsPublicados = posts.filter(p => p.publicado).length;
-
   const STATS = [
     { label: 'Leads totais', valor: String(totalLeads), icone: '📋', cor: '#0a3d20' },
-    { label: 'Artigos publicados', valor: String(totalPostsPublicados || 10), icone: '📝', cor: '#b8860b' },
     { label: 'Leads em atendimento', valor: String(leadsEmAtendimento), icone: '⚖️', cor: '#1a5276' },
+    { label: 'Clientes / encerrados', valor: String(leadsConcluidos), icone: '✅', cor: '#1a7a45' },
     { label: 'Taxa de conversão', valor: taxaConversao, icone: '📈', cor: '#1a7a45' },
   ];
 
@@ -133,32 +117,18 @@ export default function DashboardPage() {
             <div className={styles.panel}>
               <h2>Ações Rápidas</h2>
               <div className={styles.acoes}>
-                <a href="/admin/posts" className={styles.acao}>
-                  <span>📝</span>
-                  <div>
-                    <strong>Novo Artigo</strong>
-                    <p>Publicar um artigo no blog</p>
-                  </div>
-                </a>
                 <a href="/admin/leads" className={styles.acao}>
                   <span>📋</span>
                   <div>
                     <strong>Ver Leads</strong>
-                    <p>Gerenciar casos recebidos</p>
+                    <p>Gerenciar contatos recebidos pelo formulário BPC</p>
                   </div>
                 </a>
-                <a href="/admin/landing-pages" className={styles.acao}>
-                  <span>🏛️</span>
+                <a href="/" target="_blank" rel="noopener noreferrer" className={styles.acao}>
+                  <span>🌐</span>
                   <div>
-                    <strong>Landing Pages</strong>
-                    <p>Editar páginas de serviços</p>
-                  </div>
-                </a>
-                <a href="/admin/settings" className={styles.acao}>
-                  <span>⚙️</span>
-                  <div>
-                    <strong>Configurações</strong>
-                    <p>Atualizar dados do escritório</p>
+                    <strong>Ver Landing BPC</strong>
+                    <p>Abrir a página pública em nova aba</p>
                   </div>
                 </a>
               </div>
