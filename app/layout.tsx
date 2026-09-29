@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { gerarSchemaEscritorio } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -51,24 +52,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
-        {/* Google Analytics */}
-        {SITE_CONFIG.gaId && (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE_CONFIG.gaId}`} />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${SITE_CONFIG.gaId}');
-                `,
-              }}
-            />
-          </>
-        )}
+
       </head>
       <body>
+        {SITE_CONFIG.gaId && <GoogleAnalytics gaId={SITE_CONFIG.gaId} />}
         {children}
       </body>
     </html>
