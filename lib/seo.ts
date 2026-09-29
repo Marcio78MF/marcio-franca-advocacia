@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_CONFIG, AREAS_ATUACAO } from './data';
+import { SITE_CONFIG } from './data';
 
 // =====================================================
 // SEO UTILITIES - Metadata + Schema.org
@@ -125,7 +125,7 @@ export function gerarSchemaEscritorio() {
       SITE_CONFIG.linkedin,
       SITE_CONFIG.googleBusiness,
     ],
-    knowsAbout: AREAS_ATUACAO.map((a) => a.titulo),
+    knowsAbout: ['BPC/LOAS', 'Benefício de Prestação Continuada', 'Direito Assistencial'],
   };
 }
 
