@@ -6,10 +6,7 @@ import styles from './admin.module.css';
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icone: '📊' },
-  { href: '/admin/posts', label: 'Artigos', icone: '📝' },
   { href: '/admin/leads', label: 'Leads', icone: '📋' },
-  { href: '/admin/landing-pages', label: 'Landing Pages', icone: '🏛️' },
-  { href: '/admin/settings', label: 'Configurações', icone: '⚙️' },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
