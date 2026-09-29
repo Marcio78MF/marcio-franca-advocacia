@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.nome}`,
   },
   description:
-    'BPC/LOAS negado? Márcio Jr. França, OAB/AC 2.882, atua na revisão de indeferimentos do INSS no Acre. A inclusão do Bolsa Família no cálculo da renda é questionável. Atuação no TJAC e no TRF1.',
+    'Informações sobre BPC/LOAS em Rio Branco e no Acre, incluindo requisitos, renda familiar, CadÚnico, avaliação biopsicossocial e análise de indeferimentos do INSS.',
   keywords: [
     'advogado BPC LOAS Rio Branco',
     'BPC negado por renda Acre',
