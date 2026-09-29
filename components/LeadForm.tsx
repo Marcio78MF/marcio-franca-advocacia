@@ -47,6 +47,12 @@ export default function LeadForm() {
     e.preventDefault();
     if (enviando) return;
 
+    const telefoneDigitos = whatsapp.replace(/\D/g, '');
+    if (telefoneDigitos.length < 10 || telefoneDigitos.length > 13) {
+      setErro('Informe um número de WhatsApp válido, com DDD.');
+      return;
+    }
+
     setEnviando(true);
     setErro('');
 
