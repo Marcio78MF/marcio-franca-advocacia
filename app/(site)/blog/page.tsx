@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { getPosts } from '@/lib/blog';
 import { gerarMetadata } from '@/lib/seo';
-import NewsletterCapture from '@/components/NewsletterCapture';
 import styles from './blog.module.css';
 
 export const metadata = {
@@ -55,7 +54,6 @@ export default function BlogPage() {
             ))}
           </div>
 
-          <NewsletterCapture />
         </div>
       </section>
     </>
