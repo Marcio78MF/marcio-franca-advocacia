@@ -43,7 +43,15 @@ export async function POST(req: NextRequest) {
     const telefone = clean(body.telefone, 30);
     const situacao = clean(body.situacao, 180);
 
-    if (!nome || !telefone || !SITUACOES.has(situacao)) {
+    const telefoneDigitos = telefone.replace(/\D/g, '');
+
+    if (
+      !nome ||
+      !telefone ||
+      telefoneDigitos.length < 10 ||
+      telefoneDigitos.length > 13 ||
+      !SITUACOES.has(situacao)
+    ) {
       return NextResponse.json({ error: 'Dados inválidos' }, { status: 400 });
     }
 
