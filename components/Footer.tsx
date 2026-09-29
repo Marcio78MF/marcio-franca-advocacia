@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { SITE_CONFIG, AREAS_ATUACAO } from '@/lib/data';
+import { SITE_CONFIG } from '@/lib/data';
 import Icon from '@/components/Icon';
 import styles from './Footer.module.css';
 
@@ -29,34 +29,26 @@ export default function Footer() {
             </div>
           </Link>
           <p className={styles.desc}>
-            Escritório de advocacia em Rio Branco/AC com atuação em Direito Previdenciário, Consumidor Bancário, Energisa, Família e Criminal. Atendimento presencial e online.
+            Informações e atendimento jurídico relacionados ao BPC/LOAS em Rio Branco e no Acre. Atendimento presencial e online.
           </p>
         </div>
 
-        {/* Áreas */}
-        <nav className={styles.col} aria-label="Áreas de atuação">
-          <h4 className={styles.colTitulo}>Áreas de Atuação</h4>
+        {/* Navegação focada no BPC */}
+        <nav className={styles.col} aria-label="Navegação BPC">
+          <h4 className={styles.colTitulo}>BPC/LOAS</h4>
           <ul className={styles.linkList}>
-            {AREAS_ATUACAO.map((area) => (
-              <li key={area.id}>
-                <Link href={area.id === 'bpc-loas' ? '/' : area.slug} className={styles.footerLink}>{area.titulo}</Link>
-              </li>
-            ))}
+            <li><Link href="/" className={styles.footerLink}>BPC/LOAS</Link></li>
+            <li><Link href="/#quero-direito" className={styles.footerLink}>Quem pode ter direito</Link></li>
+            <li><Link href="/#bpc-negado" className={styles.footerLink}>BPC negado</Link></li>
+            <li><Link href="/#duvidas" className={styles.footerLink}>Dúvidas frequentes</Link></li>
           </ul>
         </nav>
 
-        {/* Links rápidos */}
-        <nav className={styles.col} aria-label="Links rápidos">
-          <h4 className={styles.colTitulo}>Acesso Rápido</h4>
+        <nav className={styles.col} aria-label="Informações">
+          <h4 className={styles.colTitulo}>Informações</h4>
           <ul className={styles.linkList}>
-            <li><Link href="/" className={styles.footerLink}>Início</Link></li>
-            <li><Link href="/sobre" className={styles.footerLink}>Sobre o Escritório</Link></li>
-            <li><Link href="/blog" className={styles.footerLink}>Blog Jurídico</Link></li>
-            <li><Link href="/triagem" className={styles.footerLink}>Diagnóstico Rápido</Link></li>
-            <li><Link href="/avaliacoes" className={styles.footerLink}>Depoimentos</Link></li>
+            <li><Link href="/blog/bpc-loas-negado-o-que-fazer" className={styles.footerLink}>BPC negado: o que fazer</Link></li>
             <li><Link href="/politica-de-privacidade" className={styles.footerLink}>Política de Privacidade</Link></li>
-            <li><Link href="/contato" className={styles.footerLink}>Contato</Link></li>
-            <li><Link href="/admin" className={styles.footerLink}>Área Administrativa</Link></li>
           </ul>
         </nav>
 
@@ -70,7 +62,7 @@ export default function Footer() {
             </li>
             <li className={styles.contatoItem}>
               <span className={styles.contatoIcone} aria-hidden="true"><Icon name="Phone" size={16} /></span>
-              <a href={`tel:${SITE_CONFIG.telefone}`} className={styles.footerLink}>{SITE_CONFIG.telefone}</a>
+              <a href="tel:+5568999511555" className={styles.footerLink}>{SITE_CONFIG.telefone}</a>
             </li>
             <li className={styles.contatoItem}>
               <span className={styles.contatoIcone} aria-hidden="true"><Icon name="Clock" size={16} /></span>
