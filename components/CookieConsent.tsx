@@ -27,12 +27,14 @@ export default function CookieConsent() {
   const aceitar = () => {
     localStorage.setItem('cookie-consent', 'accepted');
     window.__cookieConsent = true;
+    window.dispatchEvent(new Event('cookie-consent-changed'));
     setVisivel(false);
   };
 
   const recusar = () => {
     localStorage.setItem('cookie-consent', 'declined');
     window.__cookieConsent = false;
+    window.dispatchEvent(new Event('cookie-consent-changed'));
     setVisivel(false);
   };
 
