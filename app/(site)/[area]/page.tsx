@@ -53,12 +53,19 @@ export async function generateMetadata({ params }: Props) {
   const { area: areaSlug } = await params;
   const area = obterAreaPorSlug(areaSlug);
   if (!area) return {};
-  return gerarMetadata({
+  const metadata = gerarMetadata({
     titulo: area.tituloLp,
     descricao: area.descricao,
     slug: areaSlug,
     palavrasChave: area.palavrasChave,
   });
+
+  // O subdomínio é especializado em BPC. As páginas legadas de outras áreas
+  // permanecem acessíveis temporariamente, mas não devem competir no índice.
+  return {
+    ...metadata,
+    robots: { index: false, follow: true },
+  };
 }
 
 export default async function AreaPage({ params }: Props) {
