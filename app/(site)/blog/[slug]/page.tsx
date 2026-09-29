@@ -15,7 +15,9 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  return gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article' });
+  const metadata = gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article' });
+  if (slug === 'bpc-loas-negado-o-que-fazer') return metadata;
+  return { ...metadata, robots: { index: false, follow: true } };
 }
 
 export default async function PostPage({ params }: Props) {
