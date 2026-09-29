@@ -4,11 +4,14 @@ import { gerarMetadata } from '@/lib/seo';
 import NewsletterCapture from '@/components/NewsletterCapture';
 import styles from './blog.module.css';
 
-export const metadata = gerarMetadata({
-  titulo: 'Blog Jurídico',
-  descricao: 'Artigos informativos sobre direito previdenciário, consumidor, família e criminal. Conteúdo jurídico acessível para cidadãos em Rio Branco/AC.',
-  slug: 'blog',
-});
+export const metadata = {
+  ...gerarMetadata({
+    titulo: 'Blog Jurídico',
+    descricao: 'Artigos informativos do escritório.',
+    slug: 'blog',
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default function BlogPage() {
   const postsPublicados = getPosts();
