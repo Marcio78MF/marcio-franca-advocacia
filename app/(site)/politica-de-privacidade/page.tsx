@@ -27,62 +27,89 @@ export default function PoliticaPrivacidadePage() {
           <div className="section-header" style={{ textAlign: 'left', margin: '0 0 2rem 0' }}>
             <div className="section-badge" style={{ marginBottom: '1rem' }}>LGPD</div>
             <h1>Política de Privacidade</h1>
-            <p style={{ marginTop: '0.5rem' }}>Última atualização: Junho de 2026</p>
+            <p style={{ marginTop: '0.5rem' }}>Última atualização: Setembro de 2026</p>
           </div>
 
           <div style={{ color: 'var(--cinza-texto)', display: 'flex', flexDirection: 'column', gap: '1.5rem', lineHeight: '1.8' }}>
             <p>
-              No escritório <strong>{SITE_CONFIG.nome}</strong>, valorizamos a sua privacidade e estamos comprometidos em proteger os seus dados pessoais em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD). Esta Política de Privacidade descreve como coletamos, usamos e protegemos suas informações ao utilizar nosso site institucional e serviços online.
+              O <strong>{SITE_CONFIG.nome}</strong> trata dados pessoais de forma compatível com a
+              Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD). Esta política descreve,
+              de forma resumida, quais dados são coletados neste subdomínio de BPC/LOAS e para
+              quais finalidades são utilizados.
             </p>
 
-            <h2>1. Coleta de Informações</h2>
+            <h2>1. Dados coletados</h2>
             <p>
-              Nós podemos coletar dados pessoais fornecidos voluntariamente por você ao preencher nossos formulários, como o Diagnóstico Rápido (Triagem) e capturas de contato:
-            </p>
-            <ul style={{ paddingLeft: '1.5rem', listStyle: 'disc' }}>
-              <li><strong>Dados de Identificação:</strong> Nome completo.</li>
-              <li><strong>Dados de Contato:</strong> Número do WhatsApp, número de telefone e e-mail.</li>
-              <li><strong>Informações do Caso:</strong> Respostas a perguntas de triagem e resumos de situações jurídicas que você escolher nos enviar.</li>
-            </ul>
-
-            <h2>2. Finalidade do Tratamento de Dados</h2>
-            <p>
-              Os dados coletados destinam-se exclusivamente às seguintes finalidades:
+              No formulário de contato BPC/LOAS, solicitamos apenas os dados necessários para o
+              primeiro atendimento:
             </p>
             <ul style={{ paddingLeft: '1.5rem', listStyle: 'disc' }}>
-              <li>Realizar a triagem inicial do seu caso e avaliar a viabilidade de atendimento jurídico.</li>
-              <li>Entrar em contato para agendamentos ou esclarecimento de dúvidas jurídicas.</li>
-              <li>Enviar boletins informativos e atualizações sobre direitos (caso cadastrado em nossa newsletter).</li>
+              <li><strong>Nome;</strong></li>
+              <li><strong>Número de WhatsApp/telefone;</strong></li>
+              <li><strong>Situação selecionada</strong> no formulário sobre o BPC/LOAS.</li>
             </ul>
-
-            <h2>3. Armazenamento e Compartilhamento de Dados</h2>
             <p>
-              Adotamos medidas técnicas e administrativas aptas a proteger os seus dados pessoais contra acessos não autorizados. Seus dados são confidenciais e:
+              Não solicitamos, no primeiro contato, senhas, códigos de acesso ou documentos
+              sensíveis. Informações adicionais somente devem ser fornecidas quando necessárias
+              para a análise jurídica do caso.
             </p>
+
+            <h2>2. Finalidades do tratamento</h2>
+            <p>Os dados informados são utilizados para:</p>
             <ul style={{ paddingLeft: '1.5rem', listStyle: 'disc' }}>
-              <li><strong>Não</strong> são comercializados ou compartilhados com terceiros para fins publicitários.</li>
-              <li>Serão arquivados e armazenados apenas pelo período necessário para cumprir as finalidades descritas nesta política ou para atender a obrigações legais.</li>
+              <li>Registrar e organizar o pedido de contato;</li>
+              <li>Permitir retorno pelo escritório e continuidade do atendimento;</li>
+              <li>Realizar procedimentos preliminares relacionados a eventual contratação de serviços jurídicos;</li>
+              <li>Manter controle interno dos contatos recebidos.</li>
             </ul>
 
-            <h2>4. Direitos do Titular</h2>
+            <h2>3. Armazenamento e prestadores de tecnologia</h2>
             <p>
-              Você, como titular dos dados, tem o direito de solicitar a qualquer momento a confirmação da existência do tratamento, acesso aos dados coletados, correção de dados incompletos ou desatualizados, bem como a eliminação ou portabilidade dos seus dados.
+              Os contatos enviados pelo formulário são armazenados em infraestrutura de nuvem
+              utilizada pelo escritório e acessados por painel administrativo protegido. Serviços
+              técnicos de hospedagem, banco de dados e autenticação podem processar dados na medida
+              necessária para fornecer essas funcionalidades, observadas as respectivas medidas de
+              segurança e políticas aplicáveis.
+            </p>
+            <p>
+              Os dados não são comercializados nem compartilhados com terceiros para publicidade.
             </p>
 
-            <h2>5. Uso de Cookies</h2>
+            <h2>4. Cookies e Google Analytics</h2>
             <p>
-              Utilizamos cookies no nosso site para melhorar sua experiência de navegação e analisar o tráfego do site. Você pode gerenciar ou recusar os cookies através da barra de consentimento exibida ao acessar o site.
+              O Google Analytics 4 é utilizado somente após a aceitação dos cookies opcionais de
+              análise. Se a opção “Recusar” for escolhida, o código do Analytics não é carregado
+              nesta navegação. O site também utiliza recursos estritamente necessários ao
+              funcionamento da página e do painel administrativo.
             </p>
 
-            <h2>6. Contato do Encarregado de Proteção de Dados (DPO)</h2>
+            <h2>5. Prazo de conservação</h2>
             <p>
-              Se você tiver alguma dúvida sobre esta Política de Privacidade ou sobre como lidamos com seus dados pessoais, entre em contato conosco através do e-mail: <a href={`mailto:${SITE_CONFIG.email}`} style={{ color: 'var(--dourado)', fontWeight: 'bold' }}>{SITE_CONFIG.email}</a>.
+              Os dados são mantidos pelo período necessário para responder ao contato, organizar o
+              histórico de atendimento, cumprir obrigações legais ou resguardar direitos. Quando
+              não houver mais finalidade legítima para a conservação, poderão ser eliminados ou
+              anonimizados, conforme aplicável.
+            </p>
+
+            <h2>6. Direitos do titular</h2>
+            <p>
+              O titular pode solicitar, nos termos da LGPD, confirmação da existência de
+              tratamento, acesso, correção e, quando cabível, eliminação, informação sobre
+              compartilhamentos e demais direitos previstos em lei.
+            </p>
+
+            <h2>7. Canal de privacidade</h2>
+            <p>
+              Solicitações relacionadas a dados pessoais podem ser encaminhadas para{' '}
+              <a href={`mailto:${SITE_CONFIG.email}`} style={{ color: 'var(--dourado)', fontWeight: 'bold' }}>
+                {SITE_CONFIG.email}
+              </a>.
             </p>
 
             <div className="aviso-legal" style={{ marginTop: '2rem' }}>
               {SITE_CONFIG.avisoLegal}
             </div>
-          </div>
+          </div>/div>
         </div>
       </section>
     </>
