@@ -23,14 +23,14 @@ export default function Navbar() {
 
   const whatsappTracking = isBpcLanding
     ? '[source=bpc-landing&area=bpc-loas&cta=navbar]'
-    : '[source=site&area=geral&cta=navbar]';
+    : '[source=bpc-subdomain&area=bpc-loas&cta=navbar]';
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(`Olá, gostaria de informações sobre atendimento jurídico. ${whatsappTracking}`)}`;
 
   function trackWhatsapp() {
     const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag;
     gtag?.('event', 'whatsapp_click', {
-      area: isBpcLanding ? 'bpc-loas' : 'geral',
-      source: isBpcLanding ? 'bpc-landing' : 'site',
+      area: 'bpc-loas',
+      source: isBpcLanding ? 'bpc-landing' : 'bpc-subdomain',
       cta: 'navbar',
     });
   }
@@ -60,11 +60,11 @@ export default function Navbar() {
         <nav className={styles.nav} aria-label="Menu principal">
           {isBpcSite ? (
             <>
-              <a href="#quero-direito" className={styles.navLink}>Quem pode ter direito</a>
-              <a href="#bpc-negado" className={styles.navLink}>BPC negado</a>
-              <a href="#como-funciona" className={styles.navLink}>Como funciona</a>
-              <a href="#duvidas" className={styles.navLink}>Dúvidas</a>
-              <a href="#formulario" className={styles.navLink}>Contato</a>
+              <a href="/#quero-direito" className={styles.navLink}>Quem pode ter direito</a>
+              <a href="/#bpc-negado" className={styles.navLink}>BPC negado</a>
+              <a href="/#como-funciona" className={styles.navLink}>Como funciona</a>
+              <a href="/#duvidas" className={styles.navLink}>Dúvidas</a>
+              <a href="/#formulario" className={styles.navLink}>Contato</a>
             </>
           ) : (
             <>
@@ -142,11 +142,11 @@ export default function Navbar() {
         <nav className={styles.mobileNav} aria-label="Menu mobile">
           {isBpcSite ? (
             <>
-              <a href="#quero-direito" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Quem pode ter direito</a>
-              <a href="#bpc-negado" className={styles.mobileNavLink} onClick={() => setAberto(false)}>BPC negado</a>
-              <a href="#como-funciona" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Como funciona</a>
-              <a href="#duvidas" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Dúvidas</a>
-              <a href="#formulario" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Contato</a>
+              <a href="/#quero-direito" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Quem pode ter direito</a>
+              <a href="/#bpc-negado" className={styles.mobileNavLink} onClick={() => setAberto(false)}>BPC negado</a>
+              <a href="/#como-funciona" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Como funciona</a>
+              <a href="/#duvidas" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Dúvidas</a>
+              <a href="/#formulario" className={styles.mobileNavLink} onClick={() => setAberto(false)}>Contato</a>
             </>
           ) : (
             <>
