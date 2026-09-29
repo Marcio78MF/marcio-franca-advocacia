@@ -37,7 +37,7 @@ const REQUISITOS = [
   {
     titulo: 'Pessoa com deficiência',
     texto:
-      'Deficiência de longo prazo — física, mental, intelectual ou sensorial — verificada em avaliação médica e social, somada ao requisito de renda familiar e ao CadÚnico atualizado.',
+      'Deficiência de longo prazo — física, mental, intelectual ou sensorial — cujos efeitos perdurem por pelo menos 2 anos, analisada em avaliação biopsicossocial, somada ao requisito de renda familiar e ao CadÚnico atualizado.',
   },
 ];
 
@@ -82,7 +82,7 @@ const PASSOS = [
     numero: '02',
     titulo: 'Requerimento, recurso ou ação judicial',
     texto:
-      'Conforme o caso: requerimento inicial ao INSS, recurso administrativo ou ação na Justiça Federal, com acompanhamento no TRF1 quando houver recurso.',
+      'Conforme o caso: requerimento inicial ao INSS, recurso administrativo ou ação na Justiça Federal, quando cabível.',
   },
   {
     numero: '03',
@@ -106,7 +106,7 @@ const FAQ_ITENS = [
   {
     pergunta: 'O Bolsa Família entra no cálculo da renda do BPC/LOAS?',
     resposta:
-      'O cálculo da renda familiar do BPC segue regras próprias, com rendimentos legalmente excluídos e outros considerados. Esse ponto pode ser relevante em indeferimentos por renda. Cada caso depende da análise dos documentos e do fundamento adotado pelo INSS.',
+      'Atualmente, os valores recebidos pelo Bolsa Família são considerados no cálculo da renda familiar para o requerimento do BPC. Isso não impede, por si só, que uma família beneficiária solicite o BPC: é necessário verificar a composição familiar, os demais rendimentos e as exclusões previstas em lei.',
   },
   {
     pergunta: 'Fui negado por renda. Ainda posso tentar?',
@@ -322,16 +322,14 @@ export default function Home() {
           </div>
           <div className={styles.card}>
             <p>
-              O cálculo da renda familiar do BPC segue regras próprias, distintas de outras
-              análises de renda. Existem rendimentos legalmente excluídos do cálculo e outros que
-              são considerados, a depender da legislação vigente e do fundamento concreto utilizado
-              pelo INSS na decisão.
+              Atualmente, os valores recebidos pelo Bolsa Família são considerados no cálculo da
+              renda familiar para o requerimento do BPC. Isso não impede, por si só, que uma família
+              beneficiária do Bolsa Família solicite o benefício.
             </p>
             <p>
-              Situações envolvendo Bolsa Família em pedidos ou indeferimentos de BPC devem ser
-              analisadas caso a caso, à luz da legislação aplicável no momento da decisão. Alguns
-              indeferimentos fundamentados nesse ponto podem exigir análise administrativa ou
-              judicial individualizada.
+              A análise deve considerar a composição do grupo familiar, os demais rendimentos e as
+              exclusões previstas em lei. Por isso, a renda utilizada pelo INSS e os dados do
+              CadÚnico devem ser conferidos no caso concreto.
             </p>
             <p className="aviso-legal">
               Esta seção é informativa e não representa garantia de concessão ou de reversão de
