@@ -110,3 +110,35 @@
     text-align: center;
   }
 }
+
+
+/* Compact consent card on small screens */
+@media (max-width: 600px) {
+  .wrapper {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    padding: 0.9rem 1rem;
+    border-radius: 11px;
+  }
+
+  .inner {
+    gap: 0.75rem;
+  }
+
+  .texto p {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .botoes {
+    gap: 0.55rem;
+  }
+
+  .btnAceitar,
+  .btnRecusar {
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+}
