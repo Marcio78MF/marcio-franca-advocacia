@@ -39,7 +39,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .statusPublicado { background: #e8f5ee; color: #0a3d20; }
@@ -83,7 +83,7 @@
   font-size: 0.875rem;
   cursor: pointer;
   color: #4a5e54;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
   transition: all 0.2s ease;
 }
 
@@ -100,7 +100,7 @@
   cursor: pointer;
   font-size: 0.875rem;
   color: #4a5e54;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .editorBody {
