@@ -25,6 +25,12 @@ Não necessariamente. O MDS esclarece que os conceitos de família e renda do Ca
 
 Sim. A LOAS possui regras específicas para o exercício de atividade remunerada pela pessoa com deficiência. Dependendo da situação, também pode ser necessário verificar os requisitos do auxílio-inclusão.
 
+## Leia também
+
+- **CadÚnico para BPC:** /blog/cadunico-bpc
+- **Como funciona a renda familiar:** /blog/renda-familiar-bpc
+- **BPC negado e próximos passos:** /blog/bpc-loas-negado-o-que-fazer
+
 ## O que conferir ao receber uma notificação?
 
 - origem da comunicação;
