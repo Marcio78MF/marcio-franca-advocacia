@@ -16,14 +16,14 @@ export default function WhatsAppFloat() {
 
   const tracking = isBpcLanding
     ? '[source=bpc-landing&area=bpc-loas&cta=float]'
-    : '[source=site&area=geral&cta=float]';
+    : '[source=bpc-subdomain&area=bpc-loas&cta=float]';
   const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(`Olá, gostaria de informações sobre atendimento jurídico. ${tracking}`)}`;
 
   function trackWhatsapp() {
     const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag;
     gtag?.('event', 'whatsapp_click', {
-      area: isBpcLanding ? 'bpc-loas' : 'geral',
-      source: isBpcLanding ? 'bpc-landing' : 'site',
+      area: 'bpc-loas',
+      source: isBpcLanding ? 'bpc-landing' : 'bpc-subdomain',
       cta: 'float',
     });
   }
