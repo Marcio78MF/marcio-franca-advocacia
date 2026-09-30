@@ -13,11 +13,24 @@ export default function FAQ({ itens, titulo }: { itens: FAQItem[]; titulo?: stri
       <div className={styles.lista}>
         {itens.map((item, i) => (
           <div key={i} className={`${styles.item} ${aberto === i ? styles.itemAberto : ''}`}>
-            <button className={styles.pergunta} onClick={() => setAberto(aberto === i ? null : i)} aria-expanded={aberto === i}>
+            <button
+              type="button"
+              className={styles.pergunta}
+              onClick={() => setAberto(aberto === i ? null : i)}
+              aria-expanded={aberto === i}
+              aria-controls={`faq-resposta-${i}`}
+              id={`faq-pergunta-${i}`}
+            >
               <span>{item.pergunta}</span>
               <span className={styles.icon}>{aberto === i ? '−' : '+'}</span>
             </button>
-            <div className={styles.resposta} style={{ maxHeight: aberto === i ? '500px' : '0' }}>
+            <div
+              id={`faq-resposta-${i}`}
+              role="region"
+              aria-labelledby={`faq-pergunta-${i}`}
+              hidden={aberto !== i}
+              className={styles.resposta}
+            >
               <p>{item.resposta}</p>
             </div>
           </div>
