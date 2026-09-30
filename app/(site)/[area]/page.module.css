@@ -178,7 +178,7 @@
   font-size: 1.05rem;
   color: var(--grafite);
   margin-bottom: 0.4rem;
-  font-family: 'Sora', system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
 }
 
 .sideCard p {
