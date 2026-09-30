@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './CookieConsent.module.css';
 
+const CONSENT_KEY = 'cookie-consent-v2';
+
 declare global {
   interface Window {
     __cookieConsent?: boolean;
@@ -13,27 +15,36 @@ export default function CookieConsent() {
   const [visivel, setVisivel] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
+    const consent = localStorage.getItem(CONSENT_KEY);
     if (consent === 'accepted') {
       window.__cookieConsent = true;
     } else if (consent === 'declined') {
       window.__cookieConsent = false;
     } else {
-      const timer = setTimeout(() => setVisivel(true), 1500);
-      return () => clearTimeout(timer);
+      // A versão v2 invalida escolhas antigas para garantir consentimento
+      // inequívoco após a correção do mecanismo de Analytics.
+      localStorage.removeItem('cookie-consent');
+      window.__cookieConsent = false;
+      setVisivel(true);
     }
   }, []);
 
   const aceitar = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    localStorage.removeItem('cookie-consent');
     window.__cookieConsent = true;
     window.dispatchEvent(new Event('cookie-consent-changed'));
     setVisivel(false);
   };
 
   const recusar = () => {
-    localStorage.setItem('cookie-consent', 'declined');
+    localStorage.setItem(CONSENT_KEY, 'declined');
+    localStorage.removeItem('cookie-consent');
     window.__cookieConsent = false;
+
+    // Se o visitante revogar uma autorização já concedida nesta sessão,
+    // bloqueia novas medições do Analytics.
+    window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
     window.dispatchEvent(new Event('cookie-consent-changed'));
     setVisivel(false);
   };
@@ -41,7 +52,7 @@ export default function CookieConsent() {
   if (!visivel) return null;
 
   return (
-    <div className={styles.wrapper} role="alert" aria-live="polite">
+    <div className={styles.wrapper} role="dialog" aria-live="polite" aria-label="Preferências de cookies">
       <div className={styles.inner}>
         <div className={styles.texto}>
           <p>
@@ -50,10 +61,10 @@ export default function CookieConsent() {
           </p>
         </div>
         <div className={styles.botoes}>
-          <button onClick={recusar} className={styles.btnRecusar}>
+          <button type="button" onClick={recusar} className={styles.btnRecusar}>
             Recusar
           </button>
-          <button onClick={aceitar} className={styles.btnAceitar}>
+          <button type="button" onClick={aceitar} className={styles.btnAceitar}>
             Aceitar
           </button>
         </div>
