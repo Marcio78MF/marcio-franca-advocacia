@@ -123,8 +123,7 @@ export function gerarSchemaEscritorio() {
       SITE_CONFIG.instagram,
       SITE_CONFIG.facebook,
       SITE_CONFIG.linkedin,
-      SITE_CONFIG.googleBusiness,
-    ],
+    ].filter(Boolean),
     knowsAbout: ['BPC/LOAS', 'Benefício de Prestação Continuada', 'Direito Assistencial'],
   };
 }
