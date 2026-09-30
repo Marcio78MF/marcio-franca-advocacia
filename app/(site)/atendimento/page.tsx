@@ -5,15 +5,15 @@ import Link from 'next/link';
 export const metadata = {
   ...gerarMetadata({
     titulo: 'Atendimento Jurídico',
-    descricao: 'Atendimento presencial em Rio Branco/AC e online para todo o Brasil. Consulta jurídica com Dr. Márcio Jr. França.',
+    descricao: 'Atendimento presencial em Rio Branco/AC e online para orientações relacionadas ao BPC/LOAS.',
     slug: 'atendimento',
-    palavrasChave: ['atendimento jurídico', 'consulta advogado', 'advogado online', 'advogado Rio Branco'],
+    palavrasChave: ['atendimento BPC Rio Branco', 'BPC LOAS Acre', 'atendimento BPC online'],
   }),
   robots: { index: false, follow: true },
 };
 
 export default function AtendimentoPage() {
-  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento. [source=site&area=atendimento]')}`;
+  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento. [source=bpc-subdomain&area=bpc-loas]')}`;
 
   return (
     <>
@@ -29,8 +29,8 @@ export default function AtendimentoPage() {
         <div className="container">
           <div className="section-header">
             <div className="section-badge">Atendimento</div>
-            <h1>Como Podemos Atendê-lo</h1>
-            <p>Escolha a modalidade de atendimento que melhor se adapta à sua necessidade.</p>
+            <h1>Atendimento BPC/LOAS</h1>
+            <p>Escolha entre atendimento presencial em Rio Branco/AC ou contato online.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
