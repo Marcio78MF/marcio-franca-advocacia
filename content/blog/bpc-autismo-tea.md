@@ -96,6 +96,13 @@ A partir do fundamento do indeferimento e das provas disponíveis, pode ser nece
 
 A negativa administrativa **não deve ser interpretada automaticamente como prova de que a pessoa não possui direito**, mas também não significa que o benefício será concedido em uma revisão posterior. É necessário examinar individualmente o processo.
 
+## Leia também
+
+- **Avaliação da deficiência no BPC:** /blog/pericia-avaliacao-social-bpc
+- **Como funciona a renda familiar:** /blog/renda-familiar-bpc
+- **CadÚnico para BPC:** /blog/cadunico-bpc
+- **BPC negado: o que fazer:** /blog/bpc-loas-negado-o-que-fazer
+
 ## O ponto principal
 
 No BPC para pessoa com autismo, a pergunta adequada não é apenas “há diagnóstico de TEA?”. A análise deve reunir três questões: **o enquadramento da pessoa com deficiência, as repercussões do impedimento em interação com as barreiras e os demais requisitos socioeconômicos e cadastrais do benefício**.
