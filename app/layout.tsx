@@ -18,10 +18,12 @@ export const metadata: Metadata = {
   description:
     'Informações sobre BPC/LOAS em Rio Branco e no Acre, incluindo requisitos, renda familiar, CadÚnico, avaliação biopsicossocial e análise de indeferimentos do INSS.',
   keywords: [
-    'advogado BPC LOAS Rio Branco',
-    'BPC negado por renda Acre',
-    'advogado previdenciário Rio Branco',
-    'Bolsa Família cálculo renda BPC',
+    'BPC LOAS Rio Branco',
+    'BPC LOAS Acre',
+    'BPC negado Acre',
+    'BPC pessoa com deficiência Acre',
+    'BPC idoso Rio Branco',
+    'Bolsa Família renda BPC',
     'Márcio Jr. França advogado',
     'OAB/AC 2.882',
   ],
