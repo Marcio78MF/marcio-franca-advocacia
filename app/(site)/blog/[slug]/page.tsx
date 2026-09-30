@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) return {};
   const metadata = gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article' });
-  if (slug === 'bpc-loas-negado-o-que-fazer') return metadata;
+  if (['bpc-loas-negado-o-que-fazer', 'bpc-autismo-tea'].includes(slug)) return metadata;
   return { ...metadata, robots: { index: false, follow: true } };
 }
 
@@ -105,7 +105,7 @@ export default async function PostPage({ params }: Props) {
               <h1 className={styles.titulo}>{post.titulo}</h1>
               <p className={styles.resumo}>{post.resumo}</p>
               <div className={styles.conteudo}>{renderConteudo(post.conteudo)}</div>
-              {slug === 'bpc-loas-negado-o-que-fazer' && (
+              {['bpc-loas-negado-o-que-fazer', 'bpc-autismo-tea'].includes(slug) && (
                 <div className="aviso-legal" style={{ marginTop: '2rem', fontStyle: 'normal' }}>
                   <strong>Fontes oficiais para consulta:</strong>{' '}
                   <a href="https://www.planalto.gov.br/ccivil_03/leis/l8742compilado.htm" target="_blank" rel="noopener noreferrer">Lei nº 8.742/1993 (LOAS)</a>
