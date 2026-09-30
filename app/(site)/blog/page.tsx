@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  const postsPublicados = getPosts();
+  const postsPublicados = getPosts().filter(p => p.categoria.toLowerCase().includes('bpc'));
   const categorias = [...new Set(postsPublicados.map(p => p.categoria))];
 
   return (
@@ -29,9 +29,9 @@ export default function BlogPage() {
       <section className="section" style={{ paddingTop: '1rem' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-badge">Blog Jurídico</div>
-            <h1>Informação jurídica acessível</h1>
-            <p>Artigos informativos sobre temas relevantes. Cada situação depende de análise individualizada.</p>
+            <div className="section-badge">Conteúdo BPC/LOAS</div>
+            <h1>Informações sobre BPC/LOAS</h1>
+            <p>Conteúdo informativo sobre o benefício, seus requisitos e situações de indeferimento. Cada caso depende de análise individualizada.</p>
           </div>
 
           <div className={styles.categorias}>
