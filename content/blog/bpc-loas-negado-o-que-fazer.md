@@ -75,10 +75,5 @@ Não existe uma resposta única. Dependendo do fundamento do indeferimento e da 
 
 A escolha deve considerar o processo administrativo, a data da ciência da decisão, os documentos existentes e as particularidades da situação. A via judicial também exige análise individual e não representa garantia de concessão.
 
-## Fontes oficiais utilizadas
-
-Este conteúdo foi atualizado com base na **Lei nº 8.742/1993 (LOAS)**, nas orientações do **Instituto Nacional do Seguro Social (INSS)**, do **Conselho de Recursos da Previdência Social (CRPS)** e do **Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS)**, inclusive as orientações publicadas em 2026 sobre BPC, CadÚnico e Bolsa Família.
-
 ---
-
 *Conteúdo atualizado em setembro de 2026. Material exclusivamente informativo. O envio de informações ou a leitura deste artigo não constitui contratação, não substitui a análise individual do caso e não representa promessa de resultado.*
