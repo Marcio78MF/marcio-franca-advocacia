@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG } from '@/lib/data';
 import Icon from '@/components/Icon';
+import CookieSettingsButton from '@/components/CookieSettingsButton';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -49,6 +50,7 @@ export default function Footer() {
           <ul className={styles.linkList}>
             <li><Link href="/blog/bpc-loas-negado-o-que-fazer" className={styles.footerLink}>BPC negado: o que fazer</Link></li>
             <li><Link href="/politica-de-privacidade" className={styles.footerLink}>Política de Privacidade</Link></li>
+            <li><CookieSettingsButton className={styles.footerLink} /></li>
           </ul>
         </nav>
 
