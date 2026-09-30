@@ -38,6 +38,21 @@ function db() {
 
 export async function POST(req: NextRequest) {
   try {
+    const origin = req.headers.get('origin');
+    if (origin && origin !== 'https://bpc.marciofranca.adv.br') {
+      return NextResponse.json({ error: 'Origem não permitida' }, { status: 403 });
+    }
+
+    const contentType = req.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      return NextResponse.json({ error: 'Formato inválido' }, { status: 415 });
+    }
+
+    const contentLength = Number(req.headers.get('content-length') || 0);
+    if (contentLength > 10_000) {
+      return NextResponse.json({ error: 'Requisição muito grande' }, { status: 413 });
+    }
+
     const body = await req.json();
     const nome = clean(body.nome, 120);
     const telefone = clean(body.telefone, 30);
