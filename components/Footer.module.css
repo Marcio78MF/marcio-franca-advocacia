@@ -37,7 +37,7 @@
 }
 
 .logoNome {
-  font-family: 'Sora', system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   color: white;
@@ -61,7 +61,7 @@
 .col { display: flex; flex-direction: column; }
 
 .colTitulo {
-  font-family: 'Sora', system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   color: white;
