@@ -81,7 +81,7 @@
   font-size: 1.05rem;
   color: var(--grafite);
   font-weight: 600;
-  font-family: 'Sora', system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
   line-height: 1.35;
   flex: 1;
 }
