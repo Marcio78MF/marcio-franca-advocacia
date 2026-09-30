@@ -31,6 +31,12 @@ Não para a modalidade destinada à pessoa idosa. Nela, o requisito pessoal é a
 
 Sim. A inscrição e a atualização cadastral integram os requisitos administrativos. A legislação atual estabelece prazo máximo de 24 meses para atualização cadastral dos benefícios federais que utilizam o CadÚnico.
 
+## Leia também
+
+- **Como funciona a renda familiar no BPC:** /blog/renda-familiar-bpc
+- **CadÚnico para BPC:** /blog/cadunico-bpc
+- **BPC negado: o que fazer:** /blog/bpc-loas-negado-o-que-fazer
+
 ## E se o pedido for negado?
 
 Primeiro deve ser identificado o fundamento da negativa. Renda, composição familiar, CadÚnico e documentação são pontos que podem precisar de conferência antes da definição do próximo passo.
