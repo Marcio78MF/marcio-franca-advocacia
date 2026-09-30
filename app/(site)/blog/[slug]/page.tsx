@@ -37,12 +37,16 @@ export default async function PostPage({ params }: Props) {
     const elementos: React.ReactNode[] = [];
     let listaAtual: string[] = [];
 
+    const inlineMarkup = (textoInline: string) => ({
+      __html: textoInline.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'),
+    });
+
     const flushLista = (key: number) => {
       if (listaAtual.length > 0) {
         elementos.push(
           <ul key={`list-${key}`} className={styles.ul}>
             {listaAtual.map((item, index) => (
-              <li key={index} className={styles.li}>{item}</li>
+              <li key={index} className={styles.li} dangerouslySetInnerHTML={inlineMarkup(item)} />
             ))}
           </ul>
         );
@@ -67,8 +71,7 @@ export default async function PostPage({ params }: Props) {
         } else if (trimmed.startsWith('*') && trimmed.endsWith('*') && !trimmed.startsWith('**')) {
           elementos.push(<p key={i} className={styles.italic}>{trimmed.replace(/\*/g, '')}</p>);
         } else if (trimmed !== '') {
-          const withBold = trimmed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-          elementos.push(<p key={i} dangerouslySetInnerHTML={{ __html: withBold }} />);
+          elementos.push(<p key={i} dangerouslySetInnerHTML={inlineMarkup(trimmed)} />);
         }
       }
     });
