@@ -1,12 +1,11 @@
 import { gerarMetadata } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
-import NewsletterCapture from '@/components/NewsletterCapture';
 
 export const metadata = {
   ...gerarMetadata({
     titulo: 'Atendimento Jurídico Online — Todo o Brasil',
-    descricao: 'Consulta jurídica online com Dr. Márcio Jr. França. Atendimento por videochamada e WhatsApp para todo o Brasil. Direito Previdenciário, Consumidor e mais.',
+    descricao: 'Consulta jurídica online com Dr. Márcio Jr. França. Atendimento por videochamada e WhatsApp para todo o Brasil. Atendimento para orientações relacionadas ao BPC/LOAS e questões jurídicas que exijam análise individual.',
     slug: 'atendimento/online',
     palavrasChave: ['advogado online', 'consulta jurídica online', 'advogado por videochamada', 'atendimento jurídico digital'],
   }),
@@ -14,7 +13,7 @@ export const metadata = {
 };
 
 export default function OnlinePage() {
-  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento online. [source=site&area=online]')}`;
+  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento online. [source=bpc-subdomain&area=bpc-loas]')}`;
 
   return (
     <>
@@ -43,7 +42,7 @@ export default function OnlinePage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2rem' }}>
                 <div>
                   <h3 style={{ color: 'var(--dourado)', fontSize: '1rem', marginBottom: '0.25rem' }}>1. Primeiro Contato</h3>
-                  <p style={{ color: 'var(--cinza-texto)', margin: 0, fontSize: '0.92rem' }}>Entre em contato pelo WhatsApp ou faça o diagnóstico rápido no site. Descreva brevemente sua situação.</p>
+                  <p style={{ color: 'var(--cinza-texto)', margin: 0, fontSize: '0.92rem' }}>Entre em contato pelo WhatsApp ou envie sua situação pelo formulário BPC do site.</p>
                 </div>
                 <div>
                   <h3 style={{ color: 'var(--dourado)', fontSize: '1rem', marginBottom: '0.25rem' }}>2. Análise Inicial</h3>
@@ -65,8 +64,8 @@ export default function OnlinePage() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <Link href="/triagem" className="btn btn-dourado" style={{ width: '100%', justifyContent: 'center' }}>
-                  Fazer diagnóstico rápido
+                <Link href="/#formulario" className="btn btn-dourado" style={{ width: '100%', justifyContent: 'center' }}>
+                  Enviar situação para análise
                 </Link>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp" style={{ width: '100%', justifyContent: 'center' }}>
                   Agendar pelo WhatsApp
@@ -76,8 +75,6 @@ export default function OnlinePage() {
           </div>
         </div>
       </section>
-
-      <NewsletterCapture />
     </>
   );
 }
