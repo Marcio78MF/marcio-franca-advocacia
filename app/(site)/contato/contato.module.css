@@ -103,7 +103,7 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-family: 'Sora', system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
 }
 
 .infoItem {
@@ -157,7 +157,7 @@
   font-size: 0.9rem;
   color: var(--grafite);
   margin-bottom: 0.75rem;
-  font-family: 'Sora', system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, sans-serif;
 }
 
 .mapLink {
