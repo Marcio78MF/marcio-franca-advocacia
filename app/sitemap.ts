@@ -12,5 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${base}/blog/bpc-autismo-tea`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }
