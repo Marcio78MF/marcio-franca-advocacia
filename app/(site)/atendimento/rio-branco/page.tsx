@@ -1,12 +1,11 @@
 import { gerarMetadata } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
 import Link from 'next/link';
-import NewsletterCapture from '@/components/NewsletterCapture';
 
 export const metadata = {
   ...gerarMetadata({
     titulo: 'Advogado em Rio Branco/AC — Atendimento Presencial',
-    descricao: 'Escritório de advocacia em Rio Branco, Acre. Atendimento presencial com Dr. Márcio Jr. França. Direito Previdenciário, Consumidor, Família e Criminal.',
+    descricao: 'Escritório de advocacia em Rio Branco, Acre. Atendimento presencial com Dr. Márcio Jr. França. Atendimento presencial para orientações relacionadas ao BPC/LOAS e análise individual da situação.',
     slug: 'atendimento/rio-branco',
     palavrasChave: ['advogado Rio Branco', 'escritório advocacia Rio Branco', 'advogado Acre', 'consulta presencial advogado'],
   }),
@@ -14,50 +13,11 @@ export const metadata = {
 };
 
 export default function RioBrancoPage() {
-  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento presencial em Rio Branco. [source=site&area=rio-branco]')}`;
+  const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, gostaria de agendar um atendimento presencial em Rio Branco. [source=bpc-subdomain&area=bpc-loas]')}`;
 
-  const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': 'https://bpc.marciofranca.adv.br/#escritorio',
-    name: 'Advocacia Dr. Márcio Jr. França',
-    description: 'Escritório de advocacia em Rio Branco/AC com atuação em Direito Previdenciário, Consumidor Bancário, Família e Criminal.',
-    telephone: SITE_CONFIG.telefone,
-    email: SITE_CONFIG.email,
-    url: 'https://bpc.marciofranca.adv.br/atendimento/rio-branco',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Av. Epaminondas Jacome, nº 2172, bairro Cerâmica',
-      addressLocality: 'Rio Branco',
-      addressRegion: 'AC',
-      postalCode: '69905-076',
-      addressCountry: 'BR',
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '12:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '14:00',
-        closes: '18:00',
-      },
-    ],
-    priceRange: '$$',
-    areaServed: {
-      '@type': 'City',
-      name: 'Rio Branco',
-      containedInPlace: { '@type': 'State', name: 'Acre' },
-    },
-  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
 
       <div className="container">
         <div className="breadcrumb" style={{ paddingTop: '5.5rem' }}>
@@ -74,7 +34,7 @@ export default function RioBrancoPage() {
           <div className="section-header">
             <div className="section-badge">Presencial</div>
             <h1>Atendimento Presencial em Rio Branco/AC</h1>
-            <p>Escritório localizado no centro de Rio Branco, com fácil acesso e estacionamento.</p>
+            <p>Atendimento presencial em Rio Branco/AC, mediante contato prévio.</p>
           </div>
 
           <div style={{ maxWidth: '700px', margin: '3rem auto 0' }}>
@@ -96,18 +56,14 @@ export default function RioBrancoPage() {
                 </p>
               </div>
 
-              <h3 style={{ color: 'var(--azul-marinho)', marginBottom: '1rem', fontSize: '1.1rem' }}>Áreas de Atuação</h3>
-              <ul style={{ color: 'var(--cinza-texto)', lineHeight: '2', paddingLeft: '1.25rem', marginBottom: '2rem' }}>
-                <li>Direito Previdenciário (BPC/LOAS, Aposentadoria Rural)</li>
-                <li>Direito do Consumidor (Consignado Indevido, Energisa)</li>
-                <li>Planos de Saúde</li>
-                <li>Direito de Família</li>
-                <li>Direito Criminal</li>
-              </ul>
+              <h3 style={{ color: 'var(--azul-marinho)', marginBottom: '1rem', fontSize: '1.1rem' }}>BPC/LOAS</h3>
+              <p style={{ color: 'var(--cinza-texto)', lineHeight: '1.7', marginBottom: '2rem' }}>
+                O atendimento pode abranger requisitos do benefício, renda familiar, CadÚnico, avaliação da deficiência e análise de indeferimentos pelo INSS.
+              </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <Link href="/triagem" className="btn btn-dourado" style={{ width: '100%', justifyContent: 'center' }}>
-                  Fazer diagnóstico rápido
+                <Link href="/#formulario" className="btn btn-dourado" style={{ width: '100%', justifyContent: 'center' }}>
+                  Enviar situação para análise
                 </Link>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp" style={{ width: '100%', justifyContent: 'center' }}>
                   Agendar pelo WhatsApp
@@ -117,8 +73,6 @@ export default function RioBrancoPage() {
           </div>
         </div>
       </section>
-
-      <NewsletterCapture />
     </>
   );
 }
