@@ -15,6 +15,9 @@ export default function CookieConsent() {
   const [visivel, setVisivel] = useState(false);
 
   useEffect(() => {
+    const abrirPreferencias = () => setVisivel(true);
+    window.addEventListener('open-cookie-settings', abrirPreferencias);
+
     const consent = localStorage.getItem(CONSENT_KEY);
     if (consent === 'accepted') {
       window.__cookieConsent = true;
@@ -27,6 +30,8 @@ export default function CookieConsent() {
       window.__cookieConsent = false;
       setVisivel(true);
     }
+
+    return () => window.removeEventListener('open-cookie-settings', abrirPreferencias);
   }, []);
 
   const aceitar = () => {
@@ -45,6 +50,9 @@ export default function CookieConsent() {
     // Se o visitante revogar uma autorização já concedida nesta sessão,
     // bloqueia novas medições do Analytics.
     window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
+    document.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]').forEach((node) => node.remove());
+    delete window.gtag;
+    delete window.dataLayer;
     window.dispatchEvent(new Event('cookie-consent-changed'));
     setVisivel(false);
   };
