@@ -31,6 +31,12 @@ Após a Lei nº 15.077/2024, o valor do Bolsa Família passou a ser considerado 
 
 Não necessariamente. O MDS esclarece que os conceitos de família e renda utilizados no Cadastro Único e no BPC possuem diferenças.
 
+## Leia também
+
+- **BPC negado por renda:** /blog/bpc-negado-por-renda
+- **CadÚnico para BPC:** /blog/cadunico-bpc
+- **BPC para pessoa idosa:** /blog/bpc-idoso-65-anos
+
 ## Como conferir o cálculo?
 
 Uma conferência organizada começa por três perguntas:
