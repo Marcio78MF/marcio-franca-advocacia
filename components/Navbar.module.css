@@ -251,3 +251,50 @@
   .hamburger { display: flex; }
   .mobileMenu { display: block; }
 }
+
+
+/* Mobile refinement: more usable viewport without reducing tap targets */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.62rem 0;
+  }
+
+  .scrolled {
+    padding: 0.48rem 0;
+  }
+
+  .inner {
+    gap: 0.65rem;
+  }
+
+  .logo {
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .logoImgWrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+  }
+
+  .logoText {
+    min-width: 0;
+  }
+
+  .logoNome {
+    font-size: 0.92rem;
+  }
+
+  .logoSub {
+    font-size: 0.6rem;
+    letter-spacing: 0.045em;
+  }
+
+  .hamburger {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    flex: 0 0 44px;
+  }
+}
