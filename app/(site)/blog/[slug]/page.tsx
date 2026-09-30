@@ -48,7 +48,9 @@ export default async function PostPage({ params }: Props) {
     let listaAtual: string[] = [];
 
     const inlineMarkup = (textoInline: string) => ({
-      __html: textoInline.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'),
+      __html: textoInline
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/(\/blog\/[a-z0-9-]+)/g, '<a href="$1">$1</a>'),
     });
 
     const flushLista = (key: number) => {
