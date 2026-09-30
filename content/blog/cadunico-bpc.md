@@ -36,6 +36,12 @@ Nas ações de qualificação cadastral, a ausência de atualização pode produ
 
 Por isso, comunicações oficiais de atualização não devem ser ignoradas.
 
+## Leia também
+
+- **Como funciona a renda familiar no BPC:** /blog/renda-familiar-bpc
+- **BPC suspenso ou bloqueado:** /blog/bpc-suspenso-bloqueado
+- **BPC negado por renda:** /blog/bpc-negado-por-renda
+
 ## Atualizar o CadÚnico resolve qualquer problema do BPC?
 
 Não. O cadastro é importante, mas o BPC possui outros requisitos. Se já existe indeferimento, bloqueio ou suspensão, é necessário verificar o fundamento específico da decisão.
