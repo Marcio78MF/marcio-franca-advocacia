@@ -102,6 +102,16 @@ export default async function PostPage({ params }: Props) {
               <h1 className={styles.titulo}>{post.titulo}</h1>
               <p className={styles.resumo}>{post.resumo}</p>
               <div className={styles.conteudo}>{renderConteudo(post.conteudo)}</div>
+              {slug === 'bpc-loas-negado-o-que-fazer' && (
+                <div className="aviso-legal" style={{ marginTop: '2rem', fontStyle: 'normal' }}>
+                  <strong>Fontes oficiais para consulta:</strong>{' '}
+                  <a href="https://www.planalto.gov.br/ccivil_03/leis/l8742compilado.htm" target="_blank" rel="noopener noreferrer">Lei nº 8.742/1993 (LOAS)</a>
+                  {' · '}
+                  <a href="https://www.gov.br/inss/pt-br/direitos-e-deveres/recurso/duvidas-frequentes" target="_blank" rel="noopener noreferrer">INSS — recursos</a>
+                  {' · '}
+                  <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/suas/beneficios-assistenciais/beneficio-assistencial-ao-idoso-e-a-pessoa-com-deficiencia-bpc" target="_blank" rel="noopener noreferrer">MDS — BPC</a>
+                </div>
+              )}
             </div>
 
             <aside className={styles.sidebar}>
