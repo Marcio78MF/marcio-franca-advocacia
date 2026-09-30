@@ -7,10 +7,12 @@ export const runtime = 'nodejs';
 const SITUACOES = new Set([
   'Quero saber sobre BPC para pessoa idosa',
   'Quero saber sobre BPC para pessoa com deficiência',
+  'Quero saber sobre BPC para pessoa com autismo (TEA)',
   'Meu pedido foi negado por renda',
   'Meu pedido foi negado após avaliação/perícia',
   'Meu BPC foi suspenso ou bloqueado',
   'Tenho dúvida sobre CadÚnico ou renda familiar',
+  'Quero entender quem entra no grupo familiar',
   'Outro motivo',
 ]);
 
