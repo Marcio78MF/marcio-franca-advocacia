@@ -18,5 +18,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${base}/blog/bpc-negado-por-renda`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${base}/blog/renda-familiar-bpc`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${base}/blog/bpc-idoso-65-anos`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${base}/blog/pericia-avaliacao-social-bpc`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${base}/blog/bpc-suspenso-bloqueado`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${base}/blog/cadunico-bpc`,
+      lastModified: agora,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }
