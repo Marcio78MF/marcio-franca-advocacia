@@ -37,7 +37,7 @@
   cursor: pointer;
   transition: all 0.15s ease;
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .lpItem:hover { background: #f4f8f5; }
