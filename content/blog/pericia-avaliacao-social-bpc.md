@@ -34,6 +34,12 @@ Não. Um laudo pode constituir prova importante, mas o benefício depende do con
 
 Relatórios médicos e multiprofissionais, documentos terapêuticos, escolares e outros registros podem ser relevantes quando demonstram **como o impedimento repercute concretamente na vida da pessoa**.
 
+## Leia também
+
+- **BPC para pessoa com autismo (TEA):** /blog/bpc-autismo-tea
+- **BPC negado: o que fazer:** /blog/bpc-loas-negado-o-que-fazer
+- **Como funciona a renda familiar:** /blog/renda-familiar-bpc
+
 ## E se a deficiência não for reconhecida?
 
 É importante obter e examinar o processo administrativo e os documentos da avaliação disponíveis. O próximo passo depende da fundamentação utilizada e das provas existentes.
