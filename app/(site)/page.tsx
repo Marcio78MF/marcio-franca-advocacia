@@ -339,6 +339,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CENTRAL BPC */}
+      <section className="section section-alt">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">Central BPC/LOAS</div>
+            <h2>Encontre informações pela sua situação</h2>
+            <p>Em vez de uma resposta genérica, escolha o ponto que mais se aproxima da sua dúvida.</p>
+          </div>
+          <div className={styles.cards}>
+            <article className={styles.card}>
+              <h3>BPC e autismo (TEA)</h3>
+              <p>Entenda como o TEA é considerado e quais outros requisitos precisam ser analisados.</p>
+              <Link href="/blog/bpc-autismo-tea">Entender BPC e TEA →</Link>
+            </article>
+            <article className={styles.card}>
+              <h3>Negado por renda</h3>
+              <p>Veja o que conferir no grupo familiar e nos rendimentos utilizados pelo INSS.</p>
+              <Link href="/blog/bpc-negado-por-renda">Entender a negativa por renda →</Link>
+            </article>
+            <article className={styles.card}>
+              <h3>Renda familiar</h3>
+              <p>Entenda quem pode integrar o cálculo e por que CadÚnico e BPC possuem regras próprias.</p>
+              <Link href="/blog/renda-familiar-bpc">Entender o cálculo da renda →</Link>
+            </article>
+            <article className={styles.card}>
+              <h3>Pessoa idosa</h3>
+              <p>Veja os requisitos do BPC para quem tem 65 anos ou mais.</p>
+              <Link href="/blog/bpc-idoso-65-anos">Entender o BPC para idoso →</Link>
+            </article>
+            <article className={styles.card}>
+              <h3>Avaliação da deficiência</h3>
+              <p>Entenda a perícia, a avaliação social e por que o diagnóstico não é analisado isoladamente.</p>
+              <Link href="/blog/pericia-avaliacao-social-bpc">Entender a avaliação →</Link>
+            </article>
+            <article className={styles.card}>
+              <h3>Suspenso ou bloqueado</h3>
+              <p>Veja o que deve ser conferido quando um benefício em manutenção é afetado.</p>
+              <Link href="/blog/bpc-suspenso-bloqueado">Entender suspensão ou bloqueio →</Link>
+            </article>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+            <Link href="/blog" className="btn btn-outline">Ver Central BPC/LOAS</Link>
+          </div>
+        </div>
+      </section>
+
       {/* COMO FUNCIONA */}
       <section className={`section section-alt ${styles.secPassos}`} id="como-funciona">
         <div className="container">
