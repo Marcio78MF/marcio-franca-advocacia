@@ -1,0 +1,11 @@
+.wrapper { max-width: 900px; margin: 0 auto; }
+.intro { max-width: 760px; margin: 0 auto 1.5rem; text-align: center; line-height: 1.7; }
+.opcoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.opcoes button { min-height: 54px; padding: .9rem 1rem; border: 1px solid var(--borda); border-radius: var(--radius-sm); background: var(--branco); color: var(--azul-marinho); font: inherit; font-weight: 600; text-align: left; cursor: pointer; }
+.opcoes button:hover { border-color: #2a6496; }
+.opcoes button:focus-visible { outline: 3px solid rgba(42,100,150,.28); outline-offset: 2px; }
+.resultado { margin-top: 1.5rem; padding: 1.5rem; background: var(--branco); border: 1px solid var(--borda); border-radius: var(--radius-lg); box-shadow: var(--sombra-md); }
+.resultado h3 { margin-top: 0; color: var(--azul-marinho); }
+.acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.aviso { margin: 1rem 0 0; font-size: .82rem; line-height: 1.6; color: var(--cinza-texto); }
+@media (max-width: 640px) { .opcoes { grid-template-columns: 1fr; } .resultado { padding: 1.2rem; } .acoes { display: grid; } }
