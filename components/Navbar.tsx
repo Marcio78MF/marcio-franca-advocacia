@@ -36,7 +36,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} role="banner" style={{ viewTransitionName: 'site-header' }}>
+    <header className={`${styles.navbar} ${(scrolled || !isBpcLanding) ? styles.scrolled : ''}`} role="banner" style={{ viewTransitionName: 'site-header' }}>
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
         <Link href="/" className={styles.logo} onClick={() => setAberto(false)} aria-label="Márcio Jr. França Advocacia - Página Inicial">
