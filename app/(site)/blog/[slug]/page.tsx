@@ -16,7 +16,17 @@ export async function generateMetadata({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) return {};
   const metadata = gerarMetadata({ titulo: post.titulo, descricao: post.resumo, slug: `blog/${slug}`, tipo: 'article' });
-  if (['bpc-loas-negado-o-que-fazer', 'bpc-autismo-tea'].includes(slug)) return metadata;
+  const indexaveis = [
+    'bpc-loas-negado-o-que-fazer',
+    'bpc-autismo-tea',
+    'bpc-negado-por-renda',
+    'renda-familiar-bpc',
+    'bpc-idoso-65-anos',
+    'pericia-avaliacao-social-bpc',
+    'bpc-suspenso-bloqueado',
+    'cadunico-bpc',
+  ];
+  if (indexaveis.includes(slug)) return metadata;
   return { ...metadata, robots: { index: false, follow: true } };
 }
 
