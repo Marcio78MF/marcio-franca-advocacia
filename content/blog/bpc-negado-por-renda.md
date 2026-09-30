@@ -33,6 +33,12 @@ Não necessariamente. O Cadastro Único e o BPC possuem conceitos e regras próp
 - documentos relacionados à vulnerabilidade;
 - documentos do requisito de idade ou deficiência.
 
+## Leia também
+
+- **Como funciona a renda familiar no BPC:** /blog/renda-familiar-bpc
+- **CadÚnico para BPC:** /blog/cadunico-bpc
+- **BPC negado: visão geral dos próximos passos:** /blog/bpc-loas-negado-o-que-fazer
+
 ## Qual é o próximo passo?
 
 Pode ser necessário avaliar recurso administrativo, novo requerimento ou, quando cabível, discussão judicial. O ponto de partida é **reconstituir o cálculo realizado pelo INSS**, e não presumir que toda negativa por renda esteja correta ou incorreta.
