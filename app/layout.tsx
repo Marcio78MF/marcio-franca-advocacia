@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
+import { Inter, Sora, Cormorant_Garamond } from 'next/font/google';
 import { gerarSchemaEscritorio } from '@/lib/seo';
 import { SITE_CONFIG } from '@/lib/data';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const sora = Sora({ subsets: ['latin'], variable: '--font-sora', display: 'swap' });
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-cormorant', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bpc.marciofranca.adv.br'),
@@ -40,13 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        {/* Google Fonts: Sora + Inter + Cormorant Garamond (marca) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap"
-          rel="stylesheet"
-        />
         {/* Schema.org - LegalService + Attorney + LocalBusiness */}
         <script
           type="application/ld+json"
@@ -54,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
       </head>
-      <body>
+      <body className={`${inter.variable} ${sora.variable} ${cormorant.variable}`}>
         {SITE_CONFIG.gaId && <GoogleAnalytics gaId={SITE_CONFIG.gaId} />}
         {children}
       </body>
