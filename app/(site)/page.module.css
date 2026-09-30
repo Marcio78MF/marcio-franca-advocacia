@@ -327,3 +327,19 @@
     transform: none;
   }
 }
+
+
+/* Mobile hero spacing below fixed navigation */
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 5.5rem;
+  }
+
+  .heroContent {
+    gap: 1.1rem;
+  }
+
+  .heroTitulo {
+    line-height: 1.02;
+  }
+}
