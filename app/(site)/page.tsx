@@ -3,6 +3,7 @@ import Link from 'next/link';
 import FAQ from '@/components/FAQ';
 import TrackedLink from '@/components/TrackedLink';
 import LeadForm from '@/components/LeadForm';
+import SituationGuide from '@/components/SituationGuide';
 import { SITE_CONFIG } from '@/lib/data';
 import { gerarSchemaFAQ } from '@/lib/seo';
 import styles from './page.module.css';
@@ -382,6 +383,18 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
             <Link href="/blog" className="btn btn-outline">Ver Central BPC/LOAS</Link>
           </div>
+        </div>
+      </section>
+
+      {/* ENTENDA SUA SITUAÇÃO */}
+      <section className="section" id="entenda-sua-situacao">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">Orientação inicial</div>
+            <h2>Entenda sua situação</h2>
+            <p>Identifique o ponto que merece ser analisado primeiro, sem respostas automáticas sobre concessão do benefício.</p>
+          </div>
+          <SituationGuide />
         </div>
       </section>
 
