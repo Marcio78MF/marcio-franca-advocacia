@@ -6,6 +6,11 @@ import styles from './SituationGuide.module.css';
 
 type PathKey = 'idoso' | 'deficiencia' | 'negado-renda' | 'negado-avaliacao' | 'suspenso' | 'cadunico';
 
+function trackEvent(eventName: string, params: Record<string, string> = {}) {
+  if (typeof window === 'undefined') return;
+  window.gtag?.('event', eventName, params);
+}
+
 const CAMINHOS: Record<PathKey, { titulo: string; texto: string; href: string; link: string }> = {
   idoso: { titulo: 'BPC para pessoa idosa', texto: 'A análise começa pela idade mínima, renda familiar, CadÚnico e demais requisitos administrativos.', href: '/blog/bpc-idoso-65-anos', link: 'Entender os requisitos' },
   deficiencia: { titulo: 'BPC para pessoa com deficiência', texto: 'É necessário analisar o impedimento de longo prazo, as barreiras enfrentadas, a renda familiar e os requisitos cadastrais.', href: '/blog/pericia-avaliacao-social-bpc', link: 'Entender a avaliação' },
@@ -19,24 +24,49 @@ export default function SituationGuide() {
   const [selecionado, setSelecionado] = useState<PathKey | null>(null);
   const caminho = selecionado ? CAMINHOS[selecionado] : null;
 
+  function selecionar(topic: PathKey) {
+    setSelecionado(topic);
+    trackEvent('situation_guide_select', {
+      topic: topic.replaceAll('-', '_'),
+      source: 'bpc_landing',
+    });
+  }
+
+  function trackArticleClick() {
+    if (!selecionado || !caminho) return;
+    trackEvent('situation_article_click', {
+      topic: selecionado.replaceAll('-', '_'),
+      destination: caminho.href,
+      source: 'bpc_landing',
+    });
+  }
+
+  function trackFormClick() {
+    if (!selecionado) return;
+    trackEvent('situation_form_click', {
+      topic: selecionado.replaceAll('-', '_'),
+      source: 'bpc_landing',
+    });
+  }
+
   return (
     <div className={styles.wrapper}>
       <p className={styles.intro}>Escolha a situação mais próxima da sua. Isto não determina se existe direito ao benefício; serve para indicar qual informação deve ser examinada primeiro.</p>
       <div className={styles.opcoes} role="group" aria-label="Situação relacionada ao BPC">
-        <button type="button" onClick={() => setSelecionado('idoso')}>Quero entender o BPC para idoso</button>
-        <button type="button" onClick={() => setSelecionado('deficiencia')}>Quero entender o BPC por deficiência</button>
-        <button type="button" onClick={() => setSelecionado('negado-renda')}>Meu pedido foi negado por renda</button>
-        <button type="button" onClick={() => setSelecionado('negado-avaliacao')}>A deficiência não foi reconhecida</button>
-        <button type="button" onClick={() => setSelecionado('suspenso')}>Meu BPC foi suspenso ou bloqueado</button>
-        <button type="button" onClick={() => setSelecionado('cadunico')}>Tenho dúvida sobre CadÚnico ou renda</button>
+        <button type="button" onClick={() => selecionar('idoso')}>Quero entender o BPC para idoso</button>
+        <button type="button" onClick={() => selecionar('deficiencia')}>Quero entender o BPC por deficiência</button>
+        <button type="button" onClick={() => selecionar('negado-renda')}>Meu pedido foi negado por renda</button>
+        <button type="button" onClick={() => selecionar('negado-avaliacao')}>A deficiência não foi reconhecida</button>
+        <button type="button" onClick={() => selecionar('suspenso')}>Meu BPC foi suspenso ou bloqueado</button>
+        <button type="button" onClick={() => selecionar('cadunico')}>Tenho dúvida sobre CadÚnico ou renda</button>
       </div>
       {caminho && (
         <div className={styles.resultado} aria-live="polite">
           <h3>{caminho.titulo}</h3>
           <p>{caminho.texto}</p>
           <div className={styles.acoes}>
-            <Link href={caminho.href} className="btn btn-outline">{caminho.link}</Link>
-            <Link href="/#formulario" className="btn btn-dourado">Enviar minha situação para análise</Link>
+            <Link href={caminho.href} className="btn btn-outline" onClick={trackArticleClick}>{caminho.link}</Link>
+            <Link href="/#formulario" className="btn btn-dourado" onClick={trackFormClick}>Enviar minha situação para análise</Link>
           </div>
           <p className={styles.aviso}>Orientação inicial informativa. Não constitui conclusão sobre direito ao benefício nem promessa de resultado.</p>
         </div>
