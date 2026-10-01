@@ -81,6 +81,7 @@ export default function LeadForm() {
       trackEvent('lead_form_saved', {
         area: 'bpc-loas',
         source: 'bpc-landing',
+        situacao,
       });
       trackEvent('whatsapp_click', {
         area: 'bpc-loas',
